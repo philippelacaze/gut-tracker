@@ -1,0 +1,24 @@
+<div class="body-map">
+  @if (svgContent()) {
+    <div
+      #mapContainer
+      class="body-map__svg-container"
+      [innerHTML]="svgContent()"
+      (click)="onContainerClick($event)"
+      role="group"
+      aria-label="Carte corporelle — cliquez pour sélectionner une zone"
+      i18n-aria-label="@@bodyMap.container.ariaLabel"
+    ></div>
+  } @else {
+    <div class="body-map__loading" aria-busy="true">
+      <span i18n="@@bodyMap.loading">Chargement…</span>
+    </div>
+  }
+
+  @if (selectedRegionLabel()) {
+    <p class="body-map__selected-label" aria-live="polite">
+      <span i18n="@@bodyMap.selectedPrefix">Zone sélectionnée :</span>
+      <strong>{{ selectedRegionLabel() }}</strong>
+    </p>
+  }
+</div>

@@ -1,0 +1,20 @@
+<div
+  class="symptom-type-picker"
+  role="group"
+  aria-label="Type de symptôme"
+  i18n-aria-label="@@symptomType.group.ariaLabel"
+>
+  @for (option of symptomTypes; track option.value) {
+    <button
+      type="button"
+      class="symptom-type-picker__chip"
+      [class.symptom-type-picker__chip--selected]="selected() === option.value"
+      (click)="select(option.value)"
+      [attr.aria-pressed]="selected() === option.value"
+      [attr.aria-label]="option.label"
+    >
+      <span class="symptom-type-picker__icon" aria-hidden="true">{{ option.icon }}</span>
+      <span class="symptom-type-picker__label">{{ option.label }}</span>
+    </button>
+  }
+</div>

@@ -1,0 +1,48 @@
+<div class="severity-slider">
+  <div class="severity-slider__header">
+    <label
+      class="severity-slider__label"
+      for="severity-input"
+      i18n="@@severitySlider.label"
+    >
+      Sévérité
+    </label>
+
+    <div class="severity-slider__value">
+      <span
+        class="severity-slider__emoji"
+        aria-hidden="true"
+      >{{ theme().emoji }}</span>
+      <span
+        class="severity-slider__number"
+        [style.color]="theme().color"
+        aria-live="polite"
+        [attr.aria-label]="theme().label"
+      >{{ severity() }}/10</span>
+    </div>
+  </div>
+
+  <input
+    id="severity-input"
+    type="range"
+    class="severity-slider__range"
+    [value]="severity()"
+    min="1"
+    max="10"
+    step="1"
+    (input)="onSliderChange($event)"
+    [style.--severity-color]="theme().color"
+    aria-label="Niveau de sévérité de 1 à 10"
+    i18n-aria-label="@@severitySlider.input.ariaLabel"
+  />
+
+  <div class="severity-slider__scale" aria-hidden="true">
+    <span i18n="@@severitySlider.min">1</span>
+    <span i18n="@@severitySlider.label.moderate">5</span>
+    <span i18n="@@severitySlider.max">10</span>
+  </div>
+
+  <p class="severity-slider__description" [style.color]="theme().color">
+    {{ theme().label }}
+  </p>
+</div>

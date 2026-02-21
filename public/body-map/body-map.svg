@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 500"
+  role="img" aria-label="Corps humain — vue frontale">
+  <title>Corps humain — cliquez pour localiser un symptôme</title>
+  <defs>
+    <style>
+      .body-silhouette { fill: #e9ecef; stroke: #adb5bd; stroke-width: 1.5; stroke-linejoin: round; }
+      .body-divider    { stroke: #adb5bd; stroke-width: 0.75; stroke-dasharray: 3 3; fill: none; }
+      .body-zone {
+        fill: transparent;
+        stroke: none;
+        cursor: pointer;
+        transition: fill 0.15s;
+      }
+      .body-zone:hover  { fill: rgba(25, 118, 210, 0.20); }
+      .body-zone:focus  { fill: rgba(25, 118, 210, 0.25); outline: none; }
+      .body-zone--active { fill: rgba(25, 118, 210, 0.35) !important; }
+    </style>
+  </defs>
+
+  <!-- ── Silhouette décorative (non interactive) ── -->
+  <g pointer-events="none">
+    <!-- Tête -->
+    <ellipse class="body-silhouette" cx="100" cy="45" rx="36" ry="40"/>
+    <!-- Cou -->
+    <path class="body-silhouette" d="M88,83 L112,83 L112,102 L88,102 Z"/>
+    <!-- Bras gauche -->
+    <path class="body-silhouette" d="M57,102 L20,114 L14,312 L50,316 L57,210 Z"/>
+    <!-- Bras droit -->
+    <path class="body-silhouette" d="M143,102 L180,114 L186,312 L150,316 L143,210 Z"/>
+    <!-- Torse complet -->
+    <path class="body-silhouette" d="M57,102 Q78,92 100,92 Q122,92 143,102 L145,385 L143,440 Q122,456 100,456 Q78,456 57,440 L55,385 Z"/>
+    <!-- Jambe gauche -->
+    <path class="body-silhouette" d="M57,440 L55,500 L96,500 L97,440 Z"/>
+    <!-- Jambe droite -->
+    <path class="body-silhouette" d="M143,440 L145,500 L104,500 L103,440 Z"/>
+
+    <!-- Séparateurs de zones (pointillés) -->
+    <line class="body-divider" x1="57" y1="210" x2="143" y2="210"/>
+    <line class="body-divider" x1="57" y1="270" x2="143" y2="270"/>
+    <line class="body-divider" x1="100" y1="270" x2="100" y2="345"/>
+    <line class="body-divider" x1="57" y1="345" x2="143" y2="345"/>
+    <line class="body-divider" x1="57" y1="385" x2="143" y2="385"/>
+  </g>
+
+  <!-- ── Zones cliquables (transparentes) ── -->
+  <ellipse class="body-zone" data-region="head"
+    cx="100" cy="45" rx="36" ry="40"
+    role="button" tabindex="0" aria-label="Tête"/>
+
+  <path class="body-zone" data-region="thorax"
+    d="M57,102 Q78,92 100,92 Q122,92 143,102 L143,210 L57,210 Z"
+    role="button" tabindex="0" aria-label="Thorax"/>
+
+  <rect class="body-zone" data-region="abdomen-upper"
+    x="57" y="210" width="86" height="60"
+    role="button" tabindex="0" aria-label="Abdomen haut"/>
+
+  <rect class="body-zone" data-region="abdomen-left"
+    x="57" y="270" width="43" height="75"
+    role="button" tabindex="0" aria-label="Abdomen gauche"/>
+
+  <rect class="body-zone" data-region="abdomen-right"
+    x="100" y="270" width="43" height="75"
+    role="button" tabindex="0" aria-label="Abdomen droit"/>
+
+  <rect class="body-zone" data-region="abdomen-lower"
+    x="57" y="345" width="86" height="40"
+    role="button" tabindex="0" aria-label="Abdomen bas"/>
+
+  <path class="body-zone" data-region="pelvis"
+    d="M57,385 L143,385 L143,440 Q122,456 100,456 Q78,456 57,440 Z"
+    role="button" tabindex="0" aria-label="Pelvis"/>
+
+  <path class="body-zone" data-region="left-arm"
+    d="M20,114 L57,102 L57,210 L50,316 L14,312 Z"
+    role="button" tabindex="0" aria-label="Bras gauche"/>
+
+  <path class="body-zone" data-region="right-arm"
+    d="M180,114 L143,102 L143,210 L150,316 L186,312 Z"
+    role="button" tabindex="0" aria-label="Bras droit"/>
+
+  <path class="body-zone" data-region="left-leg"
+    d="M57,440 L55,500 L96,500 L97,440 Z"
+    role="button" tabindex="0" aria-label="Jambe gauche"/>
+
+  <path class="body-zone" data-region="right-leg"
+    d="M143,440 L145,500 L104,500 L103,440 Z"
+    role="button" tabindex="0" aria-label="Jambe droite"/>
+</svg>

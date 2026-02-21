@@ -1,3 +1,150 @@
 <main class="symptom-entry-page">
-  <h1 i18n="@@symptomEntry.title">Saisie des symptômes</h1>
+  <header class="symptom-entry-page__header">
+    <h1 class="symptom-entry-page__title" i18n="@@symptomEntry.title">
+      Saisie des symptômes
+    </h1>
+  </header>
+
+  <!-- ── Formulaire — 1 symptôme en cours de saisie ── -->
+  <section
+    class="symptom-entry-page__form"
+    aria-label="Nouveau symptôme"
+    i18n-aria-label="@@symptomEntry.form.ariaLabel"
+  >
+    <!-- Type de symptôme -->
+    <div class="symptom-entry-page__field">
+      <span class="symptom-entry-page__field-label" i18n="@@symptomEntry.typeLabel">
+        Type de symptôme
+      </span>
+      <gt-symptom-type-picker
+        [selected]="currentType()"
+        (selectedChange)="onTypeChange($event)"
+      />
+    </div>
+
+    <!-- Sévérité -->
+    <div class="symptom-entry-page__field">
+      <gt-severity-slider
+        [severity]="currentSeverity()"
+        (severityChange)="onSeverityChange($event)"
+      />
+    </div>
+
+    <!-- Localisation (BodyMap) — toujours visible, optionnelle -->
+    <div class="symptom-entry-page__field">
+      <span class="symptom-entry-page__field-label" i18n="@@symptomEntry.locationLabel">
+        Localisation <span class="symptom-entry-page__optional">(optionnel)</span>
+      </span>
+      <gt-body-map
+        [selectedRegion]="currentLocation()?.region ?? null"
+        (locationSelected)="onLocationSelected($event)"
+      />
+    </div>
+
+    <!-- Note libre -->
+    <div class="symptom-entry-page__field">
+      <label
+        class="symptom-entry-page__field-label"
+        for="symptom-note"
+        i18n="@@symptomEntry.noteLabel"
+      >
+        Note <span class="symptom-entry-page__optional">(optionnel)</span>
+      </label>
+      <input
+        id="symptom-note"
+        type="text"
+        class="symptom-entry-page__note-input"
+        [value]="currentNote()"
+        (input)="onNoteInput($event)"
+        aria-label="Note libre pour ce symptôme"
+        i18n-aria-label="@@symptomEntry.note.ariaLabel"
+        placeholder="Précisions…"
+        i18n-placeholder="@@symptomEntry.note.placeholder"
+      />
+    </div>
+
+    <button
+      type="button"
+      class="symptom-entry-page__add-btn"
+      (click)="addSymptom()"
+    >
+      <span i18n="@@symptomEntry.addSymptom">+ Ajouter ce symptôme</span>
+    </button>
+  </section>
+
+  <!-- ── Liste des symptômes en attente ── -->
+  @if (pendingSymptoms().length > 0) {
+    <section
+      class="symptom-entry-page__pending"
+      aria-label="Symptômes à enregistrer"
+      i18n-aria-label="@@symptomEntry.pending.ariaLabel"
+    >
+      <h2 class="symptom-entry-page__pending-title" i18n="@@symptomEntry.pending.title">
+        À enregistrer
+      </h2>
+
+      <ul class="symptom-entry-page__pending-list">
+        @for (symptom of pendingSymptoms(); track $index) {
+          <li class="symptom-entry-page__pending-item">
+            <span class="symptom-entry-page__pending-type">{{ symptom.type }}</span>
+            <span class="symptom-entry-page__pending-severity">{{ symptom.severity }}/10</span>
+
+            @if (symptom.location) {
+              <span class="symptom-entry-page__pending-location">
+                📍 {{ symptom.location.region }}
+              </span>
+            }
+
+            <button
+              type="button"
+              class="symptom-entry-page__pending-remove"
+              (click)="removePendingSymptom($index)"
+              aria-label="Retirer ce symptôme"
+              i18n-aria-label="@@symptomEntry.removeSymptom.ariaLabel"
+            >
+              ✕
+            </button>
+          </li>
+        }
+      </ul>
+
+      <button
+        type="button"
+        class="symptom-entry-page__save-btn"
+        (click)="saveEntry()"
+        [disabled]="saving()"
+      >
+        @if (saving()) {
+          <span i18n="@@symptomEntry.saving">Enregistrement…</span>
+        } @else {
+          <span i18n="@@symptomEntry.save">Enregistrer la saisie</span>
+        }
+      </button>
+    </section>
+  }
+
+  <!-- ── Journal du jour ── -->
+  <section
+    class="symptom-entry-page__journal"
+    aria-label="Journal des symptômes du jour"
+    i18n-aria-label="@@symptomEntry.journal.ariaLabel"
+  >
+    <h2 class="symptom-entry-page__journal-title" i18n="@@symptomEntry.journal.title">
+      Aujourd'hui
+    </h2>
+
+    @if (loading()) {
+      <p class="symptom-entry-page__loading" i18n="@@symptomEntry.loading">Chargement…</p>
+    } @else if (todayEntries().length === 0) {
+      <p class="symptom-entry-page__empty" i18n="@@symptomEntry.empty">
+        Aucun symptôme enregistré aujourd'hui.
+      </p>
+    } @else {
+      <div class="symptom-entry-page__entries">
+        @for (entry of todayEntries(); track entry.id) {
+          <gt-symptom-entry-card [entry]="entry" />
+        }
+      </div>
+    }
+  </section>
 </main>

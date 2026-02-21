@@ -1,0 +1,55 @@
+<article class="symptom-card">
+  <header class="symptom-card__header">
+    <time class="symptom-card__time" [attr.datetime]="entry().timestamp">
+      {{ timeLabel() }}
+    </time>
+
+    <button
+      type="button"
+      class="symptom-card__delete-btn"
+      (click)="onDelete()"
+      aria-label="Supprimer cette saisie"
+      i18n-aria-label="@@symptomCard.delete.ariaLabel"
+    >
+      ✕
+    </button>
+  </header>
+
+  <ul
+    class="symptom-card__list"
+    aria-label="Symptômes de cette saisie"
+    i18n-aria-label="@@symptomCard.list.ariaLabel"
+  >
+    @for (symptom of entry().symptoms; track $index) {
+      <li class="symptom-card__item">
+        <span class="symptom-card__icon" aria-hidden="true">{{ typeIcon(symptom.type) }}</span>
+
+        <span class="symptom-card__type">{{ typeLabel(symptom.type) }}</span>
+
+        <span
+          class="symptom-card__severity"
+          [class.symptom-card__severity--low]="symptom.severity <= 3"
+          [class.symptom-card__severity--medium]="symptom.severity >= 4 && symptom.severity <= 6"
+          [class.symptom-card__severity--high]="symptom.severity >= 7"
+          [attr.aria-label]="'Sévérité ' + symptom.severity + '/10'"
+        >
+          {{ symptom.severity }}/10
+        </span>
+
+        @if (symptom.location) {
+          <span class="symptom-card__location">
+            📍 {{ symptom.location.region }}
+          </span>
+        }
+
+        @if (symptom.note) {
+          <span class="symptom-card__note">{{ symptom.note }}</span>
+        }
+      </li>
+    } @empty {
+      <li class="symptom-card__empty" i18n="@@symptomCard.noSymptoms">
+        Aucun symptôme renseigné
+      </li>
+    }
+  </ul>
+</article>

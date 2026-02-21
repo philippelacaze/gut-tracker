@@ -1,0 +1,91 @@
+.symptom-card {
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-radius: 12px;
+  padding: 16px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  &__time {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary, #666);
+    font-weight: 500;
+  }
+
+  &__delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted, #aaa);
+    font-size: 1rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+
+    &:hover {
+      color: var(--color-danger, #f44336);
+      background: var(--color-danger-light, #fdecea);
+    }
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  &__icon {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  &__type {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  &__severity {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+
+    &--low    { background: #e8f5e9; color: #2e7d32; }
+    &--medium { background: #fff3e0; color: #e65100; }
+    &--high   { background: #fdecea; color: #c62828; }
+  }
+
+  &__location {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary, #777);
+    font-style: italic;
+  }
+
+  &__note {
+    font-size: 0.8rem;
+    color: var(--color-text-muted, #999);
+    font-style: italic;
+    width: 100%;
+    padding-left: 24px;
+  }
+
+  &__empty {
+    font-size: 0.875rem;
+    color: var(--color-text-muted, #bbb);
+    font-style: italic;
+  }
+}
