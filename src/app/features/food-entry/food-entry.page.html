@@ -1,3 +1,82 @@
 <main class="food-entry-page">
-  <h1 i18n="@@foodEntry.title">Saisie alimentaire</h1>
+  <header class="food-entry-page__header">
+    <h1 class="food-entry-page__title" i18n="@@foodEntry.title">Saisie alimentaire</h1>
+  </header>
+
+  <!-- ── Formulaire de nouvelle saisie ── -->
+  <section
+    class="food-entry-page__form"
+    aria-label="Nouvelle saisie"
+    i18n-aria-label="@@foodEntry.form.ariaLabel"
+  >
+    <gt-meal-type-picker
+      [selected]="selectedMealType()"
+      (selectedChange)="onMealTypeChange($event)"
+    />
+
+    <gt-food-search (foodAdded)="onFoodAdded($event)" />
+
+    @if (pendingFoods().length > 0) {
+      <ul
+        class="food-entry-page__pending"
+        aria-label="Aliments à enregistrer"
+        i18n-aria-label="@@foodEntry.pending.ariaLabel"
+      >
+        @for (food of pendingFoods(); track food.id) {
+          <li class="food-entry-page__pending-item">
+            <span class="food-entry-page__pending-name">{{ food.name }}</span>
+
+            @if (food.quantity) {
+              <span class="food-entry-page__pending-qty">{{ food.quantity }}</span>
+            }
+
+            <button
+              type="button"
+              class="food-entry-page__pending-remove"
+              (click)="removePendingFood(food.id)"
+              aria-label="Retirer l'aliment"
+              i18n-aria-label="@@foodEntry.removeFood.ariaLabel"
+            >
+              ✕
+            </button>
+          </li>
+        }
+      </ul>
+    }
+
+    <button
+      type="button"
+      class="food-entry-page__save-btn"
+      (click)="saveEntry()"
+      [disabled]="!canSave() || saving()"
+      i18n="@@foodEntry.save"
+    >
+      Enregistrer le repas
+    </button>
+  </section>
+
+  <!-- ── Journal du jour ── -->
+  <section
+    class="food-entry-page__journal"
+    aria-label="Journal du jour"
+    i18n-aria-label="@@foodEntry.journal.ariaLabel"
+  >
+    <h2 class="food-entry-page__journal-title" i18n="@@foodEntry.journal.title">
+      Journal du jour
+    </h2>
+
+    @if (loading()) {
+      <p class="food-entry-page__loading" i18n="@@foodEntry.loading">Chargement…</p>
+    } @else if (todayEntries().length === 0) {
+      <p class="food-entry-page__empty" i18n="@@foodEntry.empty">
+        Aucune saisie aujourd'hui. Commencez par ajouter un repas.
+      </p>
+    } @else {
+      <div class="food-entry-page__entries">
+        @for (entry of todayEntries(); track entry.id) {
+          <gt-food-entry-card [entry]="entry" />
+        }
+      </div>
+    }
+  </section>
 </main>

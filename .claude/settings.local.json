@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx ng test --watch=false)"
+      "Bash(npx ng test --watch=false)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(python:*)",
+      "Bash(tail:*)"
     ]
   }
 }
