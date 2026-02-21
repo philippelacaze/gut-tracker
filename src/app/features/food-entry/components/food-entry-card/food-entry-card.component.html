@@ -1,0 +1,73 @@
+<article class="food-card">
+  <header class="food-card__header">
+    <div class="food-card__meta">
+      <span class="food-card__meal-type">{{ mealTypeLabel() }}</span>
+      <time class="food-card__time" [attr.datetime]="entry().timestamp">
+        {{ timeLabel() }}
+      </time>
+    </div>
+
+    @if (globalFodmapLevel()) {
+      <span
+        class="food-card__fodmap-badge"
+        [class.food-card__fodmap-badge--low]="globalFodmapLevel() === 'low'"
+        [class.food-card__fodmap-badge--medium]="globalFodmapLevel() === 'medium'"
+        [class.food-card__fodmap-badge--high]="globalFodmapLevel() === 'high'"
+      >
+        @switch (globalFodmapLevel()) {
+          @case ('low') {
+            <span i18n="@@fodmap.low">Faible</span>
+          }
+          @case ('medium') {
+            <span i18n="@@fodmap.medium">Modéré</span>
+          }
+          @case ('high') {
+            <span i18n="@@fodmap.high">Élevé</span>
+          }
+        }
+      </span>
+    }
+
+    <button
+      type="button"
+      class="food-card__delete-btn"
+      (click)="onDelete()"
+      aria-label="Supprimer cette saisie"
+      i18n-aria-label="@@foodCard.delete.ariaLabel"
+    >
+      ✕
+    </button>
+  </header>
+
+  <ul
+    class="food-card__foods"
+    aria-label="Aliments de cette saisie"
+    i18n-aria-label="@@foodCard.foods.ariaLabel"
+  >
+    @for (food of entry().foods; track food.id) {
+      <li class="food-card__food-item">
+        <span class="food-card__food-name">{{ food.name }}</span>
+
+        @if (food.quantity) {
+          <span class="food-card__food-qty">{{ food.quantity }}</span>
+        }
+
+        @if (food.fodmapScore) {
+          <span
+            class="food-card__food-dot"
+            [class.food-card__food-dot--low]="food.fodmapScore.level === 'low'"
+            [class.food-card__food-dot--medium]="food.fodmapScore.level === 'medium'"
+            [class.food-card__food-dot--high]="food.fodmapScore.level === 'high'"
+            [attr.title]="food.fodmapScore.details"
+          ></span>
+        }
+      </li>
+    } @empty {
+      <li class="food-card__empty" i18n="@@foodCard.noFoods">Aucun aliment renseigné</li>
+    }
+  </ul>
+
+  @if (entry().notes) {
+    <p class="food-card__notes">{{ entry().notes }}</p>
+  }
+</article>

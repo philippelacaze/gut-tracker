@@ -1,0 +1,71 @@
+<div class="food-search">
+  <div class="food-search__inputs">
+    <div class="food-search__field food-search__field--name">
+      <label class="food-search__label" for="food-name" i18n="@@foodSearch.nameLabel">
+        Aliment
+      </label>
+      <div class="food-search__input-wrap">
+        <input
+          id="food-name"
+          type="text"
+          class="food-search__input"
+          [value]="query()"
+          (input)="onQueryInput($event)"
+          (focus)="onFocus()"
+          (blur)="onBlur()"
+          placeholder="Ex. : poulet, pain de seigle…"
+          i18n-placeholder="@@foodSearch.namePlaceholder"
+          autocomplete="off"
+          aria-autocomplete="list"
+          [attr.aria-expanded]="showSuggestions()"
+          aria-controls="food-suggestions"
+        />
+
+        @if (showSuggestions()) {
+          <ul
+            id="food-suggestions"
+            class="food-search__suggestions"
+            role="listbox"
+          >
+            @for (s of suggestions(); track s) {
+              <li
+                class="food-search__suggestion"
+                role="option"
+                (mousedown)="onSuggestionMousedown($event, s)"
+              >
+                {{ s }}
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+
+    <div class="food-search__field food-search__field--quantity">
+      <label class="food-search__label" for="food-quantity" i18n="@@foodSearch.quantityLabel">
+        Quantité
+      </label>
+      <input
+        id="food-quantity"
+        type="text"
+        class="food-search__input"
+        [value]="quantity()"
+        (input)="onQuantityInput($event)"
+        placeholder="150 g, 1 bol…"
+        i18n-placeholder="@@foodSearch.quantityPlaceholder"
+      />
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="food-search__add-btn"
+    (click)="addFood()"
+    [disabled]="!query().trim()"
+    aria-label="Ajouter l'aliment à la liste"
+    i18n-aria-label="@@foodSearch.addButton.ariaLabel"
+    i18n="@@foodSearch.addButton"
+  >
+    Ajouter
+  </button>
+</div>

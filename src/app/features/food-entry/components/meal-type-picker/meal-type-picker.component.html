@@ -1,0 +1,20 @@
+<div
+  class="meal-type-picker"
+  role="group"
+  aria-label="Type de repas"
+  i18n-aria-label="@@mealType.group.ariaLabel"
+>
+  @for (option of mealTypes; track option.value) {
+    <button
+      type="button"
+      class="meal-type-picker__chip"
+      [class.meal-type-picker__chip--selected]="selected() === option.value"
+      (click)="select(option.value)"
+      [attr.aria-pressed]="selected() === option.value"
+      [attr.aria-label]="option.label"
+    >
+      <span class="meal-type-picker__icon" aria-hidden="true">{{ option.icon }}</span>
+      <span class="meal-type-picker__label">{{ option.label }}</span>
+    </button>
+  }
+</div>

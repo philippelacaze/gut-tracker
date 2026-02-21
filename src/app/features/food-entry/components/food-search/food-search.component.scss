@@ -1,0 +1,103 @@
+.food-search {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &__inputs {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &--name {
+      flex: 2;
+    }
+
+    &--quantity {
+      flex: 1;
+    }
+  }
+
+  &__input-wrap {
+    position: relative;
+  }
+
+  &__label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #555;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease;
+
+    &:focus {
+      border-color: #4caf50;
+    }
+  }
+
+  &__suggestions {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  &__suggestion {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+
+  &__add-btn {
+    padding: 12px;
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    &:disabled {
+      background: #bdbdbd;
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+      background: #388e3c;
+    }
+
+    &:not(:disabled):focus-visible {
+      outline: 2px solid #388e3c;
+      outline-offset: 2px;
+    }
+  }
+}

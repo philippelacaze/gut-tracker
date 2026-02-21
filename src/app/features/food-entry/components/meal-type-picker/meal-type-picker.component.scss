@@ -1,0 +1,46 @@
+.meal-type-picker {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    min-width: 68px;
+
+    &:focus-visible {
+      outline: 2px solid #4caf50;
+      outline-offset: 2px;
+    }
+
+    &--selected {
+      border-color: #4caf50;
+      background: #e8f5e9;
+    }
+  }
+
+  &__icon {
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+
+  &__label {
+    font-size: 0.7rem;
+    color: #424242;
+  }
+}

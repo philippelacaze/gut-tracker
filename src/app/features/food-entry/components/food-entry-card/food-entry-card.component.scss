@@ -1,0 +1,122 @@
+$fodmap-low: #4caf50;
+$fodmap-medium: #ff9800;
+$fodmap-high: #f44336;
+
+.food-card {
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 12px 16px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  &__meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__meal-type {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #212121;
+  }
+
+  &__time {
+    font-size: 0.75rem;
+    color: #757575;
+  }
+
+  &__fodmap-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+
+    &--low { background: $fodmap-low; }
+    &--medium { background: $fodmap-medium; }
+    &--high { background: $fodmap-high; }
+  }
+
+  &__delete-btn {
+    background: transparent;
+    border: none;
+    padding: 6px 8px;
+    cursor: pointer;
+    color: #bdbdbd;
+    font-size: 0.85rem;
+    border-radius: 50%;
+    line-height: 1;
+    transition: color 0.15s ease, background 0.15s ease;
+
+    &:hover {
+      color: $fodmap-high;
+      background: #ffeaea;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $fodmap-high;
+      outline-offset: 2px;
+    }
+  }
+
+  &__foods {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__food-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+  }
+
+  &__food-name {
+    flex: 1;
+    color: #333;
+  }
+
+  &__food-qty {
+    color: #757575;
+    font-size: 0.75rem;
+  }
+
+  &__food-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &--low { background: $fodmap-low; }
+    &--medium { background: $fodmap-medium; }
+    &--high { background: $fodmap-high; }
+  }
+
+  &__empty {
+    color: #bdbdbd;
+    font-style: italic;
+    font-size: 0.875rem;
+  }
+
+  &__notes {
+    margin: 10px 0 0;
+    font-size: 0.8rem;
+    color: #666;
+    font-style: italic;
+    border-top: 1px solid #f5f5f5;
+    padding-top: 8px;
+  }
+}
