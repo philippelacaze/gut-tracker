@@ -1,0 +1,106 @@
+<div class="medication-picker">
+  <!-- ── Nom du médicament ── -->
+  <div class="medication-picker__field medication-picker__field--name">
+    <label
+      class="medication-picker__label"
+      for="med-name"
+      i18n="@@medicationPicker.name.label"
+    >
+      Médicament ou complément
+    </label>
+
+    <div class="medication-picker__autocomplete">
+      <input
+        id="med-name"
+        type="text"
+        class="medication-picker__input"
+        [value]="name()"
+        (input)="onNameInput($event)"
+        (focus)="onNameFocus()"
+        (blur)="onNameBlur()"
+        autocomplete="off"
+        aria-autocomplete="list"
+        [attr.aria-expanded]="showSuggestions()"
+        aria-label="Nom du médicament"
+        i18n-aria-label="@@medicationPicker.name.ariaLabel"
+        placeholder="Lactase, Probiotique…"
+        i18n-placeholder="@@medicationPicker.name.placeholder"
+      />
+
+      @if (showSuggestions()) {
+        <ul
+          class="medication-picker__suggestions"
+          role="listbox"
+          aria-label="Suggestions de médicaments"
+          i18n-aria-label="@@medicationPicker.suggestions.ariaLabel"
+        >
+          @for (suggestion of suggestions(); track suggestion) {
+            <li
+              class="medication-picker__suggestion"
+              role="option"
+              [attr.aria-selected]="name() === suggestion"
+              (mousedown)="onSuggestionMousedown($event, suggestion)"
+            >
+              {{ suggestion }}
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+
+  <!-- ── Type de médicament ── -->
+  <div
+    class="medication-picker__types"
+    role="group"
+    aria-label="Type de médicament"
+    i18n-aria-label="@@medicationPicker.type.ariaLabel"
+  >
+    @for (option of medicationTypes; track option.value) {
+      <button
+        type="button"
+        class="medication-picker__type-chip"
+        [class.medication-picker__type-chip--selected]="selectedType() === option.value"
+        (click)="onTypeSelect(option.value)"
+        [attr.aria-pressed]="selectedType() === option.value"
+        [attr.aria-label]="option.label"
+      >
+        {{ option.label }}
+      </button>
+    }
+  </div>
+
+  <!-- ── Dose (optionnelle) ── -->
+  <div class="medication-picker__field">
+    <label
+      class="medication-picker__label"
+      for="med-dose"
+      i18n="@@medicationPicker.dose.label"
+    >
+      Dose <span class="medication-picker__optional">(optionnel)</span>
+    </label>
+    <input
+      id="med-dose"
+      type="text"
+      class="medication-picker__input medication-picker__input--dose"
+      [value]="dose()"
+      (input)="onDoseInput($event)"
+      aria-label="Dose du médicament"
+      i18n-aria-label="@@medicationPicker.dose.ariaLabel"
+      placeholder="1 cp, 500 mg…"
+      i18n-placeholder="@@medicationPicker.dose.placeholder"
+    />
+  </div>
+
+  <!-- ── Bouton Ajouter ── -->
+  <button
+    type="button"
+    class="medication-picker__add-btn"
+    (click)="addMedication()"
+    [disabled]="!canAdd()"
+    aria-label="Ajouter ce médicament à la liste"
+    i18n-aria-label="@@medicationPicker.add.ariaLabel"
+  >
+    <span i18n="@@medicationPicker.add.label">Ajouter</span>
+  </button>
+</div>

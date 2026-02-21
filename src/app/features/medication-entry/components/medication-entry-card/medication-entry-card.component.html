@@ -1,0 +1,47 @@
+<article class="medication-card">
+  <header class="medication-card__header">
+    <time
+      class="medication-card__time"
+      [attr.datetime]="entry().timestamp"
+    >
+      {{ timeLabel() }}
+    </time>
+
+    <button
+      type="button"
+      class="medication-card__delete-btn"
+      (click)="onDelete()"
+      aria-label="Supprimer cette saisie"
+      i18n-aria-label="@@medicationCard.delete.ariaLabel"
+    >
+      ✕
+    </button>
+  </header>
+
+  <ul
+    class="medication-card__list"
+    aria-label="Médicaments de cette saisie"
+    i18n-aria-label="@@medicationCard.list.ariaLabel"
+  >
+    @for (med of entry().medications; track med.name) {
+      <li class="medication-card__item">
+        <span class="medication-card__name">{{ med.name }}</span>
+
+        <span
+          class="medication-card__type"
+          [class]="'medication-card__type--' + med.type"
+        >
+          {{ typeLabel(med.type) }}
+        </span>
+
+        @if (med.dose) {
+          <span class="medication-card__dose">{{ med.dose }}</span>
+        }
+      </li>
+    } @empty {
+      <li class="medication-card__empty" i18n="@@medicationCard.noMedications">
+        Aucun médicament renseigné
+      </li>
+    }
+  </ul>
+</article>

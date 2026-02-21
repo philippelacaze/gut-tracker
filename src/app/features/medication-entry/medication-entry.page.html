@@ -1,3 +1,85 @@
 <main class="medication-entry-page">
-  <h1 i18n="@@medicationEntry.title">Saisie des médicaments</h1>
+  <header class="medication-entry-page__header">
+    <h1 class="medication-entry-page__title" i18n="@@medicationEntry.title">
+      Médicaments &amp; compléments
+    </h1>
+  </header>
+
+  <!-- ── Formulaire de nouvelle saisie ── -->
+  <section
+    class="medication-entry-page__form"
+    aria-label="Nouvelle saisie médicament"
+    i18n-aria-label="@@medicationEntry.form.ariaLabel"
+  >
+    <gt-medication-picker (medicationAdded)="onMedicationAdded($event)" />
+
+    <!-- Liste des médicaments en attente d'enregistrement -->
+    @if (pendingMedications().length > 0) {
+      <ul
+        class="medication-entry-page__pending"
+        aria-label="Médicaments à enregistrer"
+        i18n-aria-label="@@medicationEntry.pending.ariaLabel"
+      >
+        @for (med of pendingMedications(); track $index) {
+          <li class="medication-entry-page__pending-item">
+            <span class="medication-entry-page__pending-name">{{ med.name }}</span>
+
+            @if (med.dose) {
+              <span class="medication-entry-page__pending-dose">{{ med.dose }}</span>
+            }
+
+            <button
+              type="button"
+              class="medication-entry-page__pending-remove"
+              (click)="removePendingMedication($index)"
+              aria-label="Retirer ce médicament"
+              i18n-aria-label="@@medicationEntry.removeMedication.ariaLabel"
+            >
+              ✕
+            </button>
+          </li>
+        }
+      </ul>
+
+      <button
+        type="button"
+        class="medication-entry-page__save-btn"
+        (click)="saveEntry()"
+        [disabled]="saving()"
+      >
+        @if (saving()) {
+          <span i18n="@@medicationEntry.saving">Enregistrement…</span>
+        } @else {
+          <span i18n="@@medicationEntry.save">Enregistrer la saisie</span>
+        }
+      </button>
+    }
+  </section>
+
+  <!-- ── Journal du jour ── -->
+  <section
+    class="medication-entry-page__journal"
+    aria-label="Journal des médicaments du jour"
+    i18n-aria-label="@@medicationEntry.journal.ariaLabel"
+  >
+    <h2 class="medication-entry-page__journal-title" i18n="@@medicationEntry.journal.title">
+      Aujourd'hui
+    </h2>
+
+    @if (loading()) {
+      <p class="medication-entry-page__loading" i18n="@@medicationEntry.loading">
+        Chargement…
+      </p>
+    } @else if (todayEntries().length === 0) {
+      <p class="medication-entry-page__empty" i18n="@@medicationEntry.empty">
+        Aucune saisie aujourd'hui.
+      </p>
+    } @else {
+      <div class="medication-entry-page__entries">
+        @for (entry of todayEntries(); track entry.id) {
+          <gt-medication-entry-card [entry]="entry" />
+        }
+      </div>
+    }
+  </section>
 </main>
