@@ -1,0 +1,55 @@
+.recent-foods {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__title {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #757575;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__item {
+    display: contents;
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 20px;
+    background: #fff;
+    color: #333;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+
+    &:hover {
+      border-color: #4caf50;
+      background: #f1f8e9;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #4caf50;
+      outline-offset: 2px;
+    }
+  }
+
+  &__chip-name {
+    font-weight: 500;
+  }
+}

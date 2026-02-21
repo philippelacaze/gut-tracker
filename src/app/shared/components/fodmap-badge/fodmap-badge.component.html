@@ -1,0 +1,13 @@
+@if (level()) {
+  <span
+    class="fodmap-badge"
+    [class.fodmap-badge--low]="level() === 'low'"
+    [class.fodmap-badge--medium]="level() === 'medium'"
+    [class.fodmap-badge--high]="level() === 'high'"
+  >
+    {{ label() }}
+    @if (score() !== null) {
+      <span class="fodmap-badge__score">{{ score() }}/10</span>
+    }
+  </span>
+}

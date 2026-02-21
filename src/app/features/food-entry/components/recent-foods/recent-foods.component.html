@@ -1,0 +1,23 @@
+@if (hasRecentFoods()) {
+  <section class="recent-foods" aria-labelledby="recent-foods-title">
+    <h3 class="recent-foods__title" id="recent-foods-title" i18n="@@recentFoods.title">
+      Aliments fréquents
+    </h3>
+    <ul class="recent-foods__list" role="list">
+      @for (food of recentFoods(); track food.id) {
+        <li class="recent-foods__item">
+          <button
+            type="button"
+            class="recent-foods__chip"
+            (click)="selectFood(food)"
+          >
+            <span class="recent-foods__chip-name">{{ food.name }}</span>
+            @if (food.fodmapScore) {
+              <gt-fodmap-badge [level]="food.fodmapScore.level" />
+            }
+          </button>
+        </li>
+      }
+    </ul>
+  </section>
+}

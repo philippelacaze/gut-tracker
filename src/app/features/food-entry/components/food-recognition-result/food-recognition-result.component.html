@@ -1,0 +1,103 @@
+<div class="food-recognition-result">
+
+  @if (photoUrl()) {
+    <img
+      [src]="photoUrl()"
+      alt=""
+      class="food-recognition-result__thumb"
+      aria-hidden="true"
+    />
+  }
+
+  <h2 class="food-recognition-result__title" i18n="@@recognitionResult.title">
+    Aliments reconnus
+  </h2>
+
+  @if (result().uncertain.length > 0) {
+    <div class="food-recognition-result__uncertain" role="note">
+      <p i18n="@@recognitionResult.uncertainLabel">Éléments incertains :</p>
+      <ul class="food-recognition-result__uncertain-list">
+        @for (item of result().uncertain; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </div>
+  }
+
+  @if (editableFoods().length > 0) {
+    <ul class="food-recognition-result__list" role="list">
+      @for (food of editableFoods(); track food.id) {
+        <li class="food-recognition-result__item">
+          <div class="food-recognition-result__fields">
+            <label class="visually-hidden" [for]="'name-' + food.id" i18n="@@recognitionResult.nameLabel">
+              Nom de l'aliment
+            </label>
+            <input
+              [id]="'name-' + food.id"
+              type="text"
+              class="food-recognition-result__input food-recognition-result__input--name"
+              [value]="food.name"
+              (input)="updateFoodName(food.id, $any($event.target).value)"
+              i18n-placeholder="@@recognitionResult.namePlaceholder"
+              placeholder="Nom de l'aliment"
+            />
+            <label class="visually-hidden" [for]="'qty-' + food.id" i18n="@@recognitionResult.quantityLabel">
+              Quantité
+            </label>
+            <input
+              [id]="'qty-' + food.id"
+              type="text"
+              class="food-recognition-result__input food-recognition-result__input--qty"
+              [value]="food.quantity"
+              (input)="updateFoodQuantity(food.id, $any($event.target).value)"
+              i18n-placeholder="@@recognitionResult.quantityPlaceholder"
+              placeholder="Quantité (optionnel)"
+            />
+          </div>
+          <button
+            type="button"
+            class="food-recognition-result__remove"
+            (click)="removeFood(food.id)"
+            i18n-aria-label="@@recognitionResult.removeAriaLabel"
+            aria-label="Supprimer cet aliment"
+          >
+            ×
+          </button>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="food-recognition-result__empty" i18n="@@recognitionResult.empty">
+      Aucun aliment reconnu. Ajoutez-en manuellement.
+    </p>
+  }
+
+  <button
+    type="button"
+    class="food-recognition-result__add"
+    (click)="addFood()"
+    i18n="@@recognitionResult.addFood"
+  >
+    + Ajouter un aliment
+  </button>
+
+  <div class="food-recognition-result__actions">
+    <button
+      type="button"
+      class="food-recognition-result__cancel"
+      (click)="cancel()"
+      i18n="@@recognitionResult.cancel"
+    >
+      Annuler
+    </button>
+    <button
+      type="button"
+      class="food-recognition-result__confirm"
+      [disabled]="!hasValidItems()"
+      (click)="confirm()"
+      i18n="@@recognitionResult.confirm"
+    >
+      Valider
+    </button>
+  </div>
+</div>

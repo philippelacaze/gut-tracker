@@ -1,0 +1,84 @@
+<div class="food-camera">
+  <!-- Inputs fichiers cachés (accessibles uniquement via les boutons) -->
+  <input
+    #cameraInput
+    type="file"
+    accept="image/jpeg,image/png,image/webp"
+    capture="environment"
+    class="food-camera__file-input"
+    (change)="onFileSelected($event)"
+    aria-hidden="true"
+    tabindex="-1"
+  />
+  <input
+    #galleryInput
+    type="file"
+    accept="image/jpeg,image/png,image/webp"
+    class="food-camera__file-input"
+    (change)="onFileSelected($event)"
+    aria-hidden="true"
+    tabindex="-1"
+  />
+
+  @if (!previewUrl()) {
+    <div class="food-camera__actions">
+      <button
+        type="button"
+        class="food-camera__btn food-camera__btn--camera"
+        (click)="cameraInput.click()"
+        [disabled]="analyzing()"
+      >
+        <span class="food-camera__btn-icon" aria-hidden="true">📷</span>
+        <span i18n="@@foodCamera.takePicture">Prendre une photo</span>
+      </button>
+      <button
+        type="button"
+        class="food-camera__btn food-camera__btn--gallery"
+        (click)="galleryInput.click()"
+        [disabled]="analyzing()"
+      >
+        <span class="food-camera__btn-icon" aria-hidden="true">🖼️</span>
+        <span i18n="@@foodCamera.fromGallery">Depuis la galerie</span>
+      </button>
+    </div>
+  }
+
+  @if (previewUrl()) {
+    <div class="food-camera__preview">
+      <img
+        [src]="previewUrl()"
+        i18n-alt="@@foodCamera.previewAlt"
+        alt="Photo sélectionnée"
+        class="food-camera__preview-img"
+      />
+      @if (analyzing()) {
+        <div class="food-camera__overlay" role="status" aria-live="polite">
+          <div class="food-camera__spinner" aria-hidden="true"></div>
+          <span i18n="@@foodCamera.analyzing">Analyse en cours…</span>
+        </div>
+      }
+    </div>
+
+    @if (!analyzing()) {
+      <button
+        type="button"
+        class="food-camera__btn food-camera__btn--retry"
+        (click)="reset()"
+      >
+        <span i18n="@@foodCamera.retry">Changer de photo</span>
+      </button>
+    }
+  }
+
+  @if (error()) {
+    <div class="food-camera__error" role="alert">
+      <span>{{ error() }}</span>
+      <button
+        type="button"
+        class="food-camera__error-retry"
+        (click)="reset()"
+        i18n="@@foodCamera.retryAfterError"
+      >Réessayer</button>
+    </div>
+  }
+</div>
