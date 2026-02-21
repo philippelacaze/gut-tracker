@@ -9,11 +9,13 @@ import { FOOD_ENTRY_REPOSITORY } from './core/repositories/food-entry.repository
 import { LocalStorageRepository } from './core/repositories/local-storage.repository';
 import { MEDICATION_ENTRY_REPOSITORY } from './core/repositories/medication-entry.repository.token';
 import { SYMPTOM_ENTRY_REPOSITORY } from './core/repositories/symptom-entry.repository.token';
+import { OpenAiProvider } from './core/services/ai/providers/openai.provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
+    OpenAiProvider,
     {
       provide: FOOD_ENTRY_REPOSITORY,
       useFactory: () => new LocalStorageRepository<FoodEntry>('food_entries'),

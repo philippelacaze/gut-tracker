@@ -14,6 +14,8 @@
       (selectedChange)="onMealTypeChange($event)"
     />
 
+    <gt-recent-foods (foodSelected)="onFoodAdded($event)" />
+
     <gt-food-search (foodAdded)="onFoodAdded($event)" />
 
     @if (pendingFoods().length > 0) {
@@ -49,9 +51,14 @@
       class="food-entry-page__save-btn"
       (click)="saveEntry()"
       [disabled]="!canSave() || saving()"
-      i18n="@@foodEntry.save"
     >
-      Enregistrer le repas
+      @if (aiAnalyzing()) {
+        <span i18n="@@foodEntry.analyzingFodmap">Analyse FODMAP…</span>
+      } @else if (saving()) {
+        <span i18n="@@foodEntry.saving">Enregistrement…</span>
+      } @else {
+        <span i18n="@@foodEntry.save">Enregistrer le repas</span>
+      }
     </button>
   </section>
 

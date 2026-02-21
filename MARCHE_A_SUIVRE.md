@@ -85,7 +85,7 @@ git remote add origin https://github.com/TON_USER/gut-tracker.git
 
 ### Session 2b – Intégration caméra et IA
 
-> "Lis AI_INTEGRATION.md.  
+> "Lis CLAUDE.md et FEATURES.md section Feature 1. et AI_INTEGRATION.md.  
 > Crée le `AiService` avec la façade + le provider OpenAI.  
 > Puis crée `FoodCameraComponent` (accès caméra/galerie) et  
 > `FoodRecognitionResultComponent` (affichage et édition des aliments reconnus)."

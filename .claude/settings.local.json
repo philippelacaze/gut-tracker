@@ -5,7 +5,9 @@
       "Bash(ls:*)",
       "Bash(cat:*)",
       "Bash(python:*)",
-      "Bash(tail:*)"
+      "Bash(tail:*)",
+      "Bash(cd /c/angular/gut-tracker && npx tsc --noEmit 2>&1)",
+      "Bash(cd /c/angular/gut-tracker && npx ng test --no-watch 2>&1)"
     ]
   }
 }

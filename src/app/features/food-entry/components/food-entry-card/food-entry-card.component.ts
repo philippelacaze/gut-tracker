@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { FoodEntry, MealType } from '../../../../core/models/food-entry.model';
+import { FodmapBadgeComponent } from '../../../../shared/components/fodmap-badge/fodmap-badge.component';
 import { FoodEntryStore } from '../../services/food-entry.store';
 
 /** Labels traduits pour chaque type de repas */
@@ -22,6 +23,7 @@ const MEAL_TYPE_LABELS: Record<MealType, string> = {
 @Component({
   selector: 'gt-food-entry-card',
   standalone: true,
+  imports: [FodmapBadgeComponent],
   templateUrl: './food-entry-card.component.html',
   styleUrl: './food-entry-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

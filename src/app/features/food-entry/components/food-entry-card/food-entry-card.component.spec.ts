@@ -90,14 +90,14 @@ describe('FoodEntryCardComponent', () => {
         },
       });
       await setup(entry);
-      const badge = fixture.nativeElement.querySelector('.food-card__fodmap-badge');
+      const badge = fixture.nativeElement.querySelector('.fodmap-badge');
       expect(badge).toBeTruthy();
-      expect(badge.classList).toContain('food-card__fodmap-badge--high');
+      expect(badge.classList).toContain('fodmap-badge--high');
     });
 
     it('ne devrait pas afficher le badge FODMAP si absent', async () => {
       await setup(makeFoodEntry({ globalFodmapScore: undefined }));
-      expect(fixture.nativeElement.querySelector('.food-card__fodmap-badge')).toBeNull();
+      expect(fixture.nativeElement.querySelector('.fodmap-badge')).toBeNull();
     });
 
     it('devrait afficher les notes si présentes', async () => {

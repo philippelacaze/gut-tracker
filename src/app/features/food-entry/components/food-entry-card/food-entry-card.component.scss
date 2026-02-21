@@ -33,19 +33,6 @@ $fodmap-high: #f44336;
     color: #757575;
   }
 
-  &__fodmap-badge {
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: #fff;
-    white-space: nowrap;
-
-    &--low { background: $fodmap-low; }
-    &--medium { background: $fodmap-medium; }
-    &--high { background: $fodmap-high; }
-  }
-
   &__delete-btn {
     background: transparent;
     border: none;

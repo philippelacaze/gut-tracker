@@ -8,24 +8,10 @@
     </div>
 
     @if (globalFodmapLevel()) {
-      <span
-        class="food-card__fodmap-badge"
-        [class.food-card__fodmap-badge--low]="globalFodmapLevel() === 'low'"
-        [class.food-card__fodmap-badge--medium]="globalFodmapLevel() === 'medium'"
-        [class.food-card__fodmap-badge--high]="globalFodmapLevel() === 'high'"
-      >
-        @switch (globalFodmapLevel()) {
-          @case ('low') {
-            <span i18n="@@fodmap.low">Faible</span>
-          }
-          @case ('medium') {
-            <span i18n="@@fodmap.medium">Modéré</span>
-          }
-          @case ('high') {
-            <span i18n="@@fodmap.high">Élevé</span>
-          }
-        }
-      </span>
+      <gt-fodmap-badge
+        [level]="globalFodmapLevel()"
+        [score]="entry().globalFodmapScore?.score ?? null"
+      />
     }
 
     <button
