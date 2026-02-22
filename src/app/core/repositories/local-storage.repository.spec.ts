@@ -30,6 +30,12 @@ describe('LocalStorageRepository', () => {
 
       expect(result).toEqual([entity]);
     });
+
+    it('devrait lancer une erreur si le JSON stocké est corrompu', async () => {
+      localStorage.setItem(KEY, 'json invalide {{{{');
+
+      await expect(repo.findAll()).rejects.toThrow();
+    });
   });
 
   // ──────────────────────────────────────────────────────────────
@@ -85,6 +91,14 @@ describe('LocalStorageRepository', () => {
 
       expect(result).toBeNull();
     });
+
+    it('devrait retourner la bonne entité parmi plusieurs', async () => {
+      await repo.save({ id: '1', name: 'A' });
+      await repo.save({ id: '2', name: 'B' });
+      await repo.save({ id: '3', name: 'C' });
+
+      expect(await repo.findById('2')).toEqual({ id: '2', name: 'B' });
+    });
   });
 
   // ──────────────────────────────────────────────────────────────
@@ -130,6 +144,29 @@ describe('LocalStorageRepository', () => {
       await repo1.save({ id: '1', name: 'Partagé' });
 
       expect(await repo2.findAll()).toHaveLength(1);
+    });
+  });
+
+  // ──────────────────────────────────────────────────────────────
+  describe('persistance entre instances', () => {
+    it('devrait rendre une entité sauvegardée accessible via une nouvelle instance', async () => {
+      await repo.save({ id: '1', name: 'Persisté' });
+
+      const repo2 = new LocalStorageRepository<TestEntity>(KEY);
+
+      expect(await repo2.findById('1')).toEqual({ id: '1', name: 'Persisté' });
+    });
+
+    it('devrait persister une suppression pour une nouvelle instance', async () => {
+      await repo.save({ id: '1', name: 'A' });
+      await repo.save({ id: '2', name: 'B' });
+      await repo.delete('1');
+
+      const repo2 = new LocalStorageRepository<TestEntity>(KEY);
+      const all = await repo2.findAll();
+
+      expect(all).toHaveLength(1);
+      expect(all[0].id).toBe('2');
     });
   });
 });

@@ -215,5 +215,19 @@ describe('FoodEntryStore', () => {
 
       expect(store.frequentFoods()).toEqual([]);
     });
+
+    it('devrait inclure un aliment apparu exactement 3 fois (valeur limite)', async () => {
+      const makeEntry = (foodName: string) =>
+        makeFoodEntry({ foods: [{ id: 'f1', name: foodName, fodmapScore: null }] });
+
+      mockRepo.findAll.mockResolvedValue([
+        makeEntry('Riz'),
+        makeEntry('Riz'),
+        makeEntry('Riz'),
+      ]);
+      await store.loadAll();
+
+      expect(store.frequentFoods()).toContain('Riz');
+    });
   });
 });

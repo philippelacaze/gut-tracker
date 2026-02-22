@@ -94,6 +94,25 @@ describe('AiService', () => {
     await expect(service.recognizeFood('base64', TEST_FILE_TYPE)).rejects.toThrow(AiError);
   });
 
+  it('devrait retourner un résultat vide si la réponse ne contient pas de JSON', async () => {
+    (mockOpenAi.analyzeImage as ReturnType<typeof vi.fn>).mockResolvedValue('Désolé, je ne reconnais pas.');
+
+    const result = await service.recognizeFood('base64', TEST_FILE_TYPE);
+
+    expect(result.foods).toEqual([]);
+    expect(result.uncertain).toEqual([]);
+  });
+
+  it('devrait retourner les aliments incertains présents dans la réponse', async () => {
+    (mockOpenAi.analyzeImage as ReturnType<typeof vi.fn>).mockResolvedValue(
+      '{"foods":[{"name":"Poulet","confidence":0.9,"quantity":null}],"uncertain":["sauce brune"]}',
+    );
+
+    const result = await service.recognizeFood('base64', TEST_FILE_TYPE);
+
+    expect(result.uncertain).toContain('sauce brune');
+  });
+
   it('analyzeFodmap transmet les noms des aliments et parse la réponse', async () => {
     const result = await service.analyzeFodmap(['tomate', 'riz']);
     expect(mockOpenAi.complete).toHaveBeenCalledWith(
@@ -101,6 +120,43 @@ describe('AiService', () => {
       expect.stringContaining('FODMAP'),
     );
     expect(result.globalLevel).toBe('low');
+  });
+
+  describe('analyzeFodmap()', () => {
+    it('devrait mettre analyzing à true pendant l\'analyse, false après', async () => {
+      const states: boolean[] = [];
+      (mockOpenAi.complete as ReturnType<typeof vi.fn>).mockImplementation(async () => {
+        states.push(service.analyzing());
+        return '{"foods":[],"globalScore":0,"globalLevel":"low","advice":""}';
+      });
+
+      await service.analyzeFodmap(['pomme']);
+
+      expect(states).toContain(true);
+      expect(service.analyzing()).toBe(false);
+    });
+
+    it('devrait mettre analyzing à false même si le provider lève une erreur', async () => {
+      (mockOpenAi.complete as ReturnType<typeof vi.fn>).mockRejectedValue(new Error('KO'));
+
+      await expect(service.analyzeFodmap(['pomme'])).rejects.toThrow();
+      expect(service.analyzing()).toBe(false);
+    });
+
+    it('devrait lancer AiError si le provider sélectionné n\'est pas disponible', async () => {
+      (mockSettings.getSelectedProvider as ReturnType<typeof vi.fn>).mockReturnValue('inconnu');
+
+      await expect(service.analyzeFodmap(['pomme'])).rejects.toThrow(AiError);
+    });
+
+    it('devrait retourner un résultat vide si la réponse ne contient pas de JSON', async () => {
+      (mockOpenAi.complete as ReturnType<typeof vi.fn>).mockResolvedValue('Aucune donnée disponible.');
+
+      const result = await service.analyzeFodmap(['pomme']);
+
+      expect(result.foods).toEqual([]);
+      expect(result.globalScore).toBe(0);
+    });
   });
 
   describe('analyzeCorrelations()', () => {
@@ -130,6 +186,12 @@ describe('AiService', () => {
 
       await expect(service.analyzeCorrelations('{}')).rejects.toThrow();
       expect(service.analyzing()).toBe(false);
+    });
+
+    it('devrait lancer AiError si le provider sélectionné n\'est pas disponible', async () => {
+      (mockSettings.getSelectedProvider as ReturnType<typeof vi.fn>).mockReturnValue('inconnu');
+
+      await expect(service.analyzeCorrelations('{}')).rejects.toThrow(AiError);
     });
   });
 });
