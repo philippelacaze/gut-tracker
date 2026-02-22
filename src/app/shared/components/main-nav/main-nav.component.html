@@ -1,0 +1,81 @@
+<!-- ═══════════════════════════════════════════════════════════
+     Sidebar (desktop, ≥ $bp-md)
+     ═══════════════════════════════════════════════════════════ -->
+<nav
+  class="main-nav__sidebar"
+  aria-label="Navigation principale"
+  i18n-aria-label="@@nav.sidebar.ariaLabel"
+>
+  <!-- Branding -->
+  <div class="main-nav__brand" aria-hidden="true">
+    <svg class="main-nav__brand-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <!-- Icône bactérie/intestin stylisée -->
+      <path
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"
+      />
+    </svg>
+    <span class="main-nav__brand-name" i18n="@@nav.brand">GutTracker</span>
+  </div>
+
+  <!-- Liens principaux -->
+  <ul class="main-nav__list" role="list">
+    @for (item of primaryNavItems; track item.path) {
+      <li>
+        <a
+          class="main-nav__link"
+          [routerLink]="item.path"
+          routerLinkActive="main-nav__link--active"
+          ariaCurrentWhenActive="page"
+          [attr.aria-label]="item.ariaLabel"
+        >
+          <svg class="main-nav__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path [attr.d]="item.iconPath" />
+          </svg>
+          <span class="main-nav__label">{{ item.label }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+
+  <!-- Paramètres en pied de sidebar -->
+  <ul class="main-nav__list main-nav__list--footer" role="list">
+    <li>
+      <a
+        class="main-nav__link"
+        [routerLink]="settingsItem.path"
+        routerLinkActive="main-nav__link--active"
+        ariaCurrentWhenActive="page"
+        [attr.aria-label]="settingsItem.ariaLabel"
+      >
+        <svg class="main-nav__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path [attr.d]="settingsItem.iconPath" />
+        </svg>
+        <span class="main-nav__label">{{ settingsItem.label }}</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     Bottom navigation bar (mobile, < $bp-md)
+     ═══════════════════════════════════════════════════════════ -->
+<nav
+  class="main-nav__bottom"
+  aria-label="Navigation principale"
+  i18n-aria-label="@@nav.bottom.ariaLabel"
+>
+  @for (item of mobileNavItems; track item.path) {
+    <a
+      class="main-nav__tab"
+      [routerLink]="item.path"
+      routerLinkActive="main-nav__tab--active"
+      ariaCurrentWhenActive="page"
+      [attr.aria-label]="item.ariaLabel"
+    >
+      <svg class="main-nav__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path [attr.d]="item.iconPath" />
+      </svg>
+      <span class="main-nav__tab-label">{{ item.label }}</span>
+    </a>
+  }
+</nav>

@@ -1,0 +1,38 @@
+@use 'variables' as v;
+
+/// Breakpoint responsive (mobile-first)
+/// @param {string} $bp - 'sm' | 'md' | 'lg' | 'xl'
+@mixin respond-to($bp) {
+  @if $bp == 'sm' {
+    @media (min-width: v.$bp-sm) {
+      @content;
+    }
+  } @else if $bp == 'md' {
+    @media (min-width: v.$bp-md) {
+      @content;
+    }
+  } @else if $bp == 'lg' {
+    @media (min-width: v.$bp-lg) {
+      @content;
+    }
+  } @else if $bp == 'xl' {
+    @media (min-width: v.$bp-xl) {
+      @content;
+    }
+  }
+}
+
+/// Truncate texte sur une seule ligne
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/// Anneau de focus accessible
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid v.$color-primary;
+    outline-offset: 2px;
+  }
+}

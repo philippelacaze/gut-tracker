@@ -8,7 +8,9 @@
       "Bash(tail:*)",
       "Bash(cd /c/angular/gut-tracker && npx tsc --noEmit 2>&1)",
       "Bash(cd /c/angular/gut-tracker && npx ng test --no-watch 2>&1)",
-      "Bash(cd \"C:/angular/gut-tracker\" && ng test --no-watch 2>&1)"
+      "Bash(cd \"C:/angular/gut-tracker\" && ng test --no-watch 2>&1)",
+      "Bash(head:*)",
+      "Bash(cd \"C:\\\\angular\\\\gut-tracker\" && npx ng serve 2>&1)"
     ]
   }
 }

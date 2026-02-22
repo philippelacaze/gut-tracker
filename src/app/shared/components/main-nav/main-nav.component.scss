@@ -1,0 +1,185 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+$_icon-size: 22px;
+$_item-height: 52px;
+$_padding-h: 12px;
+
+// ══════════════════════════════════════════════════════════════
+// Sidebar (desktop — ≥ $bp-md)
+// ══════════════════════════════════════════════════════════════
+
+.main-nav__sidebar {
+  display: none;
+
+  @include m.respond-to('md') {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0 auto 0 0; // top:0 right:auto bottom:0 left:0
+    width: v.$nav-sidebar-width;
+    background: v.$color-surface;
+    border-right: 1px solid v.$color-border;
+    box-shadow: v.$shadow-sm;
+    z-index: v.$z-nav;
+    overflow-y: auto;
+    padding: 16px $_padding-h;
+    // Évite le défilement du contenu sous la sidebar
+    overscroll-behavior: contain;
+  }
+}
+
+// ── Branding ────────────────────────────────────────────────
+
+.main-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px $_padding-h;
+  margin-bottom: 16px;
+}
+
+.main-nav__brand-icon {
+  width: 32px;
+  height: 32px;
+  fill: v.$color-primary;
+  flex-shrink: 0;
+}
+
+.main-nav__brand-name {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: v.$color-on-surface;
+  letter-spacing: -0.01em;
+}
+
+// ── Listes de navigation ─────────────────────────────────────
+
+.main-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0;
+  margin: 0;
+
+  // Paramètres collé en bas de la sidebar
+  &--footer {
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid v.$color-border;
+  }
+}
+
+// ── Lien sidebar ─────────────────────────────────────────────
+
+.main-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: $_item-height;
+  padding: 0 $_padding-h;
+  border-radius: v.$radius-md;
+  color: v.$color-on-surface-muted;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+
+  @include m.focus-ring;
+
+  &:hover {
+    background: v.$color-primary-bg;
+    color: v.$color-primary;
+  }
+
+  &--active {
+    background: v.$color-primary-bg;
+    color: v.$color-primary;
+    font-weight: 700;
+  }
+}
+
+// ── Icône SVG (partagée sidebar + bottom bar) ────────────────
+
+.main-nav__icon {
+  width: $_icon-size;
+  height: $_icon-size;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+// ── Label sidebar ────────────────────────────────────────────
+
+.main-nav__label {
+  flex: 1;
+  @include m.truncate;
+}
+
+// ══════════════════════════════════════════════════════════════
+// Bottom navigation bar (mobile — < $bp-md)
+// ══════════════════════════════════════════════════════════════
+
+.main-nav__bottom {
+  display: flex;
+  align-items: stretch;
+  position: fixed;
+  inset: auto 0 0 0; // top:auto right:0 bottom:0 left:0
+  height: v.$nav-bottom-height;
+  background: v.$color-surface;
+  border-top: 1px solid v.$color-border;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.06);
+  z-index: v.$z-nav;
+  // Support notch iPhone X+
+  padding-bottom: env(safe-area-inset-bottom, 0);
+
+  @include m.respond-to('md') {
+    display: none;
+  }
+}
+
+// ── Onglet (bottom bar) ──────────────────────────────────────
+
+.main-nav__tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: v.$color-on-surface-muted;
+  font-size: 0.6875rem; // 11px
+  font-weight: 500;
+  transition: color 0.15s ease;
+  padding-bottom: 2px;
+  -webkit-tap-highlight-color: transparent;
+
+  @include m.focus-ring;
+
+  &:hover:not(&--active) {
+    color: v.$color-primary-light;
+  }
+
+  &--active {
+    color: v.$color-primary;
+  }
+
+  // Indicateur actif : petit trait en haut de l'onglet
+  &--active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 3px;
+    background: v.$color-primary;
+    border-radius: 0 0 v.$radius-sm v.$radius-sm;
+  }
+}
+
+.main-nav__tab-label {
+  line-height: 1;
+  @include m.truncate;
+  max-width: 56px;
+}

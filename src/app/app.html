@@ -1,1 +1,10 @@
-<router-outlet />
+<div class="app-layout">
+  <gt-main-nav />
+
+  <main class="app-layout__content">
+    <!-- Wrapper d'animation : CSS @keyframes déclenché à l'insertion du composant de page -->
+    <div class="app-layout__route">
+      <router-outlet />
+    </div>
+  </main>
+</div>

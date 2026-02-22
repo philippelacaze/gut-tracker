@@ -1,0 +1,46 @@
+// =============================================================
+// Design tokens – GutTracker
+// =============================================================
+
+// --- Breakpoints (mobile-first) ---
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+
+// --- Palette principale ---
+$color-primary: #2e7d32;
+$color-primary-light: #43a047;
+$color-primary-bg: #e8f5e9;
+$color-primary-text: #ffffff;
+
+// --- Surfaces ---
+$color-surface: #ffffff;
+$color-background: #f4f6f4;
+$color-border: #e0e0e0;
+
+// --- Texte ---
+$color-on-surface: #1a1a1a;
+$color-on-surface-muted: #757575;
+
+// --- FODMAP ---
+$fodmap-low: #4caf50;
+$fodmap-medium: #ff9800;
+$fodmap-high: #f44336;
+
+// --- Navigation ---
+$nav-sidebar-width: 248px;
+$nav-bottom-height: 60px;
+
+// --- Ombres ---
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+// --- Border radius ---
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 16px;
+$radius-full: 9999px;
+
+// --- Z-index ---
+$z-nav: 100;
