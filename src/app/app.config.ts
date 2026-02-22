@@ -10,6 +10,9 @@ import { FOOD_ENTRY_REPOSITORY } from './core/repositories/food-entry.repository
 import { LocalStorageRepository } from './core/repositories/local-storage.repository';
 import { MEDICATION_ENTRY_REPOSITORY } from './core/repositories/medication-entry.repository.token';
 import { SYMPTOM_ENTRY_REPOSITORY } from './core/repositories/symptom-entry.repository.token';
+import { AnthropicProvider } from './core/services/ai/providers/anthropic.provider';
+import { GeminiProvider } from './core/services/ai/providers/gemini.provider';
+import { OllamaProvider } from './core/services/ai/providers/ollama.provider';
 import { OpenAiProvider } from './core/services/ai/providers/openai.provider';
 
 export const appConfig: ApplicationConfig = {
@@ -18,6 +21,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideRouter(routes),
     OpenAiProvider,
+    AnthropicProvider,
+    GeminiProvider,
+    OllamaProvider,
     {
       provide: FOOD_ENTRY_REPOSITORY,
       useFactory: () => new LocalStorageRepository<FoodEntry>('food_entries'),

@@ -7,6 +7,9 @@ import {
 import { AiProvider } from './ai-provider.interface';
 import { AiSettingsService } from './ai-settings.service';
 import { AiError } from './ai.error';
+import { AnthropicProvider } from './providers/anthropic.provider';
+import { GeminiProvider } from './providers/gemini.provider';
+import { OllamaProvider } from './providers/ollama.provider';
 import { OpenAiProvider } from './providers/openai.provider';
 
 const FOOD_RECOGNITION_PROMPT = `Tu es un assistant spécialisé en reconnaissance alimentaire.
@@ -60,13 +63,21 @@ Réponds UNIQUEMENT en JSON valide :
 export class AiService {
   private readonly _settingsService = inject(AiSettingsService);
   private readonly _openAi = inject(OpenAiProvider);
+  private readonly _anthropic = inject(AnthropicProvider);
+  private readonly _gemini = inject(GeminiProvider);
+  private readonly _ollama = inject(OllamaProvider);
 
   private readonly _analyzing = signal(false);
   readonly analyzing = this._analyzing.asReadonly();
 
   private get _activeProvider(): AiProvider {
     const id = this._settingsService.getSelectedProvider();
-    const map: Record<string, AiProvider> = { openai: this._openAi };
+    const map: Record<string, AiProvider> = {
+      openai: this._openAi,
+      anthropic: this._anthropic,
+      gemini: this._gemini,
+      ollama: this._ollama,
+    };
     const provider = map[id];
     if (!provider) {
       throw new AiError(`Provider "${id}" non disponible`, id);

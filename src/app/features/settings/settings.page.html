@@ -1,3 +1,334 @@
 <main class="settings-page">
-  <h1 i18n="@@settings.title">Paramètres</h1>
+  <h1 class="settings-page__title" i18n="@@settings.title">Paramètres</h1>
+
+  <!-- ===== Section Intelligence Artificielle ===== -->
+  <section class="settings-page__section" aria-labelledby="ai-section-title">
+    <h2 class="settings-page__section-title" id="ai-section-title" i18n="@@settings.ai.title">
+      Intelligence artificielle
+    </h2>
+
+    <!-- Sélection du provider actif -->
+    <fieldset class="settings-page__fieldset">
+      <legend class="settings-page__legend" i18n="@@settings.ai.provider.label">
+        Fournisseur actif
+      </legend>
+      <div class="settings-page__radio-group" role="radiogroup">
+        @for (p of PROVIDERS; track p.id) {
+          <label class="settings-page__radio-label">
+            <input
+              type="radio"
+              name="ai-provider"
+              [value]="p.id"
+              [checked]="aiForm().selectedProvider === p.id"
+              (change)="selectProvider(p.id)"
+              class="settings-page__radio"
+            />
+            <span class="settings-page__radio-text">
+              {{ p.name }}
+              @if (p.isFree) {
+                <span class="settings-page__badge settings-page__badge--free" i18n="@@settings.ai.free">
+                  gratuit
+                </span>
+              }
+            </span>
+          </label>
+        }
+      </div>
+    </fieldset>
+
+    <!-- Avertissement stockage localStorage -->
+    <div class="settings-page__warning" role="alert">
+      <span class="settings-page__warning-icon" aria-hidden="true">⚠️</span>
+      <p i18n="@@settings.ai.warning">
+        Les clés API sont stockées dans votre navigateur (localStorage) avec un encodage de base — elles ne sont pas chiffrées. N'utilisez pas cette application sur un appareil partagé.
+      </p>
+    </div>
+
+    <!-- Config OpenAI -->
+    <div class="settings-page__provider-block">
+      <h3 class="settings-page__provider-title">OpenAI</h3>
+      <div class="settings-page__field">
+        <label class="settings-page__label" for="openai-key" i18n="@@settings.ai.apiKey">
+          Clé API
+        </label>
+        <div class="settings-page__input-group">
+          <input
+            [type]="showKeys().openai ? 'text' : 'password'"
+            id="openai-key"
+            class="settings-page__input"
+            [value]="aiForm().providers.openai.apiKey"
+            (change)="onOpenAiKeyChange($event)"
+            autocomplete="off"
+            i18n-placeholder="@@settings.ai.apiKey.placeholder"
+            placeholder="sk-..."
+          />
+          <button
+            type="button"
+            class="settings-page__toggle-key"
+            (click)="toggleKey('openai')"
+            i18n-aria-label="@@settings.ai.toggleKey.openai"
+            aria-label="Afficher ou masquer la clé OpenAI"
+          >
+            @if (showKeys().openai) {
+              <span aria-hidden="true">🙈</span>
+            } @else {
+              <span aria-hidden="true">👁</span>
+            }
+          </button>
+        </div>
+      </div>
+      <div class="settings-page__field">
+        <label class="settings-page__label" for="openai-model" i18n="@@settings.ai.model">
+          Modèle
+        </label>
+        <select
+          id="openai-model"
+          class="settings-page__select"
+          (change)="onOpenAiModelChange($event)"
+        >
+          @for (model of OPENAI_MODELS; track model) {
+            <option [value]="model" [selected]="aiForm().providers.openai.model === model">
+              {{ model }}
+            </option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <!-- Config Anthropic -->
+    <div class="settings-page__provider-block">
+      <h3 class="settings-page__provider-title">Anthropic (Claude)</h3>
+      <div class="settings-page__field">
+        <label class="settings-page__label" for="anthropic-key" i18n="@@settings.ai.apiKey">
+          Clé API
+        </label>
+        <div class="settings-page__input-group">
+          <input
+            [type]="showKeys().anthropic ? 'text' : 'password'"
+            id="anthropic-key"
+            class="settings-page__input"
+            [value]="aiForm().providers.anthropic.apiKey"
+            (change)="onAnthropicKeyChange($event)"
+            autocomplete="off"
+            i18n-placeholder="@@settings.ai.apiKey.placeholder.anthropic"
+            placeholder="sk-ant-..."
+          />
+          <button
+            type="button"
+            class="settings-page__toggle-key"
+            (click)="toggleKey('anthropic')"
+            i18n-aria-label="@@settings.ai.toggleKey.anthropic"
+            aria-label="Afficher ou masquer la clé Anthropic"
+          >
+            @if (showKeys().anthropic) {
+              <span aria-hidden="true">🙈</span>
+            } @else {
+              <span aria-hidden="true">👁</span>
+            }
+          </button>
+        </div>
+      </div>
+      <div class="settings-page__field">
+        <label class="settings-page__label" for="anthropic-model" i18n="@@settings.ai.model">
+          Modèle
+        </label>
+        <select
+          id="anthropic-model"
+          class="settings-page__select"
+          (change)="onAnthropicModelChange($event)"
+        >
+          @for (model of ANTHROPIC_MODELS; track model) {
+            <option [value]="model" [selected]="aiForm().providers.anthropic.model === model">
+              {{ model }}
+            </option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <!-- Config Google Gemini -->
+    <div class="settings-page__provider-block">
+      <h3 class="settings-page__provider-title">Google Gemini</h3>
+      <div class="settings-page__field">
+        <label class="settings-page__label" for="gemini-key" i18n="@@settings.ai.apiKey">
+          Clé API
+        </label>
+        <div class="settings-page__input-group">
+          <input
+            [type]="showKeys().gemini ? 'text' : 'password'"
+            id="gemini-key"
+            class="settings-page__input"
+            [value]="aiForm().providers.gemini.apiKey"
+            (change)="onGeminiKeyChange($event)"
+            autocomplete="off"
+            i18n-placeholder="@@settings.ai.apiKey.placeholder.gemini"
+            placeholder="AIza..."
+          />
+          <button
+            type="button"
+            class="settings-page__toggle-key"
+            (click)="toggleKey('gemini')"
+            i18n-aria-label="@@settings.ai.toggleKey.gemini"
+            aria-label="Afficher ou masquer la clé Gemini"
+          >
+            @if (showKeys().gemini) {
+              <span aria-hidden="true">🙈</span>
+            } @else {
+              <span aria-hidden="true">👁</span>
+            }
+          </button>
+        </div>
+      </div>
+      <div class="settings-page__field">
+        <label class="settings-page__label" for="gemini-model" i18n="@@settings.ai.model">
+          Modèle
+        </label>
+        <select
+          id="gemini-model"
+          class="settings-page__select"
+          (change)="onGeminiModelChange($event)"
+        >
+          @for (model of GEMINI_MODELS; track model) {
+            <option [value]="model" [selected]="aiForm().providers.gemini.model === model">
+              {{ model }}
+            </option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <!-- Config Ollama (local, sans clé) -->
+    <div class="settings-page__provider-block">
+      <h3 class="settings-page__provider-title">
+        Ollama
+        <span class="settings-page__badge settings-page__badge--free" i18n="@@settings.ai.free">
+          gratuit
+        </span>
+      </h3>
+      <div class="settings-page__field">
+        <label class="settings-page__label" for="ollama-url" i18n="@@settings.ai.ollama.url">
+          URL du serveur
+        </label>
+        <input
+          type="url"
+          id="ollama-url"
+          class="settings-page__input"
+          [value]="aiForm().providers.ollama.baseUrl"
+          (change)="onOllamaUrlChange($event)"
+          autocomplete="off"
+          placeholder="http://localhost:11434"
+        />
+      </div>
+      <div class="settings-page__field">
+        <label class="settings-page__label" for="ollama-model" i18n="@@settings.ai.model">
+          Modèle
+        </label>
+        <input
+          type="text"
+          id="ollama-model"
+          class="settings-page__input"
+          [value]="aiForm().providers.ollama.model"
+          (change)="onOllamaModelChange($event)"
+          autocomplete="off"
+          i18n-placeholder="@@settings.ai.ollama.model.placeholder"
+          placeholder="llava, llama3.2, mistral…"
+        />
+      </div>
+      <p class="settings-page__hint" i18n="@@settings.ai.ollama.hint">
+        Ollama doit être démarré localement. Aucune clé API n'est requise.
+      </p>
+    </div>
+
+    <div class="settings-page__actions">
+      <button
+        type="button"
+        class="settings-page__save-btn"
+        (click)="saveAiSettings()"
+        i18n="@@settings.ai.save"
+      >
+        Sauvegarder les paramètres IA
+      </button>
+      @if (aiSaved()) {
+        <span class="settings-page__saved-msg" role="status" i18n="@@settings.saved">
+          ✓ Sauvegardé
+        </span>
+      }
+    </div>
+  </section>
+
+  <!-- ===== Section Préférences ===== -->
+  <section class="settings-page__section" aria-labelledby="prefs-section-title">
+    <h2 class="settings-page__section-title" id="prefs-section-title" i18n="@@settings.prefs.title">
+      Préférences
+    </h2>
+
+    <!-- Genre anatomique pour BodyMap -->
+    <fieldset class="settings-page__fieldset">
+      <legend class="settings-page__legend" i18n="@@settings.bodyMap.gender.label">
+        Genre anatomique (carte corporelle)
+      </legend>
+      <div class="settings-page__radio-group" role="radiogroup">
+        <label class="settings-page__radio-label">
+          <input
+            type="radio"
+            name="body-gender"
+            value="male"
+            [checked]="prefsForm().bodyMapGender === 'male'"
+            (change)="selectGender('male')"
+            class="settings-page__radio"
+          />
+          <span class="settings-page__radio-text" i18n="@@settings.bodyMap.gender.male">
+            Masculin
+          </span>
+        </label>
+        <label class="settings-page__radio-label">
+          <input
+            type="radio"
+            name="body-gender"
+            value="female"
+            [checked]="prefsForm().bodyMapGender === 'female'"
+            (change)="selectGender('female')"
+            class="settings-page__radio"
+          />
+          <span class="settings-page__radio-text" i18n="@@settings.bodyMap.gender.female">
+            Féminin
+          </span>
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- Langue de l'interface -->
+    <div class="settings-page__field">
+      <label class="settings-page__label" for="language-select" i18n="@@settings.language.label">
+        Langue de l'interface
+      </label>
+      <select
+        id="language-select"
+        class="settings-page__select settings-page__select--inline"
+        (change)="onLanguageChange($event)"
+      >
+        <option value="fr" [selected]="prefsForm().language === 'fr'">Français</option>
+        <option value="en" [selected]="prefsForm().language === 'en'">English</option>
+      </select>
+    </div>
+    <p class="settings-page__hint" i18n="@@settings.language.note">
+      Le changement de langue prend effet après rechargement de la page.
+    </p>
+
+    <div class="settings-page__actions">
+      <button
+        type="button"
+        class="settings-page__save-btn"
+        (click)="savePreferences()"
+        i18n="@@settings.prefs.save"
+      >
+        Sauvegarder les préférences
+      </button>
+      @if (prefsSaved()) {
+        <span class="settings-page__saved-msg" role="status" i18n="@@settings.saved">
+          ✓ Sauvegardé
+        </span>
+      }
+    </div>
+  </section>
 </main>

@@ -1,3 +1,302 @@
+@use '../../shared/styles/variables' as v;
+@use '../../shared/styles/mixins' as m;
+
 .settings-page {
-  padding: 16px;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+
+  @include m.respond-to('md') {
+    padding: 32px 24px 48px;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: v.$color-on-surface;
+    margin: 0 0 24px;
+  }
+
+  // --- Sections ---
+
+  &__section {
+    background: v.$color-surface;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-lg;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: v.$shadow-sm;
+
+    @include m.respond-to('md') {
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: v.$color-on-surface;
+    margin: 0 0 20px;
+  }
+
+  // --- Fieldset / radio ---
+
+  &__fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 20px;
+  }
+
+  &__legend {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: v.$color-on-surface-muted;
+    margin-bottom: 12px;
+    display: block;
+    width: 100%;
+  }
+
+  &__radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @include m.respond-to('sm') {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__radio-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 10px 14px;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-md;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    flex: 1;
+    min-width: 140px;
+
+    &:has(input:checked) {
+      border-color: v.$color-primary;
+      background: v.$color-primary-bg;
+    }
+
+    &:hover {
+      border-color: v.$color-primary-light;
+    }
+  }
+
+  &__radio {
+    accent-color: v.$color-primary;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  &__radio-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9375rem;
+  }
+
+  &__badge {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: v.$radius-full;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+
+    &--free {
+      background: v.$fodmap-low;
+      color: #fff;
+    }
+  }
+
+  // --- Avertissement localStorage ---
+
+  &__warning {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: #fff8e1;
+    border: 1px solid #ffb300;
+    border-radius: v.$radius-md;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+
+    p {
+      margin: 0;
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: #7c5700;
+    }
+  }
+
+  &__warning-icon {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    flex-shrink: 0;
+  }
+
+  // --- Blocs provider ---
+
+  &__provider-block {
+    padding: 16px;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-md;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__provider-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: v.$color-on-surface;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  // --- Champs génériques ---
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: v.$color-on-surface-muted;
+  }
+
+  &__input-group {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  &__input {
+    flex: 1;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-md;
+    font-size: 0.9375rem;
+    color: v.$color-on-surface;
+    background: v.$color-surface;
+    font-family: inherit;
+
+    @include m.focus-ring;
+
+    &:focus {
+      border-color: v.$color-primary;
+      outline: none;
+    }
+  }
+
+  &__select {
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-md;
+    font-size: 0.9375rem;
+    color: v.$color-on-surface;
+    background: v.$color-surface;
+    font-family: inherit;
+    cursor: pointer;
+
+    @include m.focus-ring;
+
+    &:focus {
+      border-color: v.$color-primary;
+      outline: none;
+    }
+
+    &--inline {
+      width: auto;
+      min-width: 160px;
+    }
+  }
+
+  &__toggle-key {
+    width: 40px;
+    height: 40px;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-md;
+    background: v.$color-surface;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.125rem;
+
+    @include m.focus-ring;
+
+    &:hover {
+      background: v.$color-background;
+    }
+  }
+
+  &__hint {
+    font-size: 0.8125rem;
+    color: v.$color-on-surface-muted;
+    margin: 0;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  // --- Actions ---
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid v.$color-border;
+  }
+
+  &__save-btn {
+    padding: 10px 20px;
+    background: v.$color-primary;
+    color: v.$color-primary-text;
+    border: none;
+    border-radius: v.$radius-md;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+
+    @include m.focus-ring;
+
+    &:hover {
+      background: v.$color-primary-light;
+    }
+
+    &:active {
+      opacity: 0.9;
+    }
+  }
+
+  &__saved-msg {
+    font-size: 0.875rem;
+    color: v.$fodmap-low;
+    font-weight: 500;
+  }
 }
