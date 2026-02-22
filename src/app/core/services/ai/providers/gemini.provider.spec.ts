@@ -59,24 +59,24 @@ describe('GeminiProvider', () => {
         apiKey: '',
         model: 'gemini-1.5-pro',
       });
-      await expect(provider.analyzeImage('base64', 'prompt', fileType)).rejects.toThrow(AiError);
+      await expect(provider.analyzeImage('base64', 'prompt')).rejects.toThrow(AiError);
     });
 
     it('lève AiError avec isQuotaError=true sur HTTP 429', async () => {
       vi.stubGlobal('fetch', vi.fn().mockResolvedValue(makeResponse(429)));
-      await expect(provider.analyzeImage('base64', 'prompt', fileType)).rejects.toMatchObject({
+      await expect(provider.analyzeImage('base64', 'prompt')).rejects.toMatchObject({
         isQuotaError: true,
       });
     });
 
     it('lève AiError sur HTTP 403', async () => {
       vi.stubGlobal('fetch', vi.fn().mockResolvedValue(makeResponse(403)));
-      await expect(provider.analyzeImage('base64', 'prompt', fileType)).rejects.toThrow(AiError);
+      await expect(provider.analyzeImage('base64', 'prompt')).rejects.toThrow(AiError);
     });
 
     it('retourne le texte extrait sur réponse 200', async () => {
       vi.stubGlobal('fetch', vi.fn().mockResolvedValue(makeGeminiOk('vision result')));
-      const result = await provider.analyzeImage('base64', 'prompt', fileType);
+      const result = await provider.analyzeImage('base64', 'prompt');
       expect(result).toBe('vision result');
     });
   });

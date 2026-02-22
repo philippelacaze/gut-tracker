@@ -33,7 +33,7 @@ export class AnthropicProvider implements AiProvider {
 
   private readonly _settings = inject(AiSettingsService);
 
-  async analyzeImage(base64Image: string, prompt: string, fileType: string): Promise<string> {
+  async analyzeImage(base64Image: string, prompt: string, fileType: string = 'image/jpeg'): Promise<string> {
     const config = this._settings.getProviderConfig('anthropic');
     const content: AnthropicContentBlock[] = [
       { type: 'image', source: { type: 'base64', media_type: fileType ?? 'image/jpeg', data: base64Image } },

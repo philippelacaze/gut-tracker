@@ -99,7 +99,6 @@ export class AiService {
       }
 
 
-      return JSON.parse(raw) as ImageRecognitionResult;
     } finally {
       this._analyzing.set(false);
     }
@@ -120,7 +119,6 @@ export class AiService {
       }
 
 
-      return JSON.parse(raw) as FodmapAnalysisResult;
     } finally {
       this._analyzing.set(false);
     }

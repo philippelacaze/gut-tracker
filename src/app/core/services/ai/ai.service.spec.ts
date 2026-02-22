@@ -7,6 +7,11 @@ import { AiSettingsService } from './ai-settings.service';
 import { AiService } from './ai.service';
 import { AiError } from './ai.error';
 import { OpenAiProvider } from './providers/openai.provider';
+import { AnthropicProvider } from './providers/anthropic.provider';
+import { GeminiProvider } from './providers/gemini.provider';
+import { OllamaProvider } from './providers/ollama.provider';
+
+const TEST_FILE_TYPE = 'image/jpeg';
 
 describe('AiService', () => {
   let service: AiService;
@@ -35,10 +40,22 @@ describe('AiService', () => {
       save: vi.fn(),
     };
 
+    const stubProvider = {
+      id: 'stub',
+      name: 'Stub',
+      supportsVision: false,
+      isFree: false,
+      analyzeImage: vi.fn(),
+      complete: vi.fn(),
+    };
+
     TestBed.configureTestingModule({
       providers: [
         AiService,
-        { provide: OpenAiProvider, useValue: mockOpenAi },
+        { provide: OpenAiProvider,    useValue: mockOpenAi },
+        { provide: AnthropicProvider, useValue: stubProvider },
+        { provide: GeminiProvider,    useValue: stubProvider },
+        { provide: OllamaProvider,    useValue: stubProvider },
         { provide: AiSettingsService, useValue: mockSettings },
       ],
     });
@@ -46,10 +63,11 @@ describe('AiService', () => {
   });
 
   it('recognizeFood appelle analyzeImage du provider actif et parse le JSON', async () => {
-    const result = await service.recognizeFood('base64data', fileType);
+    const result = await service.recognizeFood('base64data', TEST_FILE_TYPE);
     expect(mockOpenAi.analyzeImage).toHaveBeenCalledWith(
       'base64data',
       expect.stringContaining('reconnaissance alimentaire'),
+      TEST_FILE_TYPE,
     );
     expect(result.foods[0].name).toBe('Pomme');
   });
@@ -60,20 +78,20 @@ describe('AiService', () => {
       states.push(service.analyzing());
       return '{"foods":[],"uncertain":[]}';
     });
-    await service.recognizeFood('base64', fileType);
+    await service.recognizeFood('base64', TEST_FILE_TYPE);
     expect(states).toContain(true);
     expect(service.analyzing()).toBe(false);
   });
 
   it('analyzing repasse à false même si le provider lève une erreur', async () => {
     (mockOpenAi.analyzeImage as ReturnType<typeof vi.fn>).mockRejectedValue(new Error('KO'));
-    await expect(service.recognizeFood('base64', fileType)).rejects.toThrow();
+    await expect(service.recognizeFood('base64', TEST_FILE_TYPE)).rejects.toThrow();
     expect(service.analyzing()).toBe(false);
   });
 
   it('lève AiError si le provider sélectionné n\'est pas disponible', async () => {
-    (mockSettings.getSelectedProvider as ReturnType<typeof vi.fn>).mockReturnValue('anthropic');
-    await expect(service.recognizeFood('base64', fileType)).rejects.toThrow(AiError);
+    (mockSettings.getSelectedProvider as ReturnType<typeof vi.fn>).mockReturnValue('provider-inexistant');
+    await expect(service.recognizeFood('base64', TEST_FILE_TYPE)).rejects.toThrow(AiError);
   });
 
   it('analyzeFodmap transmet les noms des aliments et parse la réponse', async () => {

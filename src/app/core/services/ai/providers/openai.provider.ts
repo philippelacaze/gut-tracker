@@ -1,8 +1,8 @@
-import { Injectable, inject } from '@angular/core';
+import {Injectable, inject} from '@angular/core';
 
-import { AiProvider } from '../ai-provider.interface';
-import { AiSettingsService } from '../ai-settings.service';
-import { AiError } from '../ai.error';
+import {AiProvider} from '../ai-provider.interface';
+import {AiSettingsService} from '../ai-settings.service';
+import {AiError} from '../ai.error';
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 
@@ -29,7 +29,7 @@ export class OpenAiProvider implements AiProvider {
 
   private readonly _settings = inject(AiSettingsService);
 
-  async analyzeImage(base64Image: string, prompt: string, fileType: string): Promise<string> {
+  async analyzeImage(base64Image: string, prompt: string, fileType: string = 'image/jpeg'): Promise<string> {
     const config = this._settings.getProviderConfig('openai');
     const body = JSON.stringify({
       model: config.model,
@@ -39,9 +39,9 @@ export class OpenAiProvider implements AiProvider {
           content: [
             {
               type: 'image_url',
-              image_url: { url: `data:${fileType ?? 'image/jpeg'};base64,${base64Image}` },
+              image_url: {url: `data:${fileType ?? 'image/jpeg'};base64,${base64Image}`},
             } satisfies OpenAiImagePart,
-            { type: 'text', text: prompt } satisfies OpenAiTextPart,
+            {type: 'text', text: prompt} satisfies OpenAiTextPart,
           ],
         },
       ],
@@ -55,10 +55,10 @@ export class OpenAiProvider implements AiProvider {
     const config = this._settings.getProviderConfig('openai');
     const messages: Array<{ role: string; content: string }> = [];
     if (systemPrompt) {
-      messages.push({ role: 'system', content: systemPrompt });
+      messages.push({role: 'system', content: systemPrompt});
     }
-    messages.push({ role: 'user', content: prompt });
-    const body = JSON.stringify({ model: config.model, messages, max_tokens: 1000 });
+    messages.push({role: 'user', content: prompt});
+    const body = JSON.stringify({model: config.model, messages, max_tokens: 1000});
     const response = await this._fetchWithRetry(config.apiKey, body);
     return this._extractContent(response);
   }

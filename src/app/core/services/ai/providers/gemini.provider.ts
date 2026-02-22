@@ -34,7 +34,7 @@ export class GeminiProvider implements AiProvider {
 
   private readonly _settings = inject(AiSettingsService);
 
-  async analyzeImage(base64Image: string, prompt: string, fileType: string): Promise<string> {
+  async analyzeImage(base64Image: string, prompt: string, fileType: string= 'image/jpeg'): Promise<string> {
     const config = this._settings.getProviderConfig('gemini');
     const parts: GeminiPart[] = [
       { inline_data: { mime_type: fileType ??'image/jpeg', data: base64Image } },

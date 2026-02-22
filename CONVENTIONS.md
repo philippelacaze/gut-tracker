@@ -159,7 +159,7 @@ Claude Code ne termine pas une tâche sans avoir produit les tests correspondant
 
 ### Conventions de test
 
-- **Framework** : Jest + `@angular/core/testing` (TestBed)
+- **Framework** : Vitest 4 + `@angular/core/testing` (TestBed) — runner `@angular/build:unit-test`
 - **Un `describe` principal** par fichier spec, nommé comme la classe
 - **`describe` imbriqués** pour regrouper par méthode ou scénario
 - **Nommage des `it`** : forme affirmative *"devrait [comportement attendu] quand [condition]"*
@@ -168,16 +168,18 @@ Claude Code ne termine pas une tâche sans avoir produit les tests correspondant
 - **Pas de `any`** dans les specs non plus
 
 ```typescript
+import { vi, type Mocked } from 'vitest';
+
 describe('FoodEntryStore', () => {
   let store: FoodEntryStore;
-  let mockRepo: jest.Mocked<Repository<FoodEntry>>;
+  let mockRepo: Mocked<Repository<FoodEntry>>;
 
   beforeEach(() => {
     mockRepo = {
-      findAll: jest.fn().mockResolvedValue([]),
-      save:    jest.fn().mockImplementation(e => Promise.resolve(e)),
-      findById: jest.fn().mockResolvedValue(null),
-      delete:  jest.fn().mockResolvedValue(undefined),
+      findAll: vi.fn().mockResolvedValue([]),
+      save:    vi.fn().mockImplementation(e => Promise.resolve(e)),
+      findById: vi.fn().mockResolvedValue(null),
+      delete:  vi.fn().mockResolvedValue(undefined),
     };
 
     TestBed.configureTestingModule({
@@ -303,9 +305,10 @@ describe('FodmapBadgeComponent', () => {
 | Services IA | 75% |
 | Global | 70% |
 
-```json
-// jest.config.ts (à configurer)
-coverageThreshold: {
-  global: { lines: 70, functions: 70, branches: 65 }
+```typescript
+// angular.json → projects.<app>.architect.test.options.coverageThreshold
+// ou vitest.config.ts si utilisé en standalone
+coverage: {
+  thresholds: { lines: 70, functions: 70, branches: 65 }
 }
 ```

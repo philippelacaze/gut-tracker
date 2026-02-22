@@ -61,14 +61,14 @@ describe('OllamaProvider', () => {
           return Promise.resolve(makeOllamaOk('vision result'));
         }),
       );
-      await provider.analyzeImage('abc123', 'prompt', fileType);
+      await provider.analyzeImage('abc123', 'prompt');
       const parsed = JSON.parse(capturedBody) as { messages: Array<{ images?: string[] }> };
       expect(parsed.messages[0].images).toContain('abc123');
     });
 
     it('retourne le contenu du message sur réponse 200', async () => {
       vi.stubGlobal('fetch', vi.fn().mockResolvedValue(makeOllamaOk('vision result')));
-      const result = await provider.analyzeImage('base64', 'prompt', fileType);
+      const result = await provider.analyzeImage('base64', 'prompt');
       expect(result).toBe('vision result');
     });
   });
