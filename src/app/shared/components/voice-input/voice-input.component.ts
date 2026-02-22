@@ -120,7 +120,8 @@ export class VoiceInputComponent implements OnDestroy {
           this._transcript.set(transcript);
           this._voiceState.set('done');
         })
-        .catch(() => {
+        .catch((e) => {
+          console.error('Error parsing transcript', e);
           this._setError(
             $localize`:@@voiceInput.error.recognition:Erreur de reconnaissance vocale.`,
           );
