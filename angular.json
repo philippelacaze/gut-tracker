@@ -71,9 +71,21 @@
             },
             "en": {
               "localize": ["en"]
+            },
+            "github-pages": {
+              "localize": true
             }
           },
           "defaultConfiguration": "production"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "buildTarget": "gut-tracker:build:production,github-pages",
+            "dir": "dist/gut-tracker/browser",
+            "branch": "gh-pages",
+            "message": "Deploy: {sha}"
+          }
         },
         "serve": {
           "builder": "@angular/build:dev-server",
