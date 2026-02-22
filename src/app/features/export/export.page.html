@@ -1,3 +1,66 @@
 <main class="export-page">
-  <h1 i18n="@@export.title">Export des données</h1>
+
+  <h1 class="export-page__title" i18n="@@export.title">Export des données</h1>
+
+  <p class="export-page__subtitle" i18n="@@export.subtitle">
+    Téléchargez vos données pour les partager avec votre médecin ou les archiver.
+  </p>
+
+  <section class="export-page__filters" aria-label="Filtres d'export" i18n-aria-label="@@export.filtersLabel">
+    <gt-export-range-picker
+      [filter]="filter()"
+      (filterChange)="onFilterChange($event)"
+    />
+  </section>
+
+  @if (error()) {
+    <p class="export-page__error" role="alert">{{ error() }}</p>
+  }
+
+  <section class="export-page__actions" aria-label="Actions d'export" i18n-aria-label="@@export.actionsLabel">
+
+    <button
+      class="export-page__btn export-page__btn--json"
+      type="button"
+      (click)="exportJson()"
+      aria-label="Exporter en JSON"
+      i18n-aria-label="@@export.jsonAriaLabel"
+    >
+      <span class="export-page__btn-icon" aria-hidden="true">&#123;&#125;</span>
+      <span i18n="@@export.jsonLabel">JSON</span>
+      <small i18n="@@export.jsonDesc">Données complètes</small>
+    </button>
+
+    <button
+      class="export-page__btn export-page__btn--csv"
+      type="button"
+      (click)="exportCsv()"
+      aria-label="Exporter en CSV"
+      i18n-aria-label="@@export.csvAriaLabel"
+    >
+      <span class="export-page__btn-icon" aria-hidden="true">≡</span>
+      <span i18n="@@export.csvLabel">CSV</span>
+      <small i18n="@@export.csvDesc">Tableur compatible</small>
+    </button>
+
+    <button
+      class="export-page__btn export-page__btn--pdf"
+      type="button"
+      (click)="exportPdf()"
+      [disabled]="exporting()"
+      [attr.aria-busy]="exporting()"
+      aria-label="Exporter en PDF"
+      i18n-aria-label="@@export.pdfAriaLabel"
+    >
+      <span class="export-page__btn-icon" aria-hidden="true">📄</span>
+      @if (exporting()) {
+        <span i18n="@@export.pdfGenerating">Génération…</span>
+      } @else {
+        <span i18n="@@export.pdfLabel">PDF</span>
+      }
+      <small i18n="@@export.pdfDesc">Rapport médical</small>
+    </button>
+
+  </section>
+
 </main>

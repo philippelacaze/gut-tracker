@@ -1,0 +1,74 @@
+<div class="export-range-picker">
+
+  <fieldset class="export-range-picker__dates">
+    <legend i18n="@@export.rangePicker.period">Période</legend>
+
+    <div class="export-range-picker__date-row">
+      <label class="export-range-picker__date-label" for="export-from">
+        <span i18n="@@export.rangePicker.from">Du</span>
+        <input
+          id="export-from"
+          class="export-range-picker__date-input"
+          type="date"
+          [value]="fromValue()"
+          (change)="onFromChange($event)"
+          aria-label="Date de début"
+          i18n-aria-label="@@export.rangePicker.fromAriaLabel"
+        />
+      </label>
+
+      <label class="export-range-picker__date-label" for="export-to">
+        <span i18n="@@export.rangePicker.to">Au</span>
+        <input
+          id="export-to"
+          class="export-range-picker__date-input"
+          type="date"
+          [value]="toValue()"
+          (change)="onToChange($event)"
+          aria-label="Date de fin"
+          i18n-aria-label="@@export.rangePicker.toAriaLabel"
+        />
+      </label>
+    </div>
+  </fieldset>
+
+  <fieldset class="export-range-picker__types">
+    <legend i18n="@@export.rangePicker.dataTypes">Types de données</legend>
+
+    <div class="export-range-picker__type-list">
+      <label class="export-range-picker__type-option">
+        <input
+          type="checkbox"
+          [checked]="isTypeSelected('food')"
+          (change)="onTypeToggle('food')"
+          aria-label="Alimentation"
+          i18n-aria-label="@@export.rangePicker.food"
+        />
+        <span i18n="@@export.rangePicker.food">Alimentation</span>
+      </label>
+
+      <label class="export-range-picker__type-option">
+        <input
+          type="checkbox"
+          [checked]="isTypeSelected('medication')"
+          (change)="onTypeToggle('medication')"
+          aria-label="Médicaments"
+          i18n-aria-label="@@export.rangePicker.medication"
+        />
+        <span i18n="@@export.rangePicker.medication">Médicaments</span>
+      </label>
+
+      <label class="export-range-picker__type-option">
+        <input
+          type="checkbox"
+          [checked]="isTypeSelected('symptom')"
+          (change)="onTypeToggle('symptom')"
+          aria-label="Symptômes"
+          i18n-aria-label="@@export.rangePicker.symptom"
+        />
+        <span i18n="@@export.rangePicker.symptom">Symptômes</span>
+      </label>
+    </div>
+  </fieldset>
+
+</div>
