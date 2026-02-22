@@ -76,6 +76,17 @@ describe('FoodEntryStore', () => {
       expect(store.error()).toBeTruthy();
       expect(store.loading()).toBe(false);
     });
+
+    it('devrait effacer l\'erreur précédente lors d\'un chargement réussi suivant', async () => {
+      mockRepo.findAll.mockRejectedValueOnce(new Error('Panne'));
+      await expect(store.loadAll()).rejects.toThrow();
+      expect(store.error()).toBeTruthy();
+
+      mockRepo.findAll.mockResolvedValue([]);
+      await store.loadAll();
+
+      expect(store.error()).toBeNull();
+    });
   });
 
   // ──────────────────────────────────────────────────────────────
@@ -112,6 +123,18 @@ describe('FoodEntryStore', () => {
       expect(store.entries()).toHaveLength(1);
       expect(store.entries()[0].notes).toBe('modifié');
     });
+
+    it('devrait propager l\'erreur et conserver la liste inchangée si le repository échoue', async () => {
+      const original = makeFoodEntry({ id: '1' });
+      mockRepo.findAll.mockResolvedValue([original]);
+      await store.loadAll();
+
+      mockRepo.save.mockRejectedValue(new Error('Stockage plein'));
+
+      await expect(store.update({ ...original, notes: 'modifié' })).rejects.toThrow('Stockage plein');
+      expect(store.entries()).toHaveLength(1);
+      expect(store.entries()[0].notes).toBeUndefined();
+    });
   });
 
   // ──────────────────────────────────────────────────────────────
@@ -137,6 +160,17 @@ describe('FoodEntryStore', () => {
 
       expect(store.entries()).toHaveLength(1);
       expect(store.entries()[0].id).toBe('2');
+    });
+
+    it('devrait propager l\'erreur et conserver l\'entrée si le repository échoue', async () => {
+      const entry = makeFoodEntry({ id: '1' });
+      mockRepo.findAll.mockResolvedValue([entry]);
+      await store.loadAll();
+
+      mockRepo.delete.mockRejectedValue(new Error('Erreur suppression'));
+
+      await expect(store.remove('1')).rejects.toThrow('Erreur suppression');
+      expect(store.entries()).toHaveLength(1);
     });
   });
 
