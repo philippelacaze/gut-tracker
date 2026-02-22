@@ -84,4 +84,34 @@ describe('AiService', () => {
     );
     expect(result.globalLevel).toBe('low');
   });
+
+  describe('analyzeCorrelations()', () => {
+    it('devrait appeler complete() avec le JSON fourni et le prompt système', async () => {
+      (mockOpenAi.complete as ReturnType<typeof vi.fn>).mockResolvedValue('Rapport narratif IA');
+      const json = '{"food":[],"medication":[],"symptom":[]}';
+
+      const result = await service.analyzeCorrelations(json);
+
+      expect(mockOpenAi.complete).toHaveBeenCalledWith(
+        expect.stringContaining(json),
+        expect.stringContaining('SII/SIBO'),
+      );
+      expect(result).toBe('Rapport narratif IA');
+    });
+
+    it('devrait mettre analyzing à false après la réponse', async () => {
+      (mockOpenAi.complete as ReturnType<typeof vi.fn>).mockResolvedValue('ok');
+
+      await service.analyzeCorrelations('{}');
+
+      expect(service.analyzing()).toBe(false);
+    });
+
+    it('devrait mettre analyzing à false même en cas d\'erreur', async () => {
+      (mockOpenAi.complete as ReturnType<typeof vi.fn>).mockRejectedValue(new Error('KO'));
+
+      await expect(service.analyzeCorrelations('{}')).rejects.toThrow();
+      expect(service.analyzing()).toBe(false);
+    });
+  });
 });

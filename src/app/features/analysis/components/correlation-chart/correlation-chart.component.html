@@ -1,0 +1,16 @@
+<div class="correlation-chart">
+
+  @if (hasData()) {
+    <div class="correlation-chart__container">
+      <canvas #chartCanvas aria-label="Graphique des corrélations aliments–symptômes"
+        i18n-aria-label="@@chart.ariaLabel"
+        role="img">
+      </canvas>
+    </div>
+  } @else {
+    <p class="correlation-chart__empty" i18n="@@chart.empty">
+      Aucune corrélation aliment–symptôme détectée sur la période.
+    </p>
+  }
+
+</div>

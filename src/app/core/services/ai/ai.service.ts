@@ -22,6 +22,21 @@ Réponds UNIQUEMENT en JSON valide, sans texte avant/après :
   "uncertain": ["aliment ambigu 1"]
 }`;
 
+const ANALYSIS_SYSTEM_PROMPT = `Tu es un assistant médical spécialisé en troubles digestifs (SII/SIBO).
+Tu analyses des données de suivi alimentaire et symptomatique.
+
+IMPORTANT : Tes conclusions sont indicatives uniquement.
+Commence TOUJOURS par rappeler que ceci ne remplace pas un avis médical.
+
+Analyse les corrélations temporelles entre prises alimentaires et symptômes apparus dans les 0 à 6 heures suivantes.
+Identifie les patterns FODMAP associés aux symptômes.
+
+Structure ta réponse en sections :
+1. Patterns identifiés
+2. Aliments/groupes FODMAP suspects
+3. Impact des traitements observé
+4. Recommandations prudentes`;
+
 const FODMAP_SYSTEM_PROMPT = `Tu es un expert en nutrition spécialisé FODMAP (protocole Monash University).
 Pour chaque aliment fourni, donne son score FODMAP.
 
@@ -75,6 +90,17 @@ export class AiService {
       const prompt = `Aliments à analyser : ${foodNames.join(', ')}`;
       const raw = await this._activeProvider.complete(prompt, FODMAP_SYSTEM_PROMPT);
       return JSON.parse(raw) as FodmapAnalysisResult;
+    } finally {
+      this._analyzing.set(false);
+    }
+  }
+
+  /** Envoie le JSON des données de suivi à l'IA et retourne le rapport narratif. */
+  async analyzeCorrelations(dataJson: string): Promise<string> {
+    this._analyzing.set(true);
+    try {
+      const prompt = `Données fournies :\n${dataJson}`;
+      return await this._activeProvider.complete(prompt, ANALYSIS_SYSTEM_PROMPT);
     } finally {
       this._analyzing.set(false);
     }

@@ -1,0 +1,19 @@
+<article class="analysis-report">
+
+  <!-- Disclaimer médical obligatoire — toujours affiché en premier -->
+  <aside class="analysis-report__disclaimer" role="note" aria-label="Avertissement médical"
+    i18n-aria-label="@@report.disclaimerAriaLabel">
+    <span class="analysis-report__disclaimer-icon" aria-hidden="true">⚕️</span>
+    <p i18n="@@report.disclaimer">
+      Cette analyse est indicative et ne remplace pas un avis médical.
+      Consultez votre médecin ou nutritionniste.
+    </p>
+  </aside>
+
+  <!-- Rapport IA -->
+  <section class="analysis-report__content" aria-label="Rapport d'analyse"
+    i18n-aria-label="@@report.contentAriaLabel">
+    <pre class="analysis-report__text">{{ report() }}</pre>
+  </section>
+
+</article>

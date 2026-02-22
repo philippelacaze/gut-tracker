@@ -1,3 +1,85 @@
 <main class="analysis-page">
-  <h1 i18n="@@analysis.title">Analyse IA</h1>
+
+  <h1 class="analysis-page__title" i18n="@@analysis.title">Analyse IA</h1>
+
+  <p class="analysis-page__subtitle" i18n="@@analysis.subtitle">
+    Identifiez les corrélations entre votre alimentation et vos symptômes digestifs.
+  </p>
+
+  <!-- Condition : pas assez de données -->
+  @if (!analysisService.canAnalyze()) {
+    <section class="analysis-page__locked" aria-live="polite">
+      <span class="analysis-page__lock-icon" aria-hidden="true">🔒</span>
+      <p class="analysis-page__lock-msg" i18n="@@analysis.notEnoughData">
+        L'analyse nécessite au moins 7 jours de données.
+      </p>
+      <p class="analysis-page__lock-days">
+        <span i18n="@@analysis.daysAvailable">Jours disponibles :</span>
+        {{ analysisService.daysAvailable() }}&nbsp;/&nbsp;7
+      </p>
+    </section>
+  } @else {
+
+    <!-- Bouton de lancement -->
+    @if (!result()) {
+      <div class="analysis-page__launch">
+        <button
+          class="analysis-page__btn-launch"
+          type="button"
+          [disabled]="analysisService.analyzing()"
+          [attr.aria-busy]="analysisService.analyzing()"
+          (click)="launchAnalysis()"
+          aria-label="Lancer l'analyse IA"
+          i18n-aria-label="@@analysis.launchAriaLabel"
+        >
+          @if (analysisService.analyzing()) {
+            <span i18n="@@analysis.analyzing">Analyse en cours…</span>
+          } @else {
+            <span i18n="@@analysis.launch">Lancer l'analyse</span>
+          }
+        </button>
+      </div>
+    }
+
+    <!-- Erreur -->
+    @if (analysisService.error()) {
+      <p class="analysis-page__error" role="alert">{{ analysisService.error() }}</p>
+
+      <div class="analysis-page__relaunch">
+        <button
+          class="analysis-page__btn-relaunch"
+          type="button"
+          (click)="launchAnalysis()"
+          i18n="@@analysis.retry"
+        >
+          Réessayer
+        </button>
+      </div>
+    }
+
+    <!-- Résultats -->
+    @if (result(); as r) {
+      <section class="analysis-page__results">
+
+        <!-- Graphique de corrélations -->
+        <div class="analysis-page__chart-section">
+          <h2 class="analysis-page__section-title" i18n="@@analysis.correlationsTitle">
+            Corrélations détectées
+          </h2>
+          <gt-correlation-chart [correlations]="analysisService.computeCorrelations()" />
+        </div>
+
+        <!-- Rapport narratif + disclaimer -->
+        <div class="analysis-page__report-section">
+          <h2 class="analysis-page__section-title" i18n="@@analysis.reportTitle">
+            Rapport détaillé
+          </h2>
+          <gt-analysis-report [report]="r.report" />
+        </div>
+
+      </section>
+    }
+
+  }
+
 </main>

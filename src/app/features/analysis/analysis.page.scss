@@ -1,3 +1,147 @@
+@use '../../shared/styles/variables' as v;
+@use '../../shared/styles/mixins' as m;
+
 .analysis-page {
   padding: 16px;
+  max-width: 800px;
+
+  @include m.respond-to('md') {
+    padding: 32px;
+  }
+}
+
+// ─── En-tête ──────────────────────────────────────────────────────────────────
+
+.analysis-page__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.analysis-page__subtitle {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0 0 24px;
+}
+
+// ─── Données insuffisantes ────────────────────────────────────────────────────
+
+.analysis-page__locked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  padding: 40px 24px;
+  background: #f5f5f5;
+  border-radius: 12px;
+}
+
+.analysis-page__lock-icon {
+  font-size: 2.5rem;
+}
+
+.analysis-page__lock-msg {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.analysis-page__lock-days {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #888;
+}
+
+// ─── Bouton de lancement ──────────────────────────────────────────────────────
+
+.analysis-page__launch {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.analysis-page__btn-launch {
+  padding: 14px 32px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+
+  &:hover:not(:disabled) {
+    background: #1565c0;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    @include m.focus-ring;
+  }
+}
+
+// ─── Erreur ───────────────────────────────────────────────────────────────────
+
+.analysis-page__error {
+  background: #fff3e0;
+  border: 1px solid #ff9800;
+  border-radius: 6px;
+  color: #e65100;
+  font-size: 0.875rem;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+
+.analysis-page__relaunch {
+  margin-bottom: 24px;
+}
+
+.analysis-page__btn-relaunch {
+  padding: 8px 20px;
+  background: transparent;
+  border: 1px solid #1976d2;
+  color: #1976d2;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+
+  &:hover {
+    background: #e3f2fd;
+  }
+
+  &:focus-visible {
+    @include m.focus-ring;
+  }
+}
+
+// ─── Résultats ────────────────────────────────────────────────────────────────
+
+.analysis-page__results {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.analysis-page__section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: #333;
+}
+
+.analysis-page__chart-section,
+.analysis-page__report-section {
+  display: flex;
+  flex-direction: column;
 }

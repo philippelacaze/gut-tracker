@@ -1,0 +1,25 @@
+@use '../../../../shared/styles/mixins' as m;
+
+.correlation-chart {
+  width: 100%;
+}
+
+.correlation-chart__container {
+  position: relative;
+  /* Hauteur adaptée au nombre de barres – min 200px, max via JS chart responsive */
+  min-height: 200px;
+  height: 320px;
+
+  @include m.respond-to('md') {
+    height: 400px;
+  }
+}
+
+.correlation-chart__empty {
+  color: #888;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 32px 16px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
