@@ -21,7 +21,12 @@ describe('UserPreferencesService', () => {
 
   describe('save()', () => {
     it('devrait mettre à jour le signal après sauvegarde', () => {
-      const updated: UserPreferences = { bodyMapGender: 'female', language: 'en' };
+      const updated: UserPreferences = {
+        bodyMapGender: 'female',
+        language: 'en',
+        voiceInputEnabled: true,
+        voiceSttProvider: 'whisper',
+      };
 
       service.save(updated);
 
@@ -30,7 +35,12 @@ describe('UserPreferencesService', () => {
     });
 
     it('devrait persister en localStorage', () => {
-      const updated: UserPreferences = { bodyMapGender: 'female', language: 'en' };
+      const updated: UserPreferences = {
+        bodyMapGender: 'female',
+        language: 'en',
+        voiceInputEnabled: false,
+        voiceSttProvider: 'webSpeechApi',
+      };
 
       service.save(updated);
 
@@ -39,7 +49,12 @@ describe('UserPreferencesService', () => {
     });
 
     it('devrait recharger les préférences depuis localStorage au démarrage', () => {
-      const stored: UserPreferences = { bodyMapGender: 'female', language: 'en' };
+      const stored: UserPreferences = {
+        bodyMapGender: 'female',
+        language: 'en',
+        voiceInputEnabled: true,
+        voiceSttProvider: 'webSpeechApi',
+      };
       localStorage.setItem('gt_user_preferences', JSON.stringify(stored));
 
       TestBed.resetTestingModule();

@@ -56,6 +56,8 @@
     }
   </section>
 
+  <gt-voice-input [context]="'medication'" (parseResultReady)="onVoiceResult($event)" />
+
   <!-- ── Journal du jour ── -->
   <section
     class="medication-entry-page__journal"

@@ -5,6 +5,7 @@ import {AiSettingsService} from '../ai-settings.service';
 import {AiError} from '../ai.error';
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
+const OPENAI_TRANSCRIPTION_URL = 'https://api.openai.com/v1/audio/transcriptions';
 
 interface OpenAiTextPart {
   type: 'text';
@@ -26,6 +27,7 @@ export class OpenAiProvider implements AiProvider {
   readonly name = 'OpenAI';
   readonly supportsVision = true;
   readonly isFree = false;
+  readonly supportsAudioTranscription = true;
 
   private readonly _settings = inject(AiSettingsService);
 
@@ -61,6 +63,31 @@ export class OpenAiProvider implements AiProvider {
     const body = JSON.stringify({model: config.model, messages, max_tokens: 1000});
     const response = await this._fetchWithRetry(config.apiKey, body);
     return this._extractContent(response);
+  }
+
+  async transcribeAudio(audioBlob: Blob, language: string): Promise<string> {
+    const config = this._settings.getProviderConfig('openai');
+    if (!config.apiKey) {
+      throw new AiError('Clé API OpenAI manquante', this.id);
+    }
+    const formData = new FormData();
+    formData.append('file', audioBlob, 'audio.webm');
+    formData.append('model', 'whisper-1');
+    formData.append('language', language.split('-')[0]);
+
+    let response: Response;
+    try {
+      response = await fetch(OPENAI_TRANSCRIPTION_URL, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${config.apiKey}` },
+        body: formData,
+      });
+    } catch {
+      throw new AiError('Erreur réseau Whisper', this.id);
+    }
+    if (!response.ok) throw new AiError(`Erreur Whisper ${response.status}`, this.id);
+    const data = (await response.json()) as { text: string };
+    return data.text;
   }
 
   private async _fetchWithRetry(apiKey: string, body: string): Promise<Response> {

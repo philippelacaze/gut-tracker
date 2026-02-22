@@ -116,6 +116,34 @@
       background: v.$fodmap-low;
       color: #fff;
     }
+
+    &--ok {
+      background: v.$fodmap-low;
+      color: #fff;
+    }
+
+    &--error {
+      background: v.$fodmap-high;
+      color: #fff;
+    }
+  }
+
+  &__checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.9375rem;
+    color: v.$color-on-surface;
+    padding: 8px 0;
+  }
+
+  &__checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: v.$color-primary;
+    flex-shrink: 0;
+    cursor: pointer;
   }
 
   // --- Avertissement localStorage ---

@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 
 import { Medication, MedicationEntry } from '../../core/models/medication-entry.model';
+import { VoiceMedicationResult, VoiceParseResult } from '../../core/models/voice-entry.model';
+import { VoiceInputComponent } from '../../shared/components/voice-input/voice-input.component';
 import { MedicationEntryCardComponent } from './components/medication-entry-card/medication-entry-card.component';
 import { MedicationPickerComponent } from './components/medication-picker/medication-picker.component';
 import { MedicationEntryStore } from './services/medication-entry.store';
@@ -14,7 +16,7 @@ import { MedicationEntryStore } from './services/medication-entry.store';
 @Component({
   selector: 'gt-medication-entry-page',
   standalone: true,
-  imports: [MedicationPickerComponent, MedicationEntryCardComponent],
+  imports: [MedicationPickerComponent, MedicationEntryCardComponent, VoiceInputComponent],
   templateUrl: './medication-entry.page.html',
   styleUrl: './medication-entry.page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -44,6 +46,17 @@ export class MedicationEntryPageComponent {
 
   removePendingMedication(index: number): void {
     this._pendingMedications.update(list => list.filter((_, i) => i !== index));
+  }
+
+  /** Pré-remplit la liste de médicaments depuis le résultat de la saisie vocale */
+  onVoiceResult(result: VoiceParseResult): void {
+    const data = result.data as VoiceMedicationResult;
+    data.medications.forEach(m =>
+      this._pendingMedications.update(list => [
+        ...list,
+        { name: m.name, type: m.type, dose: m.dose ?? undefined },
+      ]),
+    );
   }
 
   async saveEntry(): Promise<void> {

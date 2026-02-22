@@ -123,6 +123,8 @@
     </section>
   }
 
+  <gt-voice-input [context]="'symptom'" (parseResultReady)="onVoiceResult($event)" />
+
   <!-- ── Journal du jour ── -->
   <section
     class="symptom-entry-page__journal"

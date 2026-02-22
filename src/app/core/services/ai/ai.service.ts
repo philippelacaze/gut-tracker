@@ -4,6 +4,7 @@ import {
   FodmapAnalysisResult,
   ImageRecognitionResult,
 } from '../../models/ai-recognition.model';
+import {VoiceContext, VoiceParseResult} from '../../models/voice-entry.model';
 import {AiProvider} from './ai-provider.interface';
 import {AiSettingsService} from './ai-settings.service';
 import {AiError} from './ai.error';
@@ -39,6 +40,42 @@ Structure ta réponse en sections :
 2. Aliments/groupes FODMAP suspects
 3. Impact des traitements observé
 4. Recommandations prudentes`;
+
+const VOICE_FOOD_PROMPT = `Tu es un assistant de saisie alimentaire.
+Analyse ce texte dicté et extrait les informations structurées.
+Types de repas valides : breakfast (petit-déjeuner), lunch (déjeuner), dinner (dîner), snack (collation), drink (boisson).
+
+Réponds UNIQUEMENT en JSON valide, sans texte avant/après :
+{
+  "mealType": "lunch",
+  "foods": [
+    { "name": "pomme", "quantity": "1" }
+  ],
+  "notes": null
+}`;
+
+const VOICE_SYMPTOM_PROMPT = `Tu es un assistant de saisie de symptômes digestifs.
+Analyse ce texte dicté et extrait les symptômes mentionnés.
+Types valides : pain, bloating, gas, belching, constipation, diarrhea, headache, other.
+Sévérité : entier de 1 (minimal) à 10 (extrême). Si non précisée, estime à 5.
+
+Réponds UNIQUEMENT en JSON valide, sans texte avant/après :
+{
+  "symptoms": [
+    { "type": "bloating", "severity": 7, "locationHint": "abdomen", "note": null }
+  ]
+}`;
+
+const VOICE_MEDICATION_PROMPT = `Tu es un assistant de saisie de médicaments et compléments alimentaires.
+Analyse ce texte dicté et extrait les médicaments mentionnés.
+Types valides : enzyme, probiotic, antibiotic, antispasmodic, other.
+
+Réponds UNIQUEMENT en JSON valide, sans texte avant/après :
+{
+  "medications": [
+    { "name": "Creon", "type": "enzyme", "dose": "2 gélules" }
+  ]
+}`;
 
 const FODMAP_SYSTEM_PROMPT = `Tu es un expert en nutrition spécialisé FODMAP (protocole Monash University).
 Pour chaque aliment fourni, donne son score FODMAP.
@@ -119,6 +156,21 @@ export class AiService {
       }
 
 
+    } finally {
+      this._analyzing.set(false);
+    }
+  }
+
+  /** Parse un transcript vocal selon le contexte (food/symptom/medication) et retourne le JSON brut. */
+  async parseVoiceTranscript(transcript: string, context: VoiceContext): Promise<string> {
+    this._analyzing.set(true);
+    const prompts: Record<VoiceContext, string> = {
+      food: VOICE_FOOD_PROMPT,
+      symptom: VOICE_SYMPTOM_PROMPT,
+      medication: VOICE_MEDICATION_PROMPT,
+    };
+    try {
+      return await this._activeProvider.complete(transcript, prompts[context]);
     } finally {
       this._analyzing.set(false);
     }

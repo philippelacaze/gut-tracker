@@ -16,7 +16,8 @@ export class UserPreferencesService {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return structuredClone(USER_PREFERENCES_DEFAULT);
-      return JSON.parse(raw) as UserPreferences;
+      // Merge avec les defaults pour la rétrocompatibilité (nouveaux champs ajoutés après la 1ère install)
+      return { ...structuredClone(USER_PREFERENCES_DEFAULT), ...JSON.parse(raw) } as UserPreferences;
     } catch {
       return structuredClone(USER_PREFERENCES_DEFAULT);
     }

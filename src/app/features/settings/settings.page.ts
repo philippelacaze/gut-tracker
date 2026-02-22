@@ -1,9 +1,10 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, LOCALE_ID, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, LOCALE_ID, computed, inject, signal } from '@angular/core';
 
-import { AppLanguage, BodyMapGender, UserPreferences } from '../../core/models/user-preferences.model';
+import { AppLanguage, BodyMapGender, UserPreferences, VoiceSttProvider } from '../../core/models/user-preferences.model';
 import { AiProviderId, AiSettings } from '../../core/services/ai/ai-settings.model';
 import { AiSettingsService } from '../../core/services/ai/ai-settings.service';
+import { VoiceRecognitionService } from '../../core/services/voice/voice-recognition.service';
 import { UserPreferencesService } from '../../core/services/user-preferences.service';
 
 interface ProviderInfo {
@@ -23,6 +24,7 @@ interface ProviderInfo {
 export class SettingsPageComponent {
   private readonly _aiSettingsService = inject(AiSettingsService);
   private readonly _userPrefsService = inject(UserPreferencesService);
+  private readonly _voiceRecService = inject(VoiceRecognitionService);
   private readonly _document = inject(DOCUMENT);
   private readonly _localeId = inject(LOCALE_ID);
 
@@ -48,6 +50,14 @@ export class SettingsPageComponent {
 
   private readonly _prefsSaved = signal(false);
   readonly prefsSaved = this._prefsSaved.asReadonly();
+
+  /** Whisper disponible si clé OpenAI configurée et navigateur supporte Web Speech (pour fallback) */
+  readonly isWhisperAvailable = computed(
+    () => !!this._aiForm().providers.openai.apiKey,
+  );
+
+  /** Vrai si le navigateur supporte la Web Speech API */
+  readonly isWebSpeechSupported = this._voiceRecService.isWebSpeechSupported;
 
   protected readonly PROVIDERS: ReadonlyArray<ProviderInfo> = [
     { id: 'openai', name: 'OpenAI', isFree: false },
@@ -156,6 +166,16 @@ export class SettingsPageComponent {
   }
 
   // --- Méthodes préférences ---
+
+  onVoiceInputEnabledChange(event: Event): void {
+    const value = (event.target as HTMLInputElement).checked;
+    this._prefsForm.update(s => ({ ...s, voiceInputEnabled: value }));
+  }
+
+  onVoiceSttProviderChange(event: Event): void {
+    const value = (event.target as HTMLSelectElement).value as VoiceSttProvider;
+    this._prefsForm.update(s => ({ ...s, voiceSttProvider: value }));
+  }
 
   selectGender(gender: BodyMapGender): void {
     this._prefsForm.update(s => ({ ...s, bodyMapGender: gender }));

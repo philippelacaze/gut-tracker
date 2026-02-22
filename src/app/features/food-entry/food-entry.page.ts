@@ -7,7 +7,9 @@ import {
 } from '@angular/core';
 
 import { Food, FoodEntry, FodmapScore, MealType } from '../../core/models/food-entry.model';
+import { VoiceFoodResult, VoiceParseResult } from '../../core/models/voice-entry.model';
 import { AiService } from '../../core/services/ai/ai.service';
+import { VoiceInputComponent } from '../../shared/components/voice-input/voice-input.component';
 import {
   FoodCameraComponent,
   FoodCameraOutput,
@@ -41,6 +43,7 @@ function detectCurrentMealType(): MealType {
     FoodRecognitionResultComponent,
     FoodEntryCardComponent,
     RecentFoodsComponent,
+    VoiceInputComponent,
   ],
   templateUrl: './food-entry.page.html',
   styleUrl: './food-entry.page.scss',
@@ -108,6 +111,20 @@ export class FoodEntryPageComponent {
 
   removePendingFood(id: string): void {
     this._pendingFoods.update(list => list.filter(f => f.id !== id));
+  }
+
+  /** Pré-remplit le formulaire depuis le résultat de la saisie vocale */
+  onVoiceResult(result: VoiceParseResult): void {
+    const data = result.data as VoiceFoodResult;
+    if (data.mealType) {
+      this._selectedMealType.set(data.mealType);
+    }
+    data.foods.forEach(f =>
+      this._pendingFoods.update(list => [
+        ...list,
+        { id: crypto.randomUUID(), name: f.name, fodmapScore: null, quantity: f.quantity ?? undefined },
+      ]),
+    );
   }
 
   async saveEntry(): Promise<void> {

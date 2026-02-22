@@ -297,6 +297,84 @@
       </div>
     </fieldset>
 
+    <!-- ── Saisie vocale ── -->
+    <fieldset class="settings-page__fieldset">
+      <legend class="settings-page__legend" i18n="@@settings.voice.legend">
+        Saisie vocale
+      </legend>
+
+      <!-- Badge support navigateur -->
+      <div class="settings-page__field">
+        <span class="settings-page__label" i18n="@@settings.voice.browser.label">
+          Support navigateur
+        </span>
+        @if (isWebSpeechSupported) {
+          <span
+            class="settings-page__badge settings-page__badge--ok"
+            i18n="@@settings.voice.browser.supported"
+          >
+            ✓ Web Speech API supportée
+          </span>
+        } @else {
+          <span
+            class="settings-page__badge settings-page__badge--error"
+            i18n="@@settings.voice.browser.unsupported"
+          >
+            ✗ Web Speech API non supportée
+          </span>
+        }
+      </div>
+
+      <!-- Activer / désactiver -->
+      <label class="settings-page__checkbox-label">
+        <input
+          type="checkbox"
+          class="settings-page__checkbox"
+          [checked]="prefsForm().voiceInputEnabled"
+          (change)="onVoiceInputEnabledChange($event)"
+        />
+        <span i18n="@@settings.voice.enabled.label">Activer la saisie vocale</span>
+      </label>
+
+      <!-- Fournisseur STT — visible si voix activée -->
+      @if (prefsForm().voiceInputEnabled) {
+        <div class="settings-page__field">
+          <label
+            class="settings-page__label"
+            for="voice-stt-provider"
+            i18n="@@settings.voice.stt.label"
+          >
+            Moteur de transcription
+          </label>
+          <select
+            id="voice-stt-provider"
+            class="settings-page__select settings-page__select--inline"
+            (change)="onVoiceSttProviderChange($event)"
+          >
+            <option
+              value="webSpeechApi"
+              [selected]="prefsForm().voiceSttProvider === 'webSpeechApi'"
+            >
+              Web Speech API (navigateur)
+            </option>
+            @if (isWhisperAvailable()) {
+              <option
+                value="whisper"
+                [selected]="prefsForm().voiceSttProvider === 'whisper'"
+              >
+                Whisper (OpenAI)
+              </option>
+            }
+          </select>
+        </div>
+        @if (prefsForm().voiceSttProvider === 'whisper' && !isWhisperAvailable()) {
+          <p class="settings-page__hint" i18n="@@settings.voice.whisper.hint">
+            Whisper nécessite une clé API OpenAI configurée ci-dessus.
+          </p>
+        }
+      }
+    </fieldset>
+
     <!-- Langue de l'interface -->
     <div class="settings-page__field">
       <label class="settings-page__label" for="language-select" i18n="@@settings.language.label">

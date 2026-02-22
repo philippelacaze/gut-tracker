@@ -14,7 +14,8 @@
       "Bash(cd:*)",
       "Bash(cd /c/angular/gut-tracker && ng extract-i18n 2>&1)",
       "Bash(grep:*)",
-      "Bash(cd /c/angular/gut-tracker && npx vitest run --reporter=verbose src/app/features/food-entry/services/food-entry.store.spec.ts src/app/core/repositories/local-storage.repository.spec.ts src/app/core/services/ai/ai.service.spec.ts 2>&1)"
+      "Bash(cd /c/angular/gut-tracker && npx vitest run --reporter=verbose src/app/features/food-entry/services/food-entry.store.spec.ts src/app/core/repositories/local-storage.repository.spec.ts src/app/core/services/ai/ai.service.spec.ts 2>&1)",
+      "Bash(find:*)"
     ]
   }
 }

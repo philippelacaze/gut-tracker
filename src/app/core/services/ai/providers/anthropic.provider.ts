@@ -30,6 +30,7 @@ export class AnthropicProvider implements AiProvider {
   readonly name = 'Anthropic (Claude)';
   readonly supportsVision = true;
   readonly isFree = false;
+  readonly supportsAudioTranscription = false;
 
   private readonly _settings = inject(AiSettingsService);
 

@@ -12,6 +12,8 @@ import {
   SymptomType,
   SeverityLevel,
 } from '../../core/models/symptom-entry.model';
+import { VoiceParseResult, VoiceSymptomResult } from '../../core/models/voice-entry.model';
+import { VoiceInputComponent } from '../../shared/components/voice-input/voice-input.component';
 import { BodyMapComponent } from './components/body-map/body-map.component';
 import { SeveritySliderComponent } from './components/severity-slider/severity-slider.component';
 import { SymptomEntryCardComponent } from './components/symptom-entry-card/symptom-entry-card.component';
@@ -26,6 +28,7 @@ import { SymptomEntryStore } from './services/symptom-entry.store';
     SeveritySliderComponent,
     SymptomTypePickerComponent,
     SymptomEntryCardComponent,
+    VoiceInputComponent,
   ],
   templateUrl: './symptom-entry.page.html',
   styleUrl: './symptom-entry.page.scss',
@@ -99,6 +102,21 @@ export class SymptomEntryPageComponent {
 
   removePendingSymptom(index: number): void {
     this._pendingSymptoms.update(list => list.filter((_, i) => i !== index));
+  }
+
+  /** Pré-remplit la liste de symptômes depuis le résultat de la saisie vocale */
+  onVoiceResult(result: VoiceParseResult): void {
+    const data = result.data as VoiceSymptomResult;
+    data.symptoms.forEach(s => {
+      const note =
+        [s.note, s.locationHint ? `Zone : ${s.locationHint}` : null]
+          .filter(Boolean)
+          .join(' — ') || undefined;
+      this._pendingSymptoms.update(list => [
+        ...list,
+        { type: s.type, severity: s.severity, note },
+      ]);
+    });
   }
 
   async saveEntry(): Promise<void> {

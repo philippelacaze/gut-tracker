@@ -31,6 +31,7 @@ export class GeminiProvider implements AiProvider {
   readonly name = 'Google Gemini';
   readonly supportsVision = true;
   readonly isFree = false;
+  readonly supportsAudioTranscription = false;
 
   private readonly _settings = inject(AiSettingsService);
 

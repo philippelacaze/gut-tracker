@@ -20,6 +20,7 @@ export class OllamaProvider implements AiProvider {
   readonly name = 'Ollama (local)';
   readonly supportsVision = true;
   readonly isFree = true;
+  readonly supportsAudioTranscription = false;
 
   private readonly _settings = inject(AiSettingsService);
 

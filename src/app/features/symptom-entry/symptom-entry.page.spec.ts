@@ -8,6 +8,7 @@ import {
   makeSymptomEntry,
   resetSymptomEntryId,
 } from '../../../testing/symptom-entry.factory';
+import { VoiceEntryParserService } from '../../core/services/voice/voice-entry-parser.service';
 import { SymptomEntryStore } from './services/symptom-entry.store';
 import { SymptomEntryPageComponent } from './symptom-entry.page';
 
@@ -32,6 +33,7 @@ describe('SymptomEntryPageComponent', () => {
       imports: [SymptomEntryPageComponent],
       providers: [
         { provide: SymptomEntryStore, useValue: buildMockStore(todayEntries) },
+        { provide: VoiceEntryParserService, useValue: { parse: vi.fn() } },
         provideHttpClient(),
         provideHttpClientTesting(),
       ],

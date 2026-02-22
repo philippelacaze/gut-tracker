@@ -102,6 +102,8 @@
     </button>
   </section>
 
+  <gt-voice-input [context]="'food'" (parseResultReady)="onVoiceResult($event)" />
+
   <!-- ── Journal du jour ── -->
   <section
     class="food-entry-page__journal"

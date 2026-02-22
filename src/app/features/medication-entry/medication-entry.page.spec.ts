@@ -6,6 +6,7 @@ import {
   makeMedicationEntry,
   resetMedicationEntryId,
 } from '../../../testing/medication-entry.factory';
+import { VoiceEntryParserService } from '../../core/services/voice/voice-entry-parser.service';
 import { MedicationEntryStore } from './services/medication-entry.store';
 import { MedicationEntryPageComponent } from './medication-entry.page';
 
@@ -28,6 +29,7 @@ describe('MedicationEntryPageComponent', () => {
       imports: [MedicationEntryPageComponent],
       providers: [
         { provide: MedicationEntryStore, useValue: buildMockStore(todayEntries) },
+        { provide: VoiceEntryParserService, useValue: { parse: vi.fn() } },
       ],
     }).compileComponents();
 
