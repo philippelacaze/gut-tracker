@@ -16,6 +16,11 @@ class FakeSpeechRecognition {
   onend: (() => void) | null = null;
   onerror: ((event: { error: string }) => void) | null = null;
 
+  constructor() {
+    // Expose l'instance pour que les tests puissent déclencher des événements manuellement
+    FakeSpeechRecognition._lastInstance = this;
+  }
+
   start = vi.fn(() => {
     // Simule un résultat final immédiat si triggerResult a été configuré
     if (FakeSpeechRecognition._nextResults) {
@@ -31,6 +36,7 @@ class FakeSpeechRecognition {
   });
 
   static _nextResults: unknown = null;
+  static _lastInstance: FakeSpeechRecognition | null = null;
 }
 
 function makeFakeResult(transcript: string, isFinal = true) {
@@ -99,6 +105,38 @@ describe('VoiceRecognitionService', () => {
     it('lève une erreur si Web Speech non supporté', () => {
       const service = createService(false);
       expect(() => service.startRecording('fr-FR', 'webSpeechApi')).toThrow();
+    });
+
+    it('ne duplique pas les mots quand Android renvoie resultIndex=0 (bug Android)', async () => {
+      FakeSpeechRecognition._nextResults = null;
+      const service = createService(true);
+
+      const session = service.startRecording('fr-FR', 'webSpeechApi');
+      const resultPromise = session.result;
+      const recognition = FakeSpeechRecognition._lastInstance!;
+
+      // Événement 1 : "Cracotte" finalisé, resultIndex=0
+      recognition.onresult?.({
+        results: { length: 1, 0: { isFinal: true, 0: { transcript: 'Cracotte' } } },
+        resultIndex: 0,
+      });
+
+      // Événement 2 (bug Android) : resultIndex=0 au lieu de 1
+      // → renvoie "Cracotte" + ajoute "de sarrasin"
+      recognition.onresult?.({
+        results: {
+          length: 2,
+          0: { isFinal: true, 0: { transcript: 'Cracotte' } },
+          1: { isFinal: true, 0: { transcript: ' de sarrasin' } },
+        },
+        resultIndex: 0,
+      });
+
+      recognition.onend?.();
+      const transcript = await resultPromise;
+
+      // Sans le fix : "CracotteCracotte de sarrasin"
+      expect(transcript).toBe('Cracotte de sarrasin');
     });
 
     it('arrête la reconnaissance sur stop()', async () => {
