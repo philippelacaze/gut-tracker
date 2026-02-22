@@ -1189,5 +1189,131 @@
         <target>Settings</target>
       </segment>
     </unit>
+    <unit id="foodEntry.mode.manual">
+      <segment state="translated">
+        <source>Manuel</source>
+        <target>Manual</target>
+      </segment>
+    </unit>
+    <unit id="foodEntry.mode.camera">
+      <segment state="translated">
+        <source>Photo</source>
+        <target>Photo</target>
+      </segment>
+    </unit>
+    <unit id="foodCamera.takePicture">
+      <segment state="translated">
+        <source>Prendre une photo</source>
+        <target>Take a photo</target>
+      </segment>
+    </unit>
+    <unit id="foodCamera.fromGallery">
+      <segment state="translated">
+        <source>Depuis la galerie</source>
+        <target>From gallery</target>
+      </segment>
+    </unit>
+    <unit id="foodCamera.previewAlt">
+      <segment state="translated">
+        <source>Photo sélectionnée</source>
+        <target>Selected photo</target>
+      </segment>
+    </unit>
+    <unit id="foodCamera.analyzing">
+      <segment state="translated">
+        <source>Analyse en cours…</source>
+        <target>Analyzing…</target>
+      </segment>
+    </unit>
+    <unit id="foodCamera.retry">
+      <segment state="translated">
+        <source>Changer de photo</source>
+        <target>Change photo</target>
+      </segment>
+    </unit>
+    <unit id="foodCamera.retryAfterError">
+      <segment state="translated">
+        <source>Réessayer</source>
+        <target>Retry</target>
+      </segment>
+    </unit>
+    <unit id="foodCamera.error.quota">
+      <segment state="translated">
+        <source>Quota dépassé. Vérifiez vos paramètres IA.</source>
+        <target>Quota exceeded. Check your AI settings.</target>
+      </segment>
+    </unit>
+    <unit id="foodCamera.error.analysis">
+      <segment state="translated">
+        <source>Erreur lors de l&apos;analyse.</source>
+        <target>Error during analysis.</target>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.title">
+      <segment state="translated">
+        <source>Aliments reconnus</source>
+        <target>Recognized foods</target>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.uncertainLabel">
+      <segment state="translated">
+        <source>Éléments incertains :</source>
+        <target>Uncertain items:</target>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.nameLabel">
+      <segment state="translated">
+        <source>Nom de l&apos;aliment</source>
+        <target>Food name</target>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.namePlaceholder">
+      <segment state="translated">
+        <source>Nom de l&apos;aliment</source>
+        <target>Food name</target>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.quantityLabel">
+      <segment state="translated">
+        <source>Quantité</source>
+        <target>Quantity</target>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.quantityPlaceholder">
+      <segment state="translated">
+        <source>Quantité (optionnel)</source>
+        <target>Quantity (optional)</target>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.removeAriaLabel">
+      <segment state="translated">
+        <source>Supprimer cet aliment</source>
+        <target>Remove this food</target>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.empty">
+      <segment state="translated">
+        <source>Aucun aliment reconnu. Ajoutez-en manuellement.</source>
+        <target>No food recognized. Add them manually.</target>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.addFood">
+      <segment state="translated">
+        <source>+ Ajouter un aliment</source>
+        <target>+ Add a food</target>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.cancel">
+      <segment state="translated">
+        <source>Annuler</source>
+        <target>Cancel</target>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.confirm">
+      <segment state="translated">
+        <source>Valider</source>
+        <target>Confirm</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

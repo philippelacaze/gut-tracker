@@ -16,7 +16,47 @@
 
     <gt-recent-foods (foodSelected)="onFoodAdded($event)" />
 
-    <gt-food-search (foodAdded)="onFoodAdded($event)" />
+    <!-- ── Onglets de mode de saisie ── -->
+    <div class="food-entry-page__mode-tabs" role="tablist">
+      <button
+        type="button"
+        role="tab"
+        class="food-entry-page__mode-tab"
+        [class.food-entry-page__mode-tab--active]="entryMode() === 'manual'"
+        [attr.aria-selected]="entryMode() === 'manual'"
+        (click)="setEntryMode('manual')"
+      >
+        <span aria-hidden="true">✏️</span>
+        <span i18n="@@foodEntry.mode.manual">Manuel</span>
+      </button>
+      <button
+        type="button"
+        role="tab"
+        class="food-entry-page__mode-tab"
+        [class.food-entry-page__mode-tab--active]="entryMode() === 'camera'"
+        [attr.aria-selected]="entryMode() === 'camera'"
+        (click)="setEntryMode('camera')"
+      >
+        <span aria-hidden="true">📷</span>
+        <span i18n="@@foodEntry.mode.camera">Photo</span>
+      </button>
+    </div>
+
+    <!-- ── Contenu selon le mode actif ── -->
+    @if (entryMode() === 'camera') {
+      @if (recognitionResult(); as result) {
+        <gt-food-recognition-result
+          [result]="result.recognitionResult"
+          [photoUrl]="result.photoUrl"
+          (confirmed)="onRecognitionConfirmed($event)"
+          (cancelled)="onRecognitionCancelled()"
+        />
+      } @else {
+        <gt-food-camera (analysisComplete)="onRecognitionComplete($event)" />
+      }
+    } @else {
+      <gt-food-search (foodAdded)="onFoodAdded($event)" />
+    }
 
     @if (pendingFoods().length > 0) {
       <ul

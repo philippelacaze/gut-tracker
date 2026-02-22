@@ -95,6 +95,46 @@
     }
   }
 
+  // ── Onglets de mode ───────────────────────────────────────────
+  &__mode-tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1.5px solid #e0e0e0;
+    padding-bottom: 0;
+  }
+
+  &__mode-tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: none;
+    border-bottom: 2.5px solid transparent;
+    background: transparent;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #757575;
+    cursor: pointer;
+    margin-bottom: -1.5px;
+    border-radius: 4px 4px 0 0;
+    transition: color 0.15s ease, border-color 0.15s ease;
+
+    &:hover {
+      color: #424242;
+    }
+
+    &--active {
+      color: #4caf50;
+      border-bottom-color: #4caf50;
+      font-weight: 700;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #4caf50;
+      outline-offset: 2px;
+    }
+  }
+
   // ── Journal ───────────────────────────────────────────────────
   &__journal {
     display: flex;

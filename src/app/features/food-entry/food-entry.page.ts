@@ -8,11 +8,18 @@ import {
 
 import { Food, FoodEntry, FodmapScore, MealType } from '../../core/models/food-entry.model';
 import { AiService } from '../../core/services/ai/ai.service';
+import {
+  FoodCameraComponent,
+  FoodCameraOutput,
+} from './components/food-camera/food-camera.component';
 import { FoodEntryCardComponent } from './components/food-entry-card/food-entry-card.component';
+import { FoodRecognitionResultComponent } from './components/food-recognition-result/food-recognition-result.component';
 import { FoodSearchComponent } from './components/food-search/food-search.component';
 import { MealTypePickerComponent } from './components/meal-type-picker/meal-type-picker.component';
 import { RecentFoodsComponent } from './components/recent-foods/recent-foods.component';
 import { FoodEntryStore } from './services/food-entry.store';
+
+type EntryMode = 'manual' | 'camera';
 
 /** Détermine le type de repas par défaut selon l'heure courante */
 function detectCurrentMealType(): MealType {
@@ -30,6 +37,8 @@ function detectCurrentMealType(): MealType {
   imports: [
     MealTypePickerComponent,
     FoodSearchComponent,
+    FoodCameraComponent,
+    FoodRecognitionResultComponent,
     FoodEntryCardComponent,
     RecentFoodsComponent,
   ],
@@ -46,28 +55,55 @@ export class FoodEntryPageComponent {
   private readonly _selectedMealType = signal<MealType>(detectCurrentMealType());
   private readonly _pendingFoods = signal<Food[]>([]);
   private readonly _saving = signal(false);
+  private readonly _entryMode = signal<EntryMode>('manual');
+  private readonly _recognitionResult = signal<FoodCameraOutput | null>(null);
 
   readonly selectedMealType = this._selectedMealType.asReadonly();
   readonly pendingFoods = this._pendingFoods.asReadonly();
   readonly saving = this._saving.asReadonly();
+  readonly entryMode = this._entryMode.asReadonly();
+  readonly recognitionResult = this._recognitionResult.asReadonly();
 
   // Signals depuis le store (exposés au template)
   readonly loading = this._store.loading;
   readonly todayEntries = this._store.todayEntries;
 
-  // Indique qu'une analyse FODMAP est en cours (sous-état de saving)
+  // Indique qu'une analyse IA est en cours
   readonly aiAnalyzing = this._aiService.analyzing;
 
   // 5. Computed
   readonly canSave = computed(() => this._pendingFoods().length > 0);
 
   // 7. Méthodes publiques
+  setEntryMode(mode: EntryMode): void {
+    this._entryMode.set(mode);
+    // Réinitialise le résultat de reconnaissance lors du changement de mode
+    this._recognitionResult.set(null);
+  }
+
   onMealTypeChange(type: MealType): void {
     this._selectedMealType.set(type);
   }
 
   onFoodAdded(food: Food): void {
     this._pendingFoods.update(list => [...list, food]);
+  }
+
+  /** Reçoit le résultat de la caméra — passe en mode édition */
+  onRecognitionComplete(output: FoodCameraOutput): void {
+    this._recognitionResult.set(output);
+  }
+
+  /** L'utilisateur valide la liste d'aliments reconnus */
+  onRecognitionConfirmed(foods: Food[]): void {
+    this._pendingFoods.update(list => [...list, ...foods]);
+    this._recognitionResult.set(null);
+    this._entryMode.set('manual');
+  }
+
+  /** L'utilisateur annule la reconnaissance — retour à la caméra */
+  onRecognitionCancelled(): void {
+    this._recognitionResult.set(null);
   }
 
   removePendingFood(id: string): void {

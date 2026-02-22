@@ -356,6 +356,70 @@
         <source>Erreur lors de la génération du PDF.</source>
       </segment>
     </unit>
+    <unit id="foodCamera.takePicture">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-camera/food-camera.component.html:32,34</note>
+      </notes>
+      <segment>
+        <source>Prendre une photo</source>
+      </segment>
+    </unit>
+    <unit id="foodCamera.fromGallery">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-camera/food-camera.component.html:41,43</note>
+      </notes>
+      <segment>
+        <source>Depuis la galerie</source>
+      </segment>
+    </unit>
+    <unit id="foodCamera.previewAlt">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-camera/food-camera.component.html:51,52</note>
+      </notes>
+      <segment>
+        <source>Photo sélectionnée</source>
+      </segment>
+    </unit>
+    <unit id="foodCamera.analyzing">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-camera/food-camera.component.html:57,60</note>
+      </notes>
+      <segment>
+        <source>Analyse en cours…</source>
+      </segment>
+    </unit>
+    <unit id="foodCamera.retry">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-camera/food-camera.component.html:68,70</note>
+      </notes>
+      <segment>
+        <source>Changer de photo</source>
+      </segment>
+    </unit>
+    <unit id="foodCamera.retryAfterError">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-camera/food-camera.component.html:81,85</note>
+      </notes>
+      <segment>
+        <source>Réessayer</source>
+      </segment>
+    </unit>
+    <unit id="foodCamera.error.quota">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-camera/food-camera.component.ts:71</note>
+      </notes>
+      <segment>
+        <source>Quota dépassé. Vérifiez vos paramètres IA.</source>
+      </segment>
+    </unit>
+    <unit id="foodCamera.error.analysis">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-camera/food-camera.component.ts:76</note>
+      </notes>
+      <segment>
+        <source>Erreur lors de l&apos;analyse.</source>
+      </segment>
+    </unit>
     <unit id="foodCard.delete.ariaLabel">
       <notes>
         <note category="location">src/app/features/food-entry/components/food-entry-card/food-entry-card.component.html:21,22</note>
@@ -423,6 +487,94 @@
       </notes>
       <segment>
         <source>Boisson</source>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.title">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-recognition-result/food-recognition-result.component.html:13,16</note>
+      </notes>
+      <segment>
+        <source> Aliments reconnus </source>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.uncertainLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-recognition-result/food-recognition-result.component.html:18,19</note>
+      </notes>
+      <segment>
+        <source>Éléments incertains :</source>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.nameLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-recognition-result/food-recognition-result.component.html:33,35</note>
+      </notes>
+      <segment>
+        <source> Nom de l&apos;aliment </source>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.namePlaceholder">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-recognition-result/food-recognition-result.component.html:42,44</note>
+      </notes>
+      <segment>
+        <source>Nom de l&apos;aliment</source>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.quantityLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-recognition-result/food-recognition-result.component.html:45,47</note>
+      </notes>
+      <segment>
+        <source> Quantité </source>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.quantityPlaceholder">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-recognition-result/food-recognition-result.component.html:54,57</note>
+      </notes>
+      <segment>
+        <source>Quantité (optionnel)</source>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.removeAriaLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-recognition-result/food-recognition-result.component.html:62,65</note>
+      </notes>
+      <segment>
+        <source>Supprimer cet aliment</source>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.empty">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-recognition-result/food-recognition-result.component.html:71,76</note>
+      </notes>
+      <segment>
+        <source> Aucun aliment reconnu. Ajoutez-en manuellement. </source>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.addFood">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-recognition-result/food-recognition-result.component.html:81,84</note>
+      </notes>
+      <segment>
+        <source> + Ajouter un aliment </source>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.cancel">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-recognition-result/food-recognition-result.component.html:91,94</note>
+      </notes>
+      <segment>
+        <source> Annuler </source>
+      </segment>
+    </unit>
+    <unit id="recognitionResult.confirm">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-recognition-result/food-recognition-result.component.html:100,103</note>
+      </notes>
+      <segment>
+        <source> Valider </source>
       </segment>
     </unit>
     <unit id="foodSearch.nameLabel">
@@ -505,9 +657,25 @@
         <source>Nouvelle saisie</source>
       </segment>
     </unit>
+    <unit id="foodEntry.mode.manual">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:30,32</note>
+      </notes>
+      <segment>
+        <source>Manuel</source>
+      </segment>
+    </unit>
+    <unit id="foodEntry.mode.camera">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:41,43</note>
+      </notes>
+      <segment>
+        <source>Photo</source>
+      </segment>
+    </unit>
     <unit id="foodEntry.pending.ariaLabel">
       <notes>
-        <note category="location">src/app/features/food-entry/food-entry.page.html:24,25</note>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:64,65</note>
       </notes>
       <segment>
         <source>Aliments à enregistrer</source>
@@ -515,7 +683,7 @@
     </unit>
     <unit id="foodEntry.removeFood.ariaLabel">
       <notes>
-        <note category="location">src/app/features/food-entry/food-entry.page.html:39,40</note>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:79,80</note>
       </notes>
       <segment>
         <source>Retirer l&apos;aliment</source>
@@ -523,7 +691,7 @@
     </unit>
     <unit id="foodEntry.analyzingFodmap">
       <notes>
-        <note category="location">src/app/features/food-entry/food-entry.page.html:56,58</note>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:96,98</note>
       </notes>
       <segment>
         <source>Analyse FODMAP…</source>
@@ -531,7 +699,7 @@
     </unit>
     <unit id="foodEntry.saving">
       <notes>
-        <note category="location">src/app/features/food-entry/food-entry.page.html:58,60</note>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:98,100</note>
       </notes>
       <segment>
         <source>Enregistrement…</source>
@@ -539,7 +707,7 @@
     </unit>
     <unit id="foodEntry.save">
       <notes>
-        <note category="location">src/app/features/food-entry/food-entry.page.html:60,62</note>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:100,102</note>
       </notes>
       <segment>
         <source>Enregistrer le repas</source>
@@ -547,7 +715,7 @@
     </unit>
     <unit id="foodEntry.journal.ariaLabel">
       <notes>
-        <note category="location">src/app/features/food-entry/food-entry.page.html:68,69</note>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:108,109</note>
       </notes>
       <segment>
         <source>Journal du jour</source>
@@ -555,7 +723,7 @@
     </unit>
     <unit id="foodEntry.journal.title">
       <notes>
-        <note category="location">src/app/features/food-entry/food-entry.page.html:72,75</note>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:112,115</note>
       </notes>
       <segment>
         <source> Journal du jour </source>
@@ -563,7 +731,7 @@
     </unit>
     <unit id="foodEntry.loading">
       <notes>
-        <note category="location">src/app/features/food-entry/food-entry.page.html:76,77</note>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:116,117</note>
       </notes>
       <segment>
         <source>Chargement…</source>
@@ -571,7 +739,7 @@
     </unit>
     <unit id="foodEntry.empty">
       <notes>
-        <note category="location">src/app/features/food-entry/food-entry.page.html:79,81</note>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:119,121</note>
       </notes>
       <segment>
         <source> Aucune saisie aujourd&apos;hui. Commencez par ajouter un repas. </source>

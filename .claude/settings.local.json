@@ -12,7 +12,8 @@
       "Bash(head:*)",
       "Bash(cd \"C:\\\\angular\\\\gut-tracker\" && npx ng serve 2>&1)",
       "Bash(cd:*)",
-      "Bash(cd /c/angular/gut-tracker && ng extract-i18n 2>&1)"
+      "Bash(cd /c/angular/gut-tracker && ng extract-i18n 2>&1)",
+      "Bash(grep:*)"
     ]
   }
 }

@@ -68,9 +68,13 @@ export class FoodCameraComponent {
       this.analysisComplete.emit({ photoUrl: this._previewUrl()!, recognitionResult: result });
     } catch (err: unknown) {
       if (err instanceof AiError && err.isQuotaError) {
-        this._error.set('Quota dépassé. Vérifiez vos paramètres IA.');
+        this._error.set($localize`:@@foodCamera.error.quota:Quota dépassé. Vérifiez vos paramètres IA.`);
       } else {
-        this._error.set(err instanceof Error ? err.message : "Erreur lors de l'analyse");
+        this._error.set(
+          err instanceof Error
+            ? err.message
+            : $localize`:@@foodCamera.error.analysis:Erreur lors de l'analyse.`,
+        );
       }
     }
   }
