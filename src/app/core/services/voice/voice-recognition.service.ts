@@ -92,21 +92,24 @@ export class VoiceRecognitionService {
 
     let silenceTimer: ReturnType<typeof setTimeout> | undefined;
     let finalTranscript = '';
-    // Évite de retraiter des résultats déjà finalisés (bug Android : resultIndex remis à 0)
-    let lastFinalIndex = 0;
 
     const result = new Promise<string>((resolve, reject) => {
       const maxTimer = setTimeout(() => recognition.stop(), MAX_RECORDING_MS);
 
       recognition.onresult = (event: ISpeechRecognitionEvent) => {
         clearTimeout(silenceTimer);
-        for (let i = lastFinalIndex; i < event.results.length; i++) {
+        // Reconstruit depuis zéro à chaque événement.
+        // Sur Android, resultIndex est souvent 0 même pour de nouveaux résultats,
+        // ce qui causait des doublons avec une accumulation incrémentale.
+        // La reconstruction garantit que chaque slot final n'est compté qu'une fois.
+        let rebuilt = '';
+        for (let i = 0; i < event.results.length; i++) {
           if (event.results[i].isFinal) {
-            finalTranscript += event.results[i][0].transcript;
-            lastFinalIndex = i + 1;
+            rebuilt += event.results[i][0].transcript;
           }
         }
-        // Réinitialise le timer de silence à chaque résultat
+        finalTranscript = rebuilt;
+        // Réinitialise le timer de silence à chaque résultat (y compris intermédiaires)
         silenceTimer = setTimeout(() => recognition.stop(), SILENCE_TIMEOUT_MS);
       };
 

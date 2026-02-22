@@ -115,19 +115,38 @@ describe('VoiceRecognitionService', () => {
       const resultPromise = session.result;
       const recognition = FakeSpeechRecognition._lastInstance!;
 
-      // Événement 1 : "Cracotte" finalisé, resultIndex=0
+      // Reproduit le bug Android : 4 événements avec resultIndex=0
+      // sur une liste cumulative, causant "CracotteCracotteCracottedeCracotte de sarrasin"
+
+      // Événement 1 : "Cracotte" finalisé
       recognition.onresult?.({
         results: { length: 1, 0: { isFinal: true, 0: { transcript: 'Cracotte' } } },
         resultIndex: 0,
       });
 
-      // Événement 2 (bug Android) : resultIndex=0 au lieu de 1
-      // → renvoie "Cracotte" + ajoute "de sarrasin"
+      // Événement 2 (Android renvoie le même résultat + interim)
+      recognition.onresult?.({
+        results: { length: 1, 0: { isFinal: true, 0: { transcript: 'Cracotte' } } },
+        resultIndex: 0,
+      });
+
+      // Événement 3 : "Cracotte" + " de" finalisés, resultIndex=0 (au lieu de 1)
       recognition.onresult?.({
         results: {
           length: 2,
           0: { isFinal: true, 0: { transcript: 'Cracotte' } },
-          1: { isFinal: true, 0: { transcript: ' de sarrasin' } },
+          1: { isFinal: true, 0: { transcript: ' de' } },
+        },
+        resultIndex: 0,
+      });
+
+      // Événement 4 : les 3 mots finalisés, resultIndex=0 (au lieu de 2)
+      recognition.onresult?.({
+        results: {
+          length: 3,
+          0: { isFinal: true, 0: { transcript: 'Cracotte' } },
+          1: { isFinal: true, 0: { transcript: ' de' } },
+          2: { isFinal: true, 0: { transcript: ' sarrasin' } },
         },
         resultIndex: 0,
       });
@@ -135,7 +154,7 @@ describe('VoiceRecognitionService', () => {
       recognition.onend?.();
       const transcript = await resultPromise;
 
-      // Sans le fix : "CracotteCracotte de sarrasin"
+      // Sans le fix : "CracotteCracotteCracottedeCracotte de sarrasin"
       expect(transcript).toBe('Cracotte de sarrasin');
     });
 
