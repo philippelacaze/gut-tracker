@@ -41,42 +41,42 @@ export class MainNavComponent {
   protected readonly primaryNavItems: readonly NavItem[] = [
     {
       path: '/food',
-      label: $localize`Alimentation`,
+      label: $localize`:@@nav.food.label:Alimentation`,
       iconPath: ICONS.food,
-      ariaLabel: $localize`Saisie alimentaire`,
+      ariaLabel: $localize`:@@nav.food.ariaLabel:Saisie alimentaire`,
     },
     {
       path: '/symptoms',
-      label: $localize`Symptômes`,
+      label: $localize`:@@nav.symptoms.label:Symptômes`,
       iconPath: ICONS.symptoms,
-      ariaLabel: $localize`Saisie des symptômes`,
+      ariaLabel: $localize`:@@nav.symptoms.ariaLabel:Saisie des symptômes`,
     },
     {
       path: '/medication',
-      label: $localize`Médicaments`,
+      label: $localize`:@@nav.medication.label:Médicaments`,
       iconPath: ICONS.medication,
-      ariaLabel: $localize`Saisie des médicaments`,
+      ariaLabel: $localize`:@@nav.medication.ariaLabel:Saisie des médicaments`,
     },
     {
       path: '/analysis',
-      label: $localize`Analyse IA`,
+      label: $localize`:@@nav.analysis.label:Analyse IA`,
       iconPath: ICONS.analysis,
-      ariaLabel: $localize`Analyse IA`,
+      ariaLabel: $localize`:@@nav.analysis.ariaLabel:Analyse IA`,
     },
     {
       path: '/export',
-      label: $localize`Export`,
+      label: $localize`:@@nav.export.label:Export`,
       iconPath: ICONS.export,
-      ariaLabel: $localize`Exporter les données`,
+      ariaLabel: $localize`:@@nav.export.ariaLabel:Exporter les données`,
     },
   ];
 
   /** Paramètres — affiché séparément en pied de sidebar */
   protected readonly settingsItem: NavItem = {
     path: '/settings',
-    label: $localize`Paramètres`,
+    label: $localize`:@@nav.settings.label:Paramètres`,
     iconPath: ICONS.settings,
-    ariaLabel: $localize`Paramètres`,
+    ariaLabel: $localize`:@@nav.settings.ariaLabel:Paramètres`,
   };
 
   /**

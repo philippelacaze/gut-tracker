@@ -1,0 +1,1617 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="fr">
+  <file id="ngi18n" original="ng.template">
+    <unit id="analysis.title">
+      <notes>
+        <note category="location">src/app/features/analysis/analysis.page.html:3,5</note>
+      </notes>
+      <segment>
+        <source>Analyse IA</source>
+      </segment>
+    </unit>
+    <unit id="analysis.subtitle">
+      <notes>
+        <note category="location">src/app/features/analysis/analysis.page.html:6,9</note>
+      </notes>
+      <segment>
+        <source> Identifiez les corrélations entre votre alimentation et vos symptômes digestifs. </source>
+      </segment>
+    </unit>
+    <unit id="analysis.notEnoughData">
+      <notes>
+        <note category="location">src/app/features/analysis/analysis.page.html:14,16</note>
+      </notes>
+      <segment>
+        <source> L&apos;analyse nécessite au moins 7 jours de données. </source>
+      </segment>
+    </unit>
+    <unit id="analysis.daysAvailable">
+      <notes>
+        <note category="location">src/app/features/analysis/analysis.page.html:17,18</note>
+      </notes>
+      <segment>
+        <source>Jours disponibles :</source>
+      </segment>
+    </unit>
+    <unit id="analysis.launchAriaLabel">
+      <notes>
+        <note category="location">src/app/features/analysis/analysis.page.html:32,33</note>
+      </notes>
+      <segment>
+        <source>Lancer l&apos;analyse IA</source>
+      </segment>
+    </unit>
+    <unit id="analysis.analyzing">
+      <notes>
+        <note category="location">src/app/features/analysis/analysis.page.html:36,38</note>
+      </notes>
+      <segment>
+        <source>Analyse en cours…</source>
+      </segment>
+    </unit>
+    <unit id="analysis.launch">
+      <notes>
+        <note category="location">src/app/features/analysis/analysis.page.html:38,40</note>
+      </notes>
+      <segment>
+        <source>Lancer l&apos;analyse</source>
+      </segment>
+    </unit>
+    <unit id="analysis.retry">
+      <notes>
+        <note category="location">src/app/features/analysis/analysis.page.html:55,56</note>
+      </notes>
+      <segment>
+        <source> Réessayer </source>
+      </segment>
+    </unit>
+    <unit id="analysis.correlationsTitle">
+      <notes>
+        <note category="location">src/app/features/analysis/analysis.page.html:67,69</note>
+      </notes>
+      <segment>
+        <source> Corrélations détectées </source>
+      </segment>
+    </unit>
+    <unit id="analysis.reportTitle">
+      <notes>
+        <note category="location">src/app/features/analysis/analysis.page.html:75,77</note>
+      </notes>
+      <segment>
+        <source> Rapport détaillé </source>
+      </segment>
+    </unit>
+    <unit id="report.disclaimerAriaLabel">
+      <notes>
+        <note category="location">src/app/features/analysis/components/analysis-report/analysis-report.component.html:4,5</note>
+      </notes>
+      <segment>
+        <source>Avertissement médical</source>
+      </segment>
+    </unit>
+    <unit id="report.disclaimer">
+      <notes>
+        <note category="location">src/app/features/analysis/components/analysis-report/analysis-report.component.html:8,11</note>
+      </notes>
+      <segment>
+        <source> Cette analyse est indicative et ne remplace pas un avis médical. Consultez votre médecin ou nutritionniste. </source>
+      </segment>
+    </unit>
+    <unit id="report.contentAriaLabel">
+      <notes>
+        <note category="location">src/app/features/analysis/components/analysis-report/analysis-report.component.html:14,15</note>
+      </notes>
+      <segment>
+        <source>Rapport d&apos;analyse</source>
+      </segment>
+    </unit>
+    <unit id="chart.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/analysis/components/correlation-chart/correlation-chart.component.html:5,6</note>
+      </notes>
+      <segment>
+        <source>Graphique des corrélations aliments–symptômes</source>
+      </segment>
+    </unit>
+    <unit id="chart.empty">
+      <notes>
+        <note category="location">src/app/features/analysis/components/correlation-chart/correlation-chart.component.html:12,16</note>
+      </notes>
+      <segment>
+        <source> Aucune corrélation aliment–symptôme détectée sur la période. </source>
+      </segment>
+    </unit>
+    <unit id="chart.avgSeverity">
+      <notes>
+        <note category="location">src/app/features/analysis/components/correlation-chart/correlation-chart.component.ts:67</note>
+      </notes>
+      <segment>
+        <source>Sévérité moyenne des symptômes suivants</source>
+      </segment>
+    </unit>
+    <unit id="chart.xLabel">
+      <notes>
+        <note category="location">src/app/features/analysis/components/correlation-chart/correlation-chart.component.ts:86</note>
+      </notes>
+      <segment>
+        <source>Sévérité moyenne (1–10)</source>
+      </segment>
+    </unit>
+    <unit id="chart.tooltipSeverity">
+      <notes>
+        <note category="location">src/app/features/analysis/components/correlation-chart/correlation-chart.component.ts:100</note>
+      </notes>
+      <segment>
+        <source>Sévérité moy. : <ph id="0" equiv="PH" disp="val.toFixed(1)"/></source>
+      </segment>
+    </unit>
+    <unit id="analysis.aiError">
+      <notes>
+        <note category="location">src/app/features/analysis/services/analysis.service.ts:107</note>
+      </notes>
+      <segment>
+        <source>[<ph id="0" equiv="PH" disp="err.provider"/>] <ph id="1" equiv="PH_1" disp="err.message"/></source>
+      </segment>
+    </unit>
+    <unit id="analysis.error">
+      <notes>
+        <note category="location">src/app/features/analysis/services/analysis.service.ts:108</note>
+      </notes>
+      <segment>
+        <source>Erreur lors de l&apos;analyse. Vérifiez vos paramètres IA.</source>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.period">
+      <notes>
+        <note category="location">src/app/features/export/components/export-range-picker/export-range-picker.component.html:4,6</note>
+      </notes>
+      <segment>
+        <source>Période</source>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.from">
+      <notes>
+        <note category="location">src/app/features/export/components/export-range-picker/export-range-picker.component.html:8,10</note>
+      </notes>
+      <segment>
+        <source>Du</source>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.fromAriaLabel">
+      <notes>
+        <note category="location">src/app/features/export/components/export-range-picker/export-range-picker.component.html:15,16</note>
+      </notes>
+      <segment>
+        <source>Date de début</source>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.to">
+      <notes>
+        <note category="location">src/app/features/export/components/export-range-picker/export-range-picker.component.html:21,23</note>
+      </notes>
+      <segment>
+        <source>Au</source>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.toAriaLabel">
+      <notes>
+        <note category="location">src/app/features/export/components/export-range-picker/export-range-picker.component.html:28,29</note>
+      </notes>
+      <segment>
+        <source>Date de fin</source>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.dataTypes">
+      <notes>
+        <note category="location">src/app/features/export/components/export-range-picker/export-range-picker.component.html:36,38</note>
+      </notes>
+      <segment>
+        <source>Types de données</source>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.food">
+      <notes>
+        <note category="location">src/app/features/export/components/export-range-picker/export-range-picker.component.html:44,45</note>
+        <note category="location">src/app/features/export/components/export-range-picker/export-range-picker.component.html:47,50</note>
+      </notes>
+      <segment>
+        <source>Alimentation</source>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.medication">
+      <notes>
+        <note category="location">src/app/features/export/components/export-range-picker/export-range-picker.component.html:55,56</note>
+        <note category="location">src/app/features/export/components/export-range-picker/export-range-picker.component.html:58,61</note>
+      </notes>
+      <segment>
+        <source>Médicaments</source>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.symptom">
+      <notes>
+        <note category="location">src/app/features/export/components/export-range-picker/export-range-picker.component.html:66,67</note>
+        <note category="location">src/app/features/export/components/export-range-picker/export-range-picker.component.html:69,72</note>
+      </notes>
+      <segment>
+        <source>Symptômes</source>
+      </segment>
+    </unit>
+    <unit id="export.title">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:3,5</note>
+      </notes>
+      <segment>
+        <source>Export des données</source>
+      </segment>
+    </unit>
+    <unit id="export.subtitle">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:6,9</note>
+      </notes>
+      <segment>
+        <source> Téléchargez vos données pour les partager avec votre médecin ou les archiver. </source>
+      </segment>
+    </unit>
+    <unit id="export.filtersLabel">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:9</note>
+      </notes>
+      <segment>
+        <source>Filtres d&apos;export</source>
+      </segment>
+    </unit>
+    <unit id="export.actionsLabel">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:20</note>
+      </notes>
+      <segment>
+        <source>Actions d&apos;export</source>
+      </segment>
+    </unit>
+    <unit id="export.jsonAriaLabel">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:26,27</note>
+      </notes>
+      <segment>
+        <source>Exporter en JSON</source>
+      </segment>
+    </unit>
+    <unit id="export.jsonLabel">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:30,31</note>
+      </notes>
+      <segment>
+        <source>JSON</source>
+      </segment>
+    </unit>
+    <unit id="export.jsonDesc">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:31,34</note>
+      </notes>
+      <segment>
+        <source>Données complètes</source>
+      </segment>
+    </unit>
+    <unit id="export.csvAriaLabel">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:38,39</note>
+      </notes>
+      <segment>
+        <source>Exporter en CSV</source>
+      </segment>
+    </unit>
+    <unit id="export.csvLabel">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:42,43</note>
+      </notes>
+      <segment>
+        <source>CSV</source>
+      </segment>
+    </unit>
+    <unit id="export.csvDesc">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:43,46</note>
+      </notes>
+      <segment>
+        <source>Tableur compatible</source>
+      </segment>
+    </unit>
+    <unit id="export.pdfAriaLabel">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:52,53</note>
+      </notes>
+      <segment>
+        <source>Exporter en PDF</source>
+      </segment>
+    </unit>
+    <unit id="export.pdfGenerating">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:57,59</note>
+      </notes>
+      <segment>
+        <source>Génération…</source>
+      </segment>
+    </unit>
+    <unit id="export.pdfLabel">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:59,61</note>
+      </notes>
+      <segment>
+        <source>PDF</source>
+      </segment>
+    </unit>
+    <unit id="export.pdfDesc">
+      <notes>
+        <note category="location">src/app/features/export/export.page.html:61,64</note>
+      </notes>
+      <segment>
+        <source>Rapport médical</source>
+      </segment>
+    </unit>
+    <unit id="export.pdfError">
+      <notes>
+        <note category="location">src/app/features/export/export.page.ts:52</note>
+      </notes>
+      <segment>
+        <source>Erreur lors de la génération du PDF.</source>
+      </segment>
+    </unit>
+    <unit id="foodCard.delete.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-entry-card/food-entry-card.component.html:21,22</note>
+      </notes>
+      <segment>
+        <source>Supprimer cette saisie</source>
+      </segment>
+    </unit>
+    <unit id="foodCard.foods.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-entry-card/food-entry-card.component.html:30,31</note>
+      </notes>
+      <segment>
+        <source>Aliments de cette saisie</source>
+      </segment>
+    </unit>
+    <unit id="foodCard.noFoods">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-entry-card/food-entry-card.component.html:52,56</note>
+      </notes>
+      <segment>
+        <source>Aucun aliment renseigné</source>
+      </segment>
+    </unit>
+    <unit id="mealType.breakfast">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-entry-card/food-entry-card.component.ts:16</note>
+        <note category="location">src/app/features/food-entry/components/meal-type-picker/meal-type-picker.component.ts:23</note>
+      </notes>
+      <segment>
+        <source>Petit-déjeuner</source>
+      </segment>
+    </unit>
+    <unit id="mealType.lunch">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-entry-card/food-entry-card.component.ts:17</note>
+        <note category="location">src/app/features/food-entry/components/meal-type-picker/meal-type-picker.component.ts:24</note>
+      </notes>
+      <segment>
+        <source>Déjeuner</source>
+      </segment>
+    </unit>
+    <unit id="mealType.dinner">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-entry-card/food-entry-card.component.ts:18</note>
+        <note category="location">src/app/features/food-entry/components/meal-type-picker/meal-type-picker.component.ts:25</note>
+      </notes>
+      <segment>
+        <source>Dîner</source>
+      </segment>
+    </unit>
+    <unit id="mealType.snack">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-entry-card/food-entry-card.component.ts:19</note>
+        <note category="location">src/app/features/food-entry/components/meal-type-picker/meal-type-picker.component.ts:26</note>
+      </notes>
+      <segment>
+        <source>Collation</source>
+      </segment>
+    </unit>
+    <unit id="mealType.drink">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-entry-card/food-entry-card.component.ts:20</note>
+        <note category="location">src/app/features/food-entry/components/meal-type-picker/meal-type-picker.component.ts:27</note>
+      </notes>
+      <segment>
+        <source>Boisson</source>
+      </segment>
+    </unit>
+    <unit id="foodSearch.nameLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-search/food-search.component.html:5,7</note>
+      </notes>
+      <segment>
+        <source> Aliment </source>
+      </segment>
+    </unit>
+    <unit id="foodSearch.namePlaceholder">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-search/food-search.component.html:16,17</note>
+      </notes>
+      <segment>
+        <source>Ex. : poulet, pain de seigle…</source>
+      </segment>
+    </unit>
+    <unit id="foodSearch.quantityLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-search/food-search.component.html:46,48</note>
+      </notes>
+      <segment>
+        <source> Quantité </source>
+      </segment>
+    </unit>
+    <unit id="foodSearch.quantityPlaceholder">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-search/food-search.component.html:54,55</note>
+      </notes>
+      <segment>
+        <source>150 g, 1 bol…</source>
+      </segment>
+    </unit>
+    <unit id="foodSearch.addButton.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-search/food-search.component.html:65,66</note>
+      </notes>
+      <segment>
+        <source>Ajouter l&apos;aliment à la liste</source>
+      </segment>
+    </unit>
+    <unit id="foodSearch.addButton">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/food-search/food-search.component.html:69,72</note>
+      </notes>
+      <segment>
+        <source> Ajouter </source>
+      </segment>
+    </unit>
+    <unit id="mealType.group.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/meal-type-picker/meal-type-picker.component.html:4,5</note>
+      </notes>
+      <segment>
+        <source>Type de repas</source>
+      </segment>
+    </unit>
+    <unit id="recentFoods.title">
+      <notes>
+        <note category="location">src/app/features/food-entry/components/recent-foods/recent-foods.component.html:4,6</note>
+      </notes>
+      <segment>
+        <source> Aliments fréquents </source>
+      </segment>
+    </unit>
+    <unit id="foodEntry.title">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:3,6</note>
+      </notes>
+      <segment>
+        <source>Saisie alimentaire</source>
+      </segment>
+    </unit>
+    <unit id="foodEntry.form.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:9,10</note>
+      </notes>
+      <segment>
+        <source>Nouvelle saisie</source>
+      </segment>
+    </unit>
+    <unit id="foodEntry.pending.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:24,25</note>
+      </notes>
+      <segment>
+        <source>Aliments à enregistrer</source>
+      </segment>
+    </unit>
+    <unit id="foodEntry.removeFood.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:39,40</note>
+      </notes>
+      <segment>
+        <source>Retirer l&apos;aliment</source>
+      </segment>
+    </unit>
+    <unit id="foodEntry.analyzingFodmap">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:56,58</note>
+      </notes>
+      <segment>
+        <source>Analyse FODMAP…</source>
+      </segment>
+    </unit>
+    <unit id="foodEntry.saving">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:58,60</note>
+      </notes>
+      <segment>
+        <source>Enregistrement…</source>
+      </segment>
+    </unit>
+    <unit id="foodEntry.save">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:60,62</note>
+      </notes>
+      <segment>
+        <source>Enregistrer le repas</source>
+      </segment>
+    </unit>
+    <unit id="foodEntry.journal.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:68,69</note>
+      </notes>
+      <segment>
+        <source>Journal du jour</source>
+      </segment>
+    </unit>
+    <unit id="foodEntry.journal.title">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:72,75</note>
+      </notes>
+      <segment>
+        <source> Journal du jour </source>
+      </segment>
+    </unit>
+    <unit id="foodEntry.loading">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:76,77</note>
+      </notes>
+      <segment>
+        <source>Chargement…</source>
+      </segment>
+    </unit>
+    <unit id="foodEntry.empty">
+      <notes>
+        <note category="location">src/app/features/food-entry/food-entry.page.html:79,81</note>
+      </notes>
+      <segment>
+        <source> Aucune saisie aujourd&apos;hui. Commencez par ajouter un repas. </source>
+      </segment>
+    </unit>
+    <unit id="store.loadError">
+      <notes>
+        <note category="location">src/app/features/food-entry/services/food-entry.store.ts:57</note>
+      </notes>
+      <segment>
+        <source>Erreur lors du chargement.</source>
+      </segment>
+    </unit>
+    <unit id="medicationCard.delete.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-entry-card/medication-entry-card.component.html:14,15</note>
+      </notes>
+      <segment>
+        <source>Supprimer cette saisie</source>
+      </segment>
+    </unit>
+    <unit id="medicationCard.list.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-entry-card/medication-entry-card.component.html:23,24</note>
+      </notes>
+      <segment>
+        <source>Médicaments de cette saisie</source>
+      </segment>
+    </unit>
+    <unit id="medicationCard.noMedications">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-entry-card/medication-entry-card.component.html:43,47</note>
+      </notes>
+      <segment>
+        <source> Aucun médicament renseigné </source>
+      </segment>
+    </unit>
+    <unit id="medicationType.enzyme">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-entry-card/medication-entry-card.component.ts:15</note>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.ts:59</note>
+      </notes>
+      <segment>
+        <source>Enzyme digestive</source>
+      </segment>
+    </unit>
+    <unit id="medicationType.probiotic">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-entry-card/medication-entry-card.component.ts:16</note>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.ts:60</note>
+      </notes>
+      <segment>
+        <source>Probiotique</source>
+      </segment>
+    </unit>
+    <unit id="medicationType.antibiotic">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-entry-card/medication-entry-card.component.ts:17</note>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.ts:61</note>
+      </notes>
+      <segment>
+        <source>Antibiotique</source>
+      </segment>
+    </unit>
+    <unit id="medicationType.antispasmodic">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-entry-card/medication-entry-card.component.ts:18</note>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.ts:62</note>
+      </notes>
+      <segment>
+        <source>Antispasmodique</source>
+      </segment>
+    </unit>
+    <unit id="medicationType.other">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-entry-card/medication-entry-card.component.ts:19</note>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.ts:63</note>
+      </notes>
+      <segment>
+        <source>Autre</source>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.name.label">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.html:9,12</note>
+      </notes>
+      <segment>
+        <source> Médicament ou complément </source>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.name.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.html:24,25</note>
+      </notes>
+      <segment>
+        <source>Nom du médicament</source>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.name.placeholder">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.html:26,27</note>
+      </notes>
+      <segment>
+        <source>Lactase, Probiotique…</source>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.suggestions.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.html:34,35</note>
+      </notes>
+      <segment>
+        <source>Suggestions de médicaments</source>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.type.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.html:56,57</note>
+      </notes>
+      <segment>
+        <source>Type de médicament</source>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.dose.label">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.html:80,82</note>
+      </notes>
+      <segment>
+        <source> Dose <pc id="0" equivStart="START_TAG_SPAN" equivEnd="CLOSE_TAG_SPAN" type="other" dispStart="&lt;span class=&quot;medication-picker__optional&quot;&gt;" dispEnd="&lt;/span&gt;">(optionnel)</pc></source>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.dose.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.html:88,89</note>
+      </notes>
+      <segment>
+        <source>Dose du médicament</source>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.dose.placeholder">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.html:90,91</note>
+      </notes>
+      <segment>
+        <source>1 cp, 500 mg…</source>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.add.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.html:101,102</note>
+      </notes>
+      <segment>
+        <source>Ajouter ce médicament à la liste</source>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.add.label">
+      <notes>
+        <note category="location">src/app/features/medication-entry/components/medication-picker/medication-picker.component.html:104,107</note>
+      </notes>
+      <segment>
+        <source>Ajouter</source>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.title">
+      <notes>
+        <note category="location">src/app/features/medication-entry/medication-entry.page.html:4,7</note>
+      </notes>
+      <segment>
+        <source> Médicaments &amp; compléments </source>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.form.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/medication-entry/medication-entry.page.html:11,12</note>
+      </notes>
+      <segment>
+        <source>Nouvelle saisie médicament</source>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.pending.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/medication-entry/medication-entry.page.html:20,21</note>
+      </notes>
+      <segment>
+        <source>Médicaments à enregistrer</source>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.removeMedication.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/medication-entry/medication-entry.page.html:35,36</note>
+      </notes>
+      <segment>
+        <source>Retirer ce médicament</source>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.saving">
+      <notes>
+        <note category="location">src/app/features/medication-entry/medication-entry.page.html:51,53</note>
+      </notes>
+      <segment>
+        <source>Enregistrement…</source>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.save">
+      <notes>
+        <note category="location">src/app/features/medication-entry/medication-entry.page.html:53,55</note>
+      </notes>
+      <segment>
+        <source>Enregistrer la saisie</source>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.journal.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/medication-entry/medication-entry.page.html:62,63</note>
+      </notes>
+      <segment>
+        <source>Journal des médicaments du jour</source>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.journal.title">
+      <notes>
+        <note category="location">src/app/features/medication-entry/medication-entry.page.html:66,70</note>
+      </notes>
+      <segment>
+        <source> Aujourd&apos;hui </source>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.loading">
+      <notes>
+        <note category="location">src/app/features/medication-entry/medication-entry.page.html:71,73</note>
+      </notes>
+      <segment>
+        <source> Chargement… </source>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.empty">
+      <notes>
+        <note category="location">src/app/features/medication-entry/medication-entry.page.html:75,77</note>
+      </notes>
+      <segment>
+        <source> Aucune saisie aujourd&apos;hui. </source>
+      </segment>
+    </unit>
+    <unit id="medicationStore.loadError">
+      <notes>
+        <note category="location">src/app/features/medication-entry/services/medication-entry.store.ts:55</note>
+      </notes>
+      <segment>
+        <source>Erreur lors du chargement.</source>
+      </segment>
+    </unit>
+    <unit id="settings.title">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:2,4</note>
+      </notes>
+      <segment>
+        <source>Paramètres</source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.title">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:7,10</note>
+      </notes>
+      <segment>
+        <source> Intelligence artificielle </source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.provider.label">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:13,15</note>
+      </notes>
+      <segment>
+        <source> Fournisseur actif </source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.free">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:30,31</note>
+        <note category="location">src/app/features/settings/settings.page.html:205,207</note>
+      </notes>
+      <segment>
+        <source> gratuit </source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.warning">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:43,46</note>
+      </notes>
+      <segment>
+        <source> Les clés API sont stockées dans votre navigateur (localStorage) avec un encodage de base — elles ne sont pas chiffrées. N&apos;utilisez pas cette application sur un appareil partagé. </source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.apiKey">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:52,54</note>
+        <note category="location">src/app/features/settings/settings.page.html:103,105</note>
+        <note category="location">src/app/features/settings/settings.page.html:154,156</note>
+      </notes>
+      <segment>
+        <source> Clé API </source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.apiKey.placeholder">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:64,66</note>
+      </notes>
+      <segment>
+        <source>sk-...</source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.toggleKey.openai">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:70,72</note>
+      </notes>
+      <segment>
+        <source>Afficher ou masquer la clé OpenAI</source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.model">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:82,84</note>
+        <note category="location">src/app/features/settings/settings.page.html:133,135</note>
+        <note category="location">src/app/features/settings/settings.page.html:184,186</note>
+        <note category="location">src/app/features/settings/settings.page.html:224,226</note>
+      </notes>
+      <segment>
+        <source> Modèle </source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.apiKey.placeholder.anthropic">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:114,117</note>
+      </notes>
+      <segment>
+        <source>sk-ant-...</source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.toggleKey.anthropic">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:121,123</note>
+      </notes>
+      <segment>
+        <source>Afficher ou masquer la clé Anthropic</source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.apiKey.placeholder.gemini">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:165,168</note>
+      </notes>
+      <segment>
+        <source>AIza...</source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.toggleKey.gemini">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:172,174</note>
+      </notes>
+      <segment>
+        <source>Afficher ou masquer la clé Gemini</source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.ollama.url">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:210,212</note>
+      </notes>
+      <segment>
+        <source> URL du serveur </source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.ollama.model.placeholder">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:234,237</note>
+      </notes>
+      <segment>
+        <source>llava, llama3.2, mistral…</source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.ollama.hint">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:238,242</note>
+      </notes>
+      <segment>
+        <source> Ollama doit être démarré localement. Aucune clé API n&apos;est requise. </source>
+      </segment>
+    </unit>
+    <unit id="settings.ai.save">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:249,251</note>
+      </notes>
+      <segment>
+        <source> Sauvegarder les paramètres IA </source>
+      </segment>
+    </unit>
+    <unit id="settings.saved">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:253,255</note>
+        <note category="location">src/app/features/settings/settings.page.html:329,331</note>
+      </notes>
+      <segment>
+        <source> ✓ Sauvegardé </source>
+      </segment>
+    </unit>
+    <unit id="settings.prefs.title">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:262,265</note>
+      </notes>
+      <segment>
+        <source> Préférences </source>
+      </segment>
+    </unit>
+    <unit id="settings.bodyMap.gender.label">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:268,270</note>
+      </notes>
+      <segment>
+        <source> Genre anatomique (carte corporelle) </source>
+      </segment>
+    </unit>
+    <unit id="settings.bodyMap.gender.male">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:281,283</note>
+      </notes>
+      <segment>
+        <source> Masculin </source>
+      </segment>
+    </unit>
+    <unit id="settings.bodyMap.gender.female">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:294,296</note>
+      </notes>
+      <segment>
+        <source> Féminin </source>
+      </segment>
+    </unit>
+    <unit id="settings.language.label">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:303,305</note>
+      </notes>
+      <segment>
+        <source> Langue de l&apos;interface </source>
+      </segment>
+    </unit>
+    <unit id="settings.language.note">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:315,318</note>
+      </notes>
+      <segment>
+        <source> Le changement de langue prend effet après rechargement de la page. </source>
+      </segment>
+    </unit>
+    <unit id="settings.prefs.save">
+      <notes>
+        <note category="location">src/app/features/settings/settings.page.html:325,327</note>
+      </notes>
+      <segment>
+        <source> Sauvegarder les préférences </source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.container.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.html:9,10</note>
+      </notes>
+      <segment>
+        <source>Carte corporelle — cliquez pour sélectionner une zone</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.loading">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.html:14,18</note>
+      </notes>
+      <segment>
+        <source>Chargement…</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.selectedPrefix">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.html:20,21</note>
+      </notes>
+      <segment>
+        <source>Zone sélectionnée :</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.head">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.ts:21</note>
+      </notes>
+      <segment>
+        <source>Tête</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.thorax">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.ts:22</note>
+      </notes>
+      <segment>
+        <source>Thorax</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.abdomenUpper">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.ts:23</note>
+      </notes>
+      <segment>
+        <source>Abdomen haut</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.abdomenLeft">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.ts:24</note>
+      </notes>
+      <segment>
+        <source>Abdomen gauche</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.abdomenRight">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.ts:25</note>
+      </notes>
+      <segment>
+        <source>Abdomen droit</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.abdomenLower">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.ts:26</note>
+      </notes>
+      <segment>
+        <source>Abdomen bas</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.pelvis">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.ts:27</note>
+      </notes>
+      <segment>
+        <source>Pelvis</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.leftArm">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.ts:28</note>
+      </notes>
+      <segment>
+        <source>Bras gauche</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.rightArm">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.ts:29</note>
+      </notes>
+      <segment>
+        <source>Bras droit</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.leftLeg">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.ts:30</note>
+      </notes>
+      <segment>
+        <source>Jambe gauche</source>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.rightLeg">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/body-map/body-map.component.ts:31</note>
+      </notes>
+      <segment>
+        <source>Jambe droite</source>
+      </segment>
+    </unit>
+    <unit id="severitySlider.label">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/severity-slider/severity-slider.component.html:8,11</note>
+      </notes>
+      <segment>
+        <source> Sévérité </source>
+      </segment>
+    </unit>
+    <unit id="severitySlider.input.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/severity-slider/severity-slider.component.html:35,36</note>
+      </notes>
+      <segment>
+        <source>Niveau de sévérité de 1 à 10</source>
+      </segment>
+    </unit>
+    <unit id="severitySlider.min">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/severity-slider/severity-slider.component.html:40,41</note>
+      </notes>
+      <segment>
+        <source>1</source>
+      </segment>
+    </unit>
+    <unit id="severitySlider.label.moderate">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/severity-slider/severity-slider.component.html:41,42</note>
+      </notes>
+      <segment>
+        <source>5</source>
+      </segment>
+    </unit>
+    <unit id="severitySlider.max">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/severity-slider/severity-slider.component.html:42,45</note>
+      </notes>
+      <segment>
+        <source>10</source>
+      </segment>
+    </unit>
+    <unit id="severity.veryLow">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/severity-slider/severity-slider.component.ts:13</note>
+      </notes>
+      <segment>
+        <source>Très léger</source>
+      </segment>
+    </unit>
+    <unit id="severity.low">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/severity-slider/severity-slider.component.ts:14</note>
+      </notes>
+      <segment>
+        <source>Léger</source>
+      </segment>
+    </unit>
+    <unit id="severity.moderate">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/severity-slider/severity-slider.component.ts:15</note>
+      </notes>
+      <segment>
+        <source>Modéré</source>
+      </segment>
+    </unit>
+    <unit id="severity.high">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/severity-slider/severity-slider.component.ts:16</note>
+      </notes>
+      <segment>
+        <source>Intense</source>
+      </segment>
+    </unit>
+    <unit id="severity.veryHigh">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/severity-slider/severity-slider.component.ts:17</note>
+      </notes>
+      <segment>
+        <source>Très intense</source>
+      </segment>
+    </unit>
+    <unit id="symptomCard.delete.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.html:11,12</note>
+      </notes>
+      <segment>
+        <source>Supprimer cette saisie</source>
+      </segment>
+    </unit>
+    <unit id="symptomCard.list.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.html:20,21</note>
+      </notes>
+      <segment>
+        <source>Symptômes de cette saisie</source>
+      </segment>
+    </unit>
+    <unit id="symptomCard.noSymptoms">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.html:51,54</note>
+      </notes>
+      <segment>
+        <source> Aucun symptôme renseigné </source>
+      </segment>
+    </unit>
+    <unit id="symptomType.pain">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.ts:14</note>
+        <note category="location">src/app/features/symptom-entry/components/symptom-type-picker/symptom-type-picker.component.ts:23</note>
+      </notes>
+      <segment>
+        <source>Douleur</source>
+      </segment>
+    </unit>
+    <unit id="symptomType.bloating">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.ts:15</note>
+        <note category="location">src/app/features/symptom-entry/components/symptom-type-picker/symptom-type-picker.component.ts:24</note>
+      </notes>
+      <segment>
+        <source>Ballonnements</source>
+      </segment>
+    </unit>
+    <unit id="symptomType.gas">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.ts:16</note>
+        <note category="location">src/app/features/symptom-entry/components/symptom-type-picker/symptom-type-picker.component.ts:25</note>
+      </notes>
+      <segment>
+        <source>Gaz</source>
+      </segment>
+    </unit>
+    <unit id="symptomType.belching">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.ts:17</note>
+        <note category="location">src/app/features/symptom-entry/components/symptom-type-picker/symptom-type-picker.component.ts:26</note>
+      </notes>
+      <segment>
+        <source>Éructations</source>
+      </segment>
+    </unit>
+    <unit id="symptomType.constipation">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.ts:18</note>
+        <note category="location">src/app/features/symptom-entry/components/symptom-type-picker/symptom-type-picker.component.ts:27</note>
+      </notes>
+      <segment>
+        <source>Constipation</source>
+      </segment>
+    </unit>
+    <unit id="symptomType.diarrhea">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.ts:19</note>
+        <note category="location">src/app/features/symptom-entry/components/symptom-type-picker/symptom-type-picker.component.ts:28</note>
+      </notes>
+      <segment>
+        <source>Diarrhée</source>
+      </segment>
+    </unit>
+    <unit id="symptomType.headache">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.ts:20</note>
+        <note category="location">src/app/features/symptom-entry/components/symptom-type-picker/symptom-type-picker.component.ts:29</note>
+      </notes>
+      <segment>
+        <source>Maux de tête</source>
+      </segment>
+    </unit>
+    <unit id="symptomType.other">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.ts:21</note>
+        <note category="location">src/app/features/symptom-entry/components/symptom-type-picker/symptom-type-picker.component.ts:30</note>
+      </notes>
+      <segment>
+        <source>Autre</source>
+      </segment>
+    </unit>
+    <unit id="symptomType.group.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/symptom-type-picker/symptom-type-picker.component.html:4,5</note>
+      </notes>
+      <segment>
+        <source>Type de symptôme</source>
+      </segment>
+    </unit>
+    <unit id="symptomStore.loadError">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/services/symptom-entry.store.ts:44</note>
+      </notes>
+      <segment>
+        <source>Erreur lors du chargement.</source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.title">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:4,7</note>
+      </notes>
+      <segment>
+        <source> Saisie des symptômes </source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.form.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:11,12</note>
+      </notes>
+      <segment>
+        <source>Nouveau symptôme</source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.typeLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:17,19</note>
+      </notes>
+      <segment>
+        <source> Type de symptôme </source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.locationLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:36,38</note>
+      </notes>
+      <segment>
+        <source> Localisation <pc id="0" equivStart="START_TAG_SPAN" equivEnd="CLOSE_TAG_SPAN" type="other" dispStart="&lt;span class=&quot;symptom-entry-page__optional&quot;&gt;" dispEnd="&lt;/span&gt;">(optionnel)</pc></source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.noteLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:51,53</note>
+      </notes>
+      <segment>
+        <source> Note <pc id="0" equivStart="START_TAG_SPAN" equivEnd="CLOSE_TAG_SPAN" type="other" dispStart="&lt;span class=&quot;symptom-entry-page__optional&quot;&gt;" dispEnd="&lt;/span&gt;">(optionnel)</pc></source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.note.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:59,60</note>
+      </notes>
+      <segment>
+        <source>Note libre pour ce symptôme</source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.note.placeholder">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:61,62</note>
+      </notes>
+      <segment>
+        <source>Précisions…</source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.addSymptom">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:71,74</note>
+      </notes>
+      <segment>
+        <source>+ Ajouter ce symptôme</source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.pending.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:79,80</note>
+      </notes>
+      <segment>
+        <source>Symptômes à enregistrer</source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.pending.title">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:83,86</note>
+      </notes>
+      <segment>
+        <source> À enregistrer </source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.removeSymptom.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:102,103</note>
+      </notes>
+      <segment>
+        <source>Retirer ce symptôme</source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.saving">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:118,120</note>
+      </notes>
+      <segment>
+        <source>Enregistrement…</source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.save">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:120,122</note>
+      </notes>
+      <segment>
+        <source>Enregistrer la saisie</source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.journal.ariaLabel">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:129,130</note>
+      </notes>
+      <segment>
+        <source>Journal des symptômes du jour</source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.journal.title">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:133,136</note>
+      </notes>
+      <segment>
+        <source> Aujourd&apos;hui </source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.loading">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:137,138</note>
+      </notes>
+      <segment>
+        <source>Chargement…</source>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.empty">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/symptom-entry.page.html:140,142</note>
+      </notes>
+      <segment>
+        <source> Aucun symptôme enregistré aujourd&apos;hui. </source>
+      </segment>
+    </unit>
+    <unit id="fodmap.low">
+      <notes>
+        <note category="location">src/app/shared/components/fodmap-badge/fodmap-badge.component.ts:17</note>
+      </notes>
+      <segment>
+        <source>Faible</source>
+      </segment>
+    </unit>
+    <unit id="fodmap.medium">
+      <notes>
+        <note category="location">src/app/shared/components/fodmap-badge/fodmap-badge.component.ts:19</note>
+      </notes>
+      <segment>
+        <source>Modéré</source>
+      </segment>
+    </unit>
+    <unit id="fodmap.high">
+      <notes>
+        <note category="location">src/app/shared/components/fodmap-badge/fodmap-badge.component.ts:21</note>
+      </notes>
+      <segment>
+        <source>Élevé</source>
+      </segment>
+    </unit>
+    <unit id="nav.sidebar.ariaLabel">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.html:6,7</note>
+      </notes>
+      <segment>
+        <source>Navigation principale</source>
+      </segment>
+    </unit>
+    <unit id="nav.brand">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.html:17,20</note>
+      </notes>
+      <segment>
+        <source>GutTracker</source>
+      </segment>
+    </unit>
+    <unit id="nav.bottom.ariaLabel">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.html:64,65</note>
+      </notes>
+      <segment>
+        <source>Navigation principale</source>
+      </segment>
+    </unit>
+    <unit id="nav.food.label">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.ts:44</note>
+      </notes>
+      <segment>
+        <source>Alimentation</source>
+      </segment>
+    </unit>
+    <unit id="nav.food.ariaLabel">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.ts:46</note>
+      </notes>
+      <segment>
+        <source>Saisie alimentaire</source>
+      </segment>
+    </unit>
+    <unit id="nav.symptoms.label">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.ts:50</note>
+      </notes>
+      <segment>
+        <source>Symptômes</source>
+      </segment>
+    </unit>
+    <unit id="nav.symptoms.ariaLabel">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.ts:52</note>
+      </notes>
+      <segment>
+        <source>Saisie des symptômes</source>
+      </segment>
+    </unit>
+    <unit id="nav.medication.label">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.ts:56</note>
+      </notes>
+      <segment>
+        <source>Médicaments</source>
+      </segment>
+    </unit>
+    <unit id="nav.medication.ariaLabel">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.ts:58</note>
+      </notes>
+      <segment>
+        <source>Saisie des médicaments</source>
+      </segment>
+    </unit>
+    <unit id="nav.analysis.label">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.ts:62</note>
+      </notes>
+      <segment>
+        <source>Analyse IA</source>
+      </segment>
+    </unit>
+    <unit id="nav.analysis.ariaLabel">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.ts:64</note>
+      </notes>
+      <segment>
+        <source>Analyse IA</source>
+      </segment>
+    </unit>
+    <unit id="nav.export.label">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.ts:68</note>
+      </notes>
+      <segment>
+        <source>Export</source>
+      </segment>
+    </unit>
+    <unit id="nav.export.ariaLabel">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.ts:70</note>
+      </notes>
+      <segment>
+        <source>Exporter les données</source>
+      </segment>
+    </unit>
+    <unit id="nav.settings.label">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.ts:77</note>
+      </notes>
+      <segment>
+        <source>Paramètres</source>
+      </segment>
+    </unit>
+    <unit id="nav.settings.ariaLabel">
+      <notes>
+        <note category="location">src/app/shared/components/main-nav/main-nav.component.ts:79</note>
+      </notes>
+      <segment>
+        <source>Paramètres</source>
+      </segment>
+    </unit>
+  </file>
+</xliff>

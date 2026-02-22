@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, LOCALE_ID, inject, signal } from '@angular/core';
 
 import { AppLanguage, BodyMapGender, UserPreferences } from '../../core/models/user-preferences.model';
 import { AiProviderId, AiSettings } from '../../core/services/ai/ai-settings.model';
@@ -22,6 +23,8 @@ interface ProviderInfo {
 export class SettingsPageComponent {
   private readonly _aiSettingsService = inject(AiSettingsService);
   private readonly _userPrefsService = inject(UserPreferencesService);
+  private readonly _document = inject(DOCUMENT);
+  private readonly _localeId = inject(LOCALE_ID);
 
   // Copie locale modifiable du formulaire IA
   private readonly _aiForm = signal<AiSettings>(
@@ -164,8 +167,30 @@ export class SettingsPageComponent {
   }
 
   savePreferences(): void {
-    this._userPrefsService.save(this._prefsForm());
+    const prefs = this._prefsForm();
+    const previousLang = this._userPrefsService.preferences().language;
+    this._userPrefsService.save(prefs);
     this._prefsSaved.set(true);
-    setTimeout(() => this._prefsSaved.set(false), 3000);
+
+    if (prefs.language !== previousLang) {
+      // Rediriger vers le build de la nouvelle locale après un court délai
+      setTimeout(() => this._redirectToLocale(prefs.language), 1500);
+    } else {
+      setTimeout(() => this._prefsSaved.set(false), 3000);
+    }
+  }
+
+  /** Redirige vers le build correspondant à la locale choisie */
+  private _redirectToLocale(lang: AppLanguage): void {
+    const location = this._document.location;
+    const href = location.href;
+    // Remplace le segment de locale existant (ex: /fr/ → /en/)
+    const localePattern = /\/(fr|en)(\/|$)/;
+    if (localePattern.test(href)) {
+      location.href = href.replace(localePattern, `/${lang}$2`);
+    } else {
+      // Mode dev sans préfixe de locale — rechargement simple
+      location.reload();
+    }
   }
 }

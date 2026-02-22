@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="fr" trgLang="en">
+  <file id="ngi18n" original="ng.template">
+    <unit id="analysis.title">
+      <segment state="translated">
+        <source>Analyse IA</source>
+        <target>AI Analysis</target>
+      </segment>
+    </unit>
+    <unit id="analysis.subtitle">
+      <segment state="translated">
+        <source> Identifiez les corrélations entre votre alimentation et vos symptômes digestifs. </source>
+        <target> Identify correlations between your diet and your digestive symptoms. </target>
+      </segment>
+    </unit>
+    <unit id="analysis.notEnoughData">
+      <segment state="translated">
+        <source> L&apos;analyse nécessite au moins 7 jours de données. </source>
+        <target> Analysis requires at least 7 days of data. </target>
+      </segment>
+    </unit>
+    <unit id="analysis.daysAvailable">
+      <segment state="translated">
+        <source>Jours disponibles :</source>
+        <target>Available days:</target>
+      </segment>
+    </unit>
+    <unit id="analysis.launchAriaLabel">
+      <segment state="translated">
+        <source>Lancer l&apos;analyse IA</source>
+        <target>Launch AI analysis</target>
+      </segment>
+    </unit>
+    <unit id="analysis.analyzing">
+      <segment state="translated">
+        <source>Analyse en cours…</source>
+        <target>Analysis in progress…</target>
+      </segment>
+    </unit>
+    <unit id="analysis.launch">
+      <segment state="translated">
+        <source>Lancer l&apos;analyse</source>
+        <target>Launch analysis</target>
+      </segment>
+    </unit>
+    <unit id="analysis.retry">
+      <segment state="translated">
+        <source> Réessayer </source>
+        <target> Retry </target>
+      </segment>
+    </unit>
+    <unit id="analysis.correlationsTitle">
+      <segment state="translated">
+        <source> Corrélations détectées </source>
+        <target> Detected correlations </target>
+      </segment>
+    </unit>
+    <unit id="analysis.reportTitle">
+      <segment state="translated">
+        <source> Rapport détaillé </source>
+        <target> Detailed report </target>
+      </segment>
+    </unit>
+    <unit id="report.disclaimerAriaLabel">
+      <segment state="translated">
+        <source>Avertissement médical</source>
+        <target>Medical disclaimer</target>
+      </segment>
+    </unit>
+    <unit id="report.disclaimer">
+      <segment state="translated">
+        <source> Cette analyse est indicative et ne remplace pas un avis médical. Consultez votre médecin ou nutritionniste. </source>
+        <target> This analysis is indicative and does not replace medical advice. Consult your doctor or nutritionist. </target>
+      </segment>
+    </unit>
+    <unit id="report.contentAriaLabel">
+      <segment state="translated">
+        <source>Rapport d&apos;analyse</source>
+        <target>Analysis report</target>
+      </segment>
+    </unit>
+    <unit id="chart.ariaLabel">
+      <segment state="translated">
+        <source>Graphique des corrélations aliments–symptômes</source>
+        <target>Food–symptom correlation chart</target>
+      </segment>
+    </unit>
+    <unit id="chart.empty">
+      <segment state="translated">
+        <source> Aucune corrélation aliment–symptôme détectée sur la période. </source>
+        <target> No food–symptom correlation detected for this period. </target>
+      </segment>
+    </unit>
+    <unit id="chart.avgSeverity">
+      <segment state="translated">
+        <source>Sévérité moyenne des symptômes suivants</source>
+        <target>Average severity of the following symptoms</target>
+      </segment>
+    </unit>
+    <unit id="chart.xLabel">
+      <segment state="translated">
+        <source>Sévérité moyenne (1–10)</source>
+        <target>Average severity (1–10)</target>
+      </segment>
+    </unit>
+    <unit id="chart.tooltipSeverity">
+      <segment state="translated">
+        <source>Sévérité moy. : <ph id="0" equiv="PH" disp="val.toFixed(1)"/></source>
+        <target>Avg. severity: <ph id="0" equiv="PH" disp="val.toFixed(1)"/></target>
+      </segment>
+    </unit>
+    <unit id="analysis.aiError">
+      <segment state="translated">
+        <source>[<ph id="0" equiv="PH" disp="err.provider"/>] <ph id="1" equiv="PH_1" disp="err.message"/></source>
+        <target>[<ph id="0" equiv="PH" disp="err.provider"/>] <ph id="1" equiv="PH_1" disp="err.message"/></target>
+      </segment>
+    </unit>
+    <unit id="analysis.error">
+      <segment state="translated">
+        <source>Erreur lors de l&apos;analyse. Vérifiez vos paramètres IA.</source>
+        <target>Error during analysis. Check your AI settings.</target>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.period">
+      <segment state="translated">
+        <source>Période</source>
+        <target>Period</target>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.from">
+      <segment state="translated">
+        <source>Du</source>
+        <target>From</target>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.fromAriaLabel">
+      <segment state="translated">
+        <source>Date de début</source>
+        <target>Start date</target>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.to">
+      <segment state="translated">
+        <source>Au</source>
+        <target>To</target>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.toAriaLabel">
+      <segment state="translated">
+        <source>Date de fin</source>
+        <target>End date</target>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.dataTypes">
+      <segment state="translated">
+        <source>Types de données</source>
+        <target>Data types</target>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.food">
+      <segment state="translated">
+        <source>Alimentation</source>
+        <target>Food</target>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.medication">
+      <segment state="translated">
+        <source>Médicaments</source>
+        <target>Medications</target>
+      </segment>
+    </unit>
+    <unit id="export.rangePicker.symptom">
+      <segment state="translated">
+        <source>Symptômes</source>
+        <target>Symptoms</target>
+      </segment>
+    </unit>
+    <unit id="export.title">
+      <segment state="translated">
+        <source>Export des données</source>
+        <target>Data export</target>
+      </segment>
+    </unit>
+    <unit id="export.subtitle">
+      <segment state="translated">
+        <source> Téléchargez vos données pour les partager avec votre médecin ou les archiver. </source>
+        <target> Download your data to share with your doctor or archive it. </target>
+      </segment>
+    </unit>
+    <unit id="export.filtersLabel">
+      <segment state="translated">
+        <source>Filtres d&apos;export</source>
+        <target>Export filters</target>
+      </segment>
+    </unit>
+    <unit id="export.actionsLabel">
+      <segment state="translated">
+        <source>Actions d&apos;export</source>
+        <target>Export actions</target>
+      </segment>
+    </unit>
+    <unit id="export.jsonAriaLabel">
+      <segment state="translated">
+        <source>Exporter en JSON</source>
+        <target>Export as JSON</target>
+      </segment>
+    </unit>
+    <unit id="export.jsonLabel">
+      <segment state="translated">
+        <source>JSON</source>
+        <target>JSON</target>
+      </segment>
+    </unit>
+    <unit id="export.jsonDesc">
+      <segment state="translated">
+        <source>Données complètes</source>
+        <target>Complete data</target>
+      </segment>
+    </unit>
+    <unit id="export.csvAriaLabel">
+      <segment state="translated">
+        <source>Exporter en CSV</source>
+        <target>Export as CSV</target>
+      </segment>
+    </unit>
+    <unit id="export.csvLabel">
+      <segment state="translated">
+        <source>CSV</source>
+        <target>CSV</target>
+      </segment>
+    </unit>
+    <unit id="export.csvDesc">
+      <segment state="translated">
+        <source>Tableur compatible</source>
+        <target>Spreadsheet compatible</target>
+      </segment>
+    </unit>
+    <unit id="export.pdfAriaLabel">
+      <segment state="translated">
+        <source>Exporter en PDF</source>
+        <target>Export as PDF</target>
+      </segment>
+    </unit>
+    <unit id="export.pdfGenerating">
+      <segment state="translated">
+        <source>Génération…</source>
+        <target>Generating…</target>
+      </segment>
+    </unit>
+    <unit id="export.pdfLabel">
+      <segment state="translated">
+        <source>PDF</source>
+        <target>PDF</target>
+      </segment>
+    </unit>
+    <unit id="export.pdfDesc">
+      <segment state="translated">
+        <source>Rapport médical</source>
+        <target>Medical report</target>
+      </segment>
+    </unit>
+    <unit id="export.pdfError">
+      <segment state="translated">
+        <source>Erreur lors de la génération du PDF.</source>
+        <target>Error generating the PDF.</target>
+      </segment>
+    </unit>
+    <unit id="foodCard.delete.ariaLabel">
+      <segment state="translated">
+        <source>Supprimer cette saisie</source>
+        <target>Delete this entry</target>
+      </segment>
+    </unit>
+    <unit id="foodCard.foods.ariaLabel">
+      <segment state="translated">
+        <source>Aliments de cette saisie</source>
+        <target>Foods in this entry</target>
+      </segment>
+    </unit>
+    <unit id="foodCard.noFoods">
+      <segment state="translated">
+        <source>Aucun aliment renseigné</source>
+        <target>No food recorded</target>
+      </segment>
+    </unit>
+    <unit id="mealType.breakfast">
+      <segment state="translated">
+        <source>Petit-déjeuner</source>
+        <target>Breakfast</target>
+      </segment>
+    </unit>
+    <unit id="mealType.lunch">
+      <segment state="translated">
+        <source>Déjeuner</source>
+        <target>Lunch</target>
+      </segment>
+    </unit>
+    <unit id="mealType.dinner">
+      <segment state="translated">
+        <source>Dîner</source>
+        <target>Dinner</target>
+      </segment>
+    </unit>
+    <unit id="mealType.snack">
+      <segment state="translated">
+        <source>Collation</source>
+        <target>Snack</target>
+      </segment>
+    </unit>
+    <unit id="mealType.drink">
+      <segment state="translated">
+        <source>Boisson</source>
+        <target>Drink</target>
+      </segment>
+    </unit>
+    <unit id="foodSearch.nameLabel">
+      <segment state="translated">
+        <source> Aliment </source>
+        <target> Food </target>
+      </segment>
+    </unit>
+    <unit id="foodSearch.namePlaceholder">
+      <segment state="translated">
+        <source>Ex. : poulet, pain de seigle…</source>
+        <target>E.g.: chicken, rye bread…</target>
+      </segment>
+    </unit>
+    <unit id="foodSearch.quantityLabel">
+      <segment state="translated">
+        <source> Quantité </source>
+        <target> Quantity </target>
+      </segment>
+    </unit>
+    <unit id="foodSearch.quantityPlaceholder">
+      <segment state="translated">
+        <source>150 g, 1 bol…</source>
+        <target>150 g, 1 bowl…</target>
+      </segment>
+    </unit>
+    <unit id="foodSearch.addButton.ariaLabel">
+      <segment state="translated">
+        <source>Ajouter l&apos;aliment à la liste</source>
+        <target>Add food to the list</target>
+      </segment>
+    </unit>
+    <unit id="foodSearch.addButton">
+      <segment state="translated">
+        <source> Ajouter </source>
+        <target> Add </target>
+      </segment>
+    </unit>
+    <unit id="mealType.group.ariaLabel">
+      <segment state="translated">
+        <source>Type de repas</source>
+        <target>Meal type</target>
+      </segment>
+    </unit>
+    <unit id="recentFoods.title">
+      <segment state="translated">
+        <source> Aliments fréquents </source>
+        <target> Frequent foods </target>
+      </segment>
+    </unit>
+    <unit id="foodEntry.title">
+      <segment state="translated">
+        <source>Saisie alimentaire</source>
+        <target>Food entry</target>
+      </segment>
+    </unit>
+    <unit id="foodEntry.form.ariaLabel">
+      <segment state="translated">
+        <source>Nouvelle saisie</source>
+        <target>New entry</target>
+      </segment>
+    </unit>
+    <unit id="foodEntry.pending.ariaLabel">
+      <segment state="translated">
+        <source>Aliments à enregistrer</source>
+        <target>Foods to save</target>
+      </segment>
+    </unit>
+    <unit id="foodEntry.removeFood.ariaLabel">
+      <segment state="translated">
+        <source>Retirer l&apos;aliment</source>
+        <target>Remove food</target>
+      </segment>
+    </unit>
+    <unit id="foodEntry.analyzingFodmap">
+      <segment state="translated">
+        <source>Analyse FODMAP…</source>
+        <target>FODMAP analysis…</target>
+      </segment>
+    </unit>
+    <unit id="foodEntry.saving">
+      <segment state="translated">
+        <source>Enregistrement…</source>
+        <target>Saving…</target>
+      </segment>
+    </unit>
+    <unit id="foodEntry.save">
+      <segment state="translated">
+        <source>Enregistrer le repas</source>
+        <target>Save meal</target>
+      </segment>
+    </unit>
+    <unit id="foodEntry.journal.ariaLabel">
+      <segment state="translated">
+        <source>Journal du jour</source>
+        <target>Today's journal</target>
+      </segment>
+    </unit>
+    <unit id="foodEntry.journal.title">
+      <segment state="translated">
+        <source> Journal du jour </source>
+        <target> Today's journal </target>
+      </segment>
+    </unit>
+    <unit id="foodEntry.loading">
+      <segment state="translated">
+        <source>Chargement…</source>
+        <target>Loading…</target>
+      </segment>
+    </unit>
+    <unit id="foodEntry.empty">
+      <segment state="translated">
+        <source> Aucune saisie aujourd&apos;hui. Commencez par ajouter un repas. </source>
+        <target> No entries today. Start by adding a meal. </target>
+      </segment>
+    </unit>
+    <unit id="store.loadError">
+      <segment state="translated">
+        <source>Erreur lors du chargement.</source>
+        <target>Error loading data.</target>
+      </segment>
+    </unit>
+    <unit id="medicationCard.delete.ariaLabel">
+      <segment state="translated">
+        <source>Supprimer cette saisie</source>
+        <target>Delete this entry</target>
+      </segment>
+    </unit>
+    <unit id="medicationCard.list.ariaLabel">
+      <segment state="translated">
+        <source>Médicaments de cette saisie</source>
+        <target>Medications in this entry</target>
+      </segment>
+    </unit>
+    <unit id="medicationCard.noMedications">
+      <segment state="translated">
+        <source> Aucun médicament renseigné </source>
+        <target> No medication recorded </target>
+      </segment>
+    </unit>
+    <unit id="medicationType.enzyme">
+      <segment state="translated">
+        <source>Enzyme digestive</source>
+        <target>Digestive enzyme</target>
+      </segment>
+    </unit>
+    <unit id="medicationType.probiotic">
+      <segment state="translated">
+        <source>Probiotique</source>
+        <target>Probiotic</target>
+      </segment>
+    </unit>
+    <unit id="medicationType.antibiotic">
+      <segment state="translated">
+        <source>Antibiotique</source>
+        <target>Antibiotic</target>
+      </segment>
+    </unit>
+    <unit id="medicationType.antispasmodic">
+      <segment state="translated">
+        <source>Antispasmodique</source>
+        <target>Antispasmodic</target>
+      </segment>
+    </unit>
+    <unit id="medicationType.other">
+      <segment state="translated">
+        <source>Autre</source>
+        <target>Other</target>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.name.label">
+      <segment state="translated">
+        <source> Médicament ou complément </source>
+        <target> Medication or supplement </target>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.name.ariaLabel">
+      <segment state="translated">
+        <source>Nom du médicament</source>
+        <target>Medication name</target>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.name.placeholder">
+      <segment state="translated">
+        <source>Lactase, Probiotique…</source>
+        <target>Lactase, Probiotic…</target>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.suggestions.ariaLabel">
+      <segment state="translated">
+        <source>Suggestions de médicaments</source>
+        <target>Medication suggestions</target>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.type.ariaLabel">
+      <segment state="translated">
+        <source>Type de médicament</source>
+        <target>Medication type</target>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.dose.label">
+      <segment state="translated">
+        <source> Dose <pc id="0" equivStart="START_TAG_SPAN" equivEnd="CLOSE_TAG_SPAN" type="other" dispStart="&lt;span class=&quot;medication-picker__optional&quot;&gt;" dispEnd="&lt;/span&gt;">(optionnel)</pc></source>
+        <target> Dose <pc id="0" equivStart="START_TAG_SPAN" equivEnd="CLOSE_TAG_SPAN" type="other" dispStart="&lt;span class=&quot;medication-picker__optional&quot;&gt;" dispEnd="&lt;/span&gt;">(optional)</pc></target>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.dose.ariaLabel">
+      <segment state="translated">
+        <source>Dose du médicament</source>
+        <target>Medication dose</target>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.dose.placeholder">
+      <segment state="translated">
+        <source>1 cp, 500 mg…</source>
+        <target>1 tablet, 500 mg…</target>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.add.ariaLabel">
+      <segment state="translated">
+        <source>Ajouter ce médicament à la liste</source>
+        <target>Add this medication to the list</target>
+      </segment>
+    </unit>
+    <unit id="medicationPicker.add.label">
+      <segment state="translated">
+        <source>Ajouter</source>
+        <target>Add</target>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.title">
+      <segment state="translated">
+        <source> Médicaments &amp; compléments </source>
+        <target> Medications &amp; supplements </target>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.form.ariaLabel">
+      <segment state="translated">
+        <source>Nouvelle saisie médicament</source>
+        <target>New medication entry</target>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.pending.ariaLabel">
+      <segment state="translated">
+        <source>Médicaments à enregistrer</source>
+        <target>Medications to save</target>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.removeMedication.ariaLabel">
+      <segment state="translated">
+        <source>Retirer ce médicament</source>
+        <target>Remove this medication</target>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.saving">
+      <segment state="translated">
+        <source>Enregistrement…</source>
+        <target>Saving…</target>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.save">
+      <segment state="translated">
+        <source>Enregistrer la saisie</source>
+        <target>Save entry</target>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.journal.ariaLabel">
+      <segment state="translated">
+        <source>Journal des médicaments du jour</source>
+        <target>Today's medication journal</target>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.journal.title">
+      <segment state="translated">
+        <source> Aujourd&apos;hui </source>
+        <target> Today </target>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.loading">
+      <segment state="translated">
+        <source> Chargement… </source>
+        <target> Loading… </target>
+      </segment>
+    </unit>
+    <unit id="medicationEntry.empty">
+      <segment state="translated">
+        <source> Aucune saisie aujourd&apos;hui. </source>
+        <target> No entries today. </target>
+      </segment>
+    </unit>
+    <unit id="medicationStore.loadError">
+      <segment state="translated">
+        <source>Erreur lors du chargement.</source>
+        <target>Error loading data.</target>
+      </segment>
+    </unit>
+    <unit id="settings.title">
+      <segment state="translated">
+        <source>Paramètres</source>
+        <target>Settings</target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.title">
+      <segment state="translated">
+        <source> Intelligence artificielle </source>
+        <target> Artificial intelligence </target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.provider.label">
+      <segment state="translated">
+        <source> Fournisseur actif </source>
+        <target> Active provider </target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.free">
+      <segment state="translated">
+        <source> gratuit </source>
+        <target> free </target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.warning">
+      <segment state="translated">
+        <source> Les clés API sont stockées dans votre navigateur (localStorage) avec un encodage de base — elles ne sont pas chiffrées. N&apos;utilisez pas cette application sur un appareil partagé. </source>
+        <target> API keys are stored in your browser (localStorage) with basic encoding — they are not encrypted. Do not use this app on a shared device. </target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.apiKey">
+      <segment state="translated">
+        <source> Clé API </source>
+        <target> API Key </target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.apiKey.placeholder">
+      <segment state="translated">
+        <source>sk-...</source>
+        <target>sk-...</target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.toggleKey.openai">
+      <segment state="translated">
+        <source>Afficher ou masquer la clé OpenAI</source>
+        <target>Show or hide OpenAI key</target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.model">
+      <segment state="translated">
+        <source> Modèle </source>
+        <target> Model </target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.apiKey.placeholder.anthropic">
+      <segment state="translated">
+        <source>sk-ant-...</source>
+        <target>sk-ant-...</target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.toggleKey.anthropic">
+      <segment state="translated">
+        <source>Afficher ou masquer la clé Anthropic</source>
+        <target>Show or hide Anthropic key</target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.apiKey.placeholder.gemini">
+      <segment state="translated">
+        <source>AIza...</source>
+        <target>AIza...</target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.toggleKey.gemini">
+      <segment state="translated">
+        <source>Afficher ou masquer la clé Gemini</source>
+        <target>Show or hide Gemini key</target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.ollama.url">
+      <segment state="translated">
+        <source> URL du serveur </source>
+        <target> Server URL </target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.ollama.model.placeholder">
+      <segment state="translated">
+        <source>llava, llama3.2, mistral…</source>
+        <target>llava, llama3.2, mistral…</target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.ollama.hint">
+      <segment state="translated">
+        <source> Ollama doit être démarré localement. Aucune clé API n&apos;est requise. </source>
+        <target> Ollama must be running locally. No API key required. </target>
+      </segment>
+    </unit>
+    <unit id="settings.ai.save">
+      <segment state="translated">
+        <source> Sauvegarder les paramètres IA </source>
+        <target> Save AI settings </target>
+      </segment>
+    </unit>
+    <unit id="settings.saved">
+      <segment state="translated">
+        <source> ✓ Sauvegardé </source>
+        <target> ✓ Saved </target>
+      </segment>
+    </unit>
+    <unit id="settings.prefs.title">
+      <segment state="translated">
+        <source> Préférences </source>
+        <target> Preferences </target>
+      </segment>
+    </unit>
+    <unit id="settings.bodyMap.gender.label">
+      <segment state="translated">
+        <source> Genre anatomique (carte corporelle) </source>
+        <target> Anatomical gender (body map) </target>
+      </segment>
+    </unit>
+    <unit id="settings.bodyMap.gender.male">
+      <segment state="translated">
+        <source> Masculin </source>
+        <target> Male </target>
+      </segment>
+    </unit>
+    <unit id="settings.bodyMap.gender.female">
+      <segment state="translated">
+        <source> Féminin </source>
+        <target> Female </target>
+      </segment>
+    </unit>
+    <unit id="settings.language.label">
+      <segment state="translated">
+        <source> Langue de l&apos;interface </source>
+        <target> Interface language </target>
+      </segment>
+    </unit>
+    <unit id="settings.language.note">
+      <segment state="translated">
+        <source> Le changement de langue prend effet après rechargement de la page. </source>
+        <target> Language change takes effect after page reload. </target>
+      </segment>
+    </unit>
+    <unit id="settings.prefs.save">
+      <segment state="translated">
+        <source> Sauvegarder les préférences </source>
+        <target> Save preferences </target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.container.ariaLabel">
+      <segment state="translated">
+        <source>Carte corporelle — cliquez pour sélectionner une zone</source>
+        <target>Body map — click to select an area</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.loading">
+      <segment state="translated">
+        <source>Chargement…</source>
+        <target>Loading…</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.selectedPrefix">
+      <segment state="translated">
+        <source>Zone sélectionnée :</source>
+        <target>Selected area:</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.head">
+      <segment state="translated">
+        <source>Tête</source>
+        <target>Head</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.thorax">
+      <segment state="translated">
+        <source>Thorax</source>
+        <target>Chest</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.abdomenUpper">
+      <segment state="translated">
+        <source>Abdomen haut</source>
+        <target>Upper abdomen</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.abdomenLeft">
+      <segment state="translated">
+        <source>Abdomen gauche</source>
+        <target>Left abdomen</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.abdomenRight">
+      <segment state="translated">
+        <source>Abdomen droit</source>
+        <target>Right abdomen</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.abdomenLower">
+      <segment state="translated">
+        <source>Abdomen bas</source>
+        <target>Lower abdomen</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.pelvis">
+      <segment state="translated">
+        <source>Pelvis</source>
+        <target>Pelvis</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.leftArm">
+      <segment state="translated">
+        <source>Bras gauche</source>
+        <target>Left arm</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.rightArm">
+      <segment state="translated">
+        <source>Bras droit</source>
+        <target>Right arm</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.leftLeg">
+      <segment state="translated">
+        <source>Jambe gauche</source>
+        <target>Left leg</target>
+      </segment>
+    </unit>
+    <unit id="bodyMap.region.rightLeg">
+      <segment state="translated">
+        <source>Jambe droite</source>
+        <target>Right leg</target>
+      </segment>
+    </unit>
+    <unit id="severitySlider.label">
+      <segment state="translated">
+        <source> Sévérité </source>
+        <target> Severity </target>
+      </segment>
+    </unit>
+    <unit id="severitySlider.input.ariaLabel">
+      <segment state="translated">
+        <source>Niveau de sévérité de 1 à 10</source>
+        <target>Severity level from 1 to 10</target>
+      </segment>
+    </unit>
+    <unit id="severitySlider.min">
+      <segment state="translated">
+        <source>1</source>
+        <target>1</target>
+      </segment>
+    </unit>
+    <unit id="severitySlider.label.moderate">
+      <segment state="translated">
+        <source>5</source>
+        <target>5</target>
+      </segment>
+    </unit>
+    <unit id="severitySlider.max">
+      <segment state="translated">
+        <source>10</source>
+        <target>10</target>
+      </segment>
+    </unit>
+    <unit id="severity.veryLow">
+      <segment state="translated">
+        <source>Très léger</source>
+        <target>Very mild</target>
+      </segment>
+    </unit>
+    <unit id="severity.low">
+      <segment state="translated">
+        <source>Léger</source>
+        <target>Mild</target>
+      </segment>
+    </unit>
+    <unit id="severity.moderate">
+      <segment state="translated">
+        <source>Modéré</source>
+        <target>Moderate</target>
+      </segment>
+    </unit>
+    <unit id="severity.high">
+      <segment state="translated">
+        <source>Intense</source>
+        <target>Severe</target>
+      </segment>
+    </unit>
+    <unit id="severity.veryHigh">
+      <segment state="translated">
+        <source>Très intense</source>
+        <target>Very severe</target>
+      </segment>
+    </unit>
+    <unit id="symptomCard.delete.ariaLabel">
+      <segment state="translated">
+        <source>Supprimer cette saisie</source>
+        <target>Delete this entry</target>
+      </segment>
+    </unit>
+    <unit id="symptomCard.list.ariaLabel">
+      <segment state="translated">
+        <source>Symptômes de cette saisie</source>
+        <target>Symptoms in this entry</target>
+      </segment>
+    </unit>
+    <unit id="symptomCard.noSymptoms">
+      <segment state="translated">
+        <source> Aucun symptôme renseigné </source>
+        <target> No symptom recorded </target>
+      </segment>
+    </unit>
+    <unit id="symptomType.pain">
+      <segment state="translated">
+        <source>Douleur</source>
+        <target>Pain</target>
+      </segment>
+    </unit>
+    <unit id="symptomType.bloating">
+      <segment state="translated">
+        <source>Ballonnements</source>
+        <target>Bloating</target>
+      </segment>
+    </unit>
+    <unit id="symptomType.gas">
+      <segment state="translated">
+        <source>Gaz</source>
+        <target>Gas</target>
+      </segment>
+    </unit>
+    <unit id="symptomType.belching">
+      <segment state="translated">
+        <source>Éructations</source>
+        <target>Belching</target>
+      </segment>
+    </unit>
+    <unit id="symptomType.constipation">
+      <segment state="translated">
+        <source>Constipation</source>
+        <target>Constipation</target>
+      </segment>
+    </unit>
+    <unit id="symptomType.diarrhea">
+      <segment state="translated">
+        <source>Diarrhée</source>
+        <target>Diarrhea</target>
+      </segment>
+    </unit>
+    <unit id="symptomType.headache">
+      <segment state="translated">
+        <source>Maux de tête</source>
+        <target>Headache</target>
+      </segment>
+    </unit>
+    <unit id="symptomType.other">
+      <segment state="translated">
+        <source>Autre</source>
+        <target>Other</target>
+      </segment>
+    </unit>
+    <unit id="symptomType.group.ariaLabel">
+      <segment state="translated">
+        <source>Type de symptôme</source>
+        <target>Symptom type</target>
+      </segment>
+    </unit>
+    <unit id="symptomStore.loadError">
+      <segment state="translated">
+        <source>Erreur lors du chargement.</source>
+        <target>Error loading data.</target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.title">
+      <segment state="translated">
+        <source> Saisie des symptômes </source>
+        <target> Symptom entry </target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.form.ariaLabel">
+      <segment state="translated">
+        <source>Nouveau symptôme</source>
+        <target>New symptom</target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.typeLabel">
+      <segment state="translated">
+        <source> Type de symptôme </source>
+        <target> Symptom type </target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.locationLabel">
+      <segment state="translated">
+        <source> Localisation <pc id="0" equivStart="START_TAG_SPAN" equivEnd="CLOSE_TAG_SPAN" type="other" dispStart="&lt;span class=&quot;symptom-entry-page__optional&quot;&gt;" dispEnd="&lt;/span&gt;">(optionnel)</pc></source>
+        <target> Location <pc id="0" equivStart="START_TAG_SPAN" equivEnd="CLOSE_TAG_SPAN" type="other" dispStart="&lt;span class=&quot;symptom-entry-page__optional&quot;&gt;" dispEnd="&lt;/span&gt;">(optional)</pc></target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.noteLabel">
+      <segment state="translated">
+        <source> Note <pc id="0" equivStart="START_TAG_SPAN" equivEnd="CLOSE_TAG_SPAN" type="other" dispStart="&lt;span class=&quot;symptom-entry-page__optional&quot;&gt;" dispEnd="&lt;/span&gt;">(optionnel)</pc></source>
+        <target> Note <pc id="0" equivStart="START_TAG_SPAN" equivEnd="CLOSE_TAG_SPAN" type="other" dispStart="&lt;span class=&quot;symptom-entry-page__optional&quot;&gt;" dispEnd="&lt;/span&gt;">(optional)</pc></target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.note.ariaLabel">
+      <segment state="translated">
+        <source>Note libre pour ce symptôme</source>
+        <target>Free note for this symptom</target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.note.placeholder">
+      <segment state="translated">
+        <source>Précisions…</source>
+        <target>Details…</target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.addSymptom">
+      <segment state="translated">
+        <source>+ Ajouter ce symptôme</source>
+        <target>+ Add this symptom</target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.pending.ariaLabel">
+      <segment state="translated">
+        <source>Symptômes à enregistrer</source>
+        <target>Symptoms to save</target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.pending.title">
+      <segment state="translated">
+        <source> À enregistrer </source>
+        <target> To save </target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.removeSymptom.ariaLabel">
+      <segment state="translated">
+        <source>Retirer ce symptôme</source>
+        <target>Remove this symptom</target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.saving">
+      <segment state="translated">
+        <source>Enregistrement…</source>
+        <target>Saving…</target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.save">
+      <segment state="translated">
+        <source>Enregistrer la saisie</source>
+        <target>Save entry</target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.journal.ariaLabel">
+      <segment state="translated">
+        <source>Journal des symptômes du jour</source>
+        <target>Today's symptom journal</target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.journal.title">
+      <segment state="translated">
+        <source> Aujourd&apos;hui </source>
+        <target> Today </target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.loading">
+      <segment state="translated">
+        <source>Chargement…</source>
+        <target>Loading…</target>
+      </segment>
+    </unit>
+    <unit id="symptomEntry.empty">
+      <segment state="translated">
+        <source> Aucun symptôme enregistré aujourd&apos;hui. </source>
+        <target> No symptoms recorded today. </target>
+      </segment>
+    </unit>
+    <unit id="fodmap.low">
+      <segment state="translated">
+        <source>Faible</source>
+        <target>Low</target>
+      </segment>
+    </unit>
+    <unit id="fodmap.medium">
+      <segment state="translated">
+        <source>Modéré</source>
+        <target>Moderate</target>
+      </segment>
+    </unit>
+    <unit id="fodmap.high">
+      <segment state="translated">
+        <source>Élevé</source>
+        <target>High</target>
+      </segment>
+    </unit>
+    <unit id="nav.sidebar.ariaLabel">
+      <segment state="translated">
+        <source>Navigation principale</source>
+        <target>Main navigation</target>
+      </segment>
+    </unit>
+    <unit id="nav.brand">
+      <segment state="translated">
+        <source>GutTracker</source>
+        <target>GutTracker</target>
+      </segment>
+    </unit>
+    <unit id="nav.bottom.ariaLabel">
+      <segment state="translated">
+        <source>Navigation principale</source>
+        <target>Main navigation</target>
+      </segment>
+    </unit>
+    <unit id="nav.food.label">
+      <segment state="translated">
+        <source>Alimentation</source>
+        <target>Food</target>
+      </segment>
+    </unit>
+    <unit id="nav.food.ariaLabel">
+      <segment state="translated">
+        <source>Saisie alimentaire</source>
+        <target>Food entry</target>
+      </segment>
+    </unit>
+    <unit id="nav.symptoms.label">
+      <segment state="translated">
+        <source>Symptômes</source>
+        <target>Symptoms</target>
+      </segment>
+    </unit>
+    <unit id="nav.symptoms.ariaLabel">
+      <segment state="translated">
+        <source>Saisie des symptômes</source>
+        <target>Symptom entry</target>
+      </segment>
+    </unit>
+    <unit id="nav.medication.label">
+      <segment state="translated">
+        <source>Médicaments</source>
+        <target>Medications</target>
+      </segment>
+    </unit>
+    <unit id="nav.medication.ariaLabel">
+      <segment state="translated">
+        <source>Saisie des médicaments</source>
+        <target>Medication entry</target>
+      </segment>
+    </unit>
+    <unit id="nav.analysis.label">
+      <segment state="translated">
+        <source>Analyse IA</source>
+        <target>AI Analysis</target>
+      </segment>
+    </unit>
+    <unit id="nav.analysis.ariaLabel">
+      <segment state="translated">
+        <source>Analyse IA</source>
+        <target>AI Analysis</target>
+      </segment>
+    </unit>
+    <unit id="nav.export.label">
+      <segment state="translated">
+        <source>Export</source>
+        <target>Export</target>
+      </segment>
+    </unit>
+    <unit id="nav.export.ariaLabel">
+      <segment state="translated">
+        <source>Exporter les données</source>
+        <target>Export data</target>
+      </segment>
+    </unit>
+    <unit id="nav.settings.label">
+      <segment state="translated">
+        <source>Paramètres</source>
+        <target>Settings</target>
+      </segment>
+    </unit>
+    <unit id="nav.settings.ariaLabel">
+      <segment state="translated">
+        <source>Paramètres</source>
+        <target>Settings</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>
