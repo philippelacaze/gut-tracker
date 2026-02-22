@@ -17,7 +17,8 @@
       "Bash(cd /c/angular/gut-tracker && npx vitest run --reporter=verbose src/app/features/food-entry/services/food-entry.store.spec.ts src/app/core/repositories/local-storage.repository.spec.ts src/app/core/services/ai/ai.service.spec.ts 2>&1)",
       "Bash(find:*)",
       "Bash(node:*)",
-      "Bash(cd /c/angular/gut-tracker && npx vitest run src/app/core/services/voice/voice-recognition.service.spec.ts 2>&1)"
+      "Bash(cd /c/angular/gut-tracker && npx vitest run src/app/core/services/voice/voice-recognition.service.spec.ts 2>&1)",
+      "Bash(cd /c/angular/gut-tracker && npx ng test --include=\"**/voice-recognition.service.spec.ts\" --watch=false 2>&1)"
     ]
   }
 }

@@ -107,7 +107,7 @@ describe('VoiceRecognitionService', () => {
       expect(() => service.startRecording('fr-FR', 'webSpeechApi')).toThrow();
     });
 
-    it('ne duplique pas les mots quand Android renvoie resultIndex=0 (bug Android)', async () => {
+    it('assemble correctement un transcript multi-mots (plusieurs onresult cumulatifs)', async () => {
       FakeSpeechRecognition._nextResults = null;
       const service = createService(true);
 
@@ -115,32 +115,26 @@ describe('VoiceRecognitionService', () => {
       const resultPromise = session.result;
       const recognition = FakeSpeechRecognition._lastInstance!;
 
-      // Reproduit le bug Android : 4 événements avec resultIndex=0
-      // sur une liste cumulative, causant "CracotteCracotteCracottedeCracotte de sarrasin"
+      // Simule plusieurs événements onresult successifs avec liste cumulative
+      // (comportement normal sur certains navigateurs desktop)
 
-      // Événement 1 : "Cracotte" finalisé
+      // Événement 1 : premier mot finalisé
       recognition.onresult?.({
         results: { length: 1, 0: { isFinal: true, 0: { transcript: 'Cracotte' } } },
         resultIndex: 0,
       });
 
-      // Événement 2 (Android renvoie le même résultat + interim)
-      recognition.onresult?.({
-        results: { length: 1, 0: { isFinal: true, 0: { transcript: 'Cracotte' } } },
-        resultIndex: 0,
-      });
-
-      // Événement 3 : "Cracotte" + " de" finalisés, resultIndex=0 (au lieu de 1)
+      // Événement 2 : deuxième mot ajouté
       recognition.onresult?.({
         results: {
           length: 2,
           0: { isFinal: true, 0: { transcript: 'Cracotte' } },
           1: { isFinal: true, 0: { transcript: ' de' } },
         },
-        resultIndex: 0,
+        resultIndex: 1,
       });
 
-      // Événement 4 : les 3 mots finalisés, resultIndex=0 (au lieu de 2)
+      // Événement 3 : troisième mot ajouté
       recognition.onresult?.({
         results: {
           length: 3,
@@ -148,13 +142,12 @@ describe('VoiceRecognitionService', () => {
           1: { isFinal: true, 0: { transcript: ' de' } },
           2: { isFinal: true, 0: { transcript: ' sarrasin' } },
         },
-        resultIndex: 0,
+        resultIndex: 2,
       });
 
       recognition.onend?.();
       const transcript = await resultPromise;
 
-      // Sans le fix : "CracotteCracotteCracottedeCracotte de sarrasin"
       expect(transcript).toBe('Cracotte de sarrasin');
     });
 

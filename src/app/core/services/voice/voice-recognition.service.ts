@@ -86,7 +86,10 @@ export class VoiceRecognitionService {
     }
 
     const recognition = new SpeechRecognitionClass();
-    recognition.continuous = true;
+    // continuous: false évite le bug Android Chrome où le moteur redémarre la session
+    // en boucle et injecte des résultats finaux dupliqués dans event.results
+    // (ex : "Cracotte" répété 4 fois → "CracotteCracotteCracottedeCracotte de sarrasin").
+    recognition.continuous = false;
     recognition.interimResults = true;
     recognition.lang = lang;
 
@@ -98,10 +101,7 @@ export class VoiceRecognitionService {
 
       recognition.onresult = (event: ISpeechRecognitionEvent) => {
         clearTimeout(silenceTimer);
-        // Reconstruit depuis zéro à chaque événement.
-        // Sur Android, resultIndex est souvent 0 même pour de nouveaux résultats,
-        // ce qui causait des doublons avec une accumulation incrémentale.
-        // La reconstruction garantit que chaque slot final n'est compté qu'une fois.
+        // Reconstruit depuis zéro à chaque événement pour gérer les résultats cumulatifs.
         let rebuilt = '';
         for (let i = 0; i < event.results.length; i++) {
           if (event.results[i].isFinal) {
