@@ -1,0 +1,170 @@
+@use '../../../shared/styles/variables' as *;
+@use '../../../shared/styles/mixins' as *;
+
+.voice-input {
+  // ── FAB ──────────────────────────────────────────────────────────
+  &__fab {
+    position: fixed;
+    bottom: calc(#{$nav-bottom-height} + 16px);
+    right: 24px;
+    z-index: 110; // supérieur au z-nav (100)
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+
+    background: $color-primary;
+    color: $color-primary-text;
+    box-shadow: $shadow-md;
+    transition: background 0.2s;
+
+    &:hover {
+      background: $color-primary-light;
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+
+    // Animation pulse pendant l'enregistrement
+    &--recording {
+      animation: voice-pulse 1.2s ease-in-out infinite;
+    }
+
+    @include respond-to('md') {
+      bottom: 24px; // desktop : pas de bottom nav
+    }
+  }
+
+  // ── Overlay ──────────────────────────────────────────────────────
+  &__overlay {
+    position: fixed;
+    bottom: calc(#{$nav-bottom-height} + 80px);
+    right: 16px;
+    width: min(360px, calc(100vw - 32px));
+    z-index: 110;
+
+    background: $color-surface;
+    border-radius: $radius-md;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    padding: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    @include respond-to('md') {
+      bottom: 88px;
+    }
+  }
+
+  // ── Contenu overlay ──────────────────────────────────────────────
+  &__status {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $color-on-surface;
+    font-size: 0.95rem;
+  }
+
+  &__spinner {
+    display: inline-block;
+    color: $color-primary;
+
+    &--spin {
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    color: $color-on-surface-muted;
+  }
+
+  &__textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    font-size: 0.95rem;
+    resize: vertical;
+    color: $color-on-surface;
+    background: $color-background;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+    }
+  }
+
+  &__error {
+    margin: 0;
+    color: #d32f2f;
+    font-size: 0.9rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  &__btn {
+    padding: 8px 16px;
+    border-radius: $radius-sm;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    &--primary {
+      background: $color-primary;
+      color: $color-primary-text;
+
+      &:hover {
+        background: $color-primary-light;
+      }
+    }
+
+    &--secondary {
+      background: transparent;
+      color: $color-primary;
+      border: 1px solid $color-primary;
+
+      &:hover {
+        background: $color-primary-bg;
+      }
+    }
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+}
+
+// ── Animations ───────────────────────────────────────────────────────
+@keyframes voice-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba($color-primary, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba($color-primary, 0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

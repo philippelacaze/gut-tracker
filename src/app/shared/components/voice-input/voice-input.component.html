@@ -1,0 +1,117 @@
+@if (isVoiceEnabled()) {
+  <!-- ── FAB Microphone ── -->
+  @if (voiceState() !== 'parsing') {
+    <button
+      type="button"
+      class="voice-input__fab"
+      [class.voice-input__fab--recording]="voiceState() === 'recording'"
+      [attr.aria-pressed]="voiceState() === 'recording'"
+      [attr.aria-label]="fabAriaLabel()"
+      (click)="onFabClick()"
+    >
+      <!-- Icône microphone SVG -->
+      <svg
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        width="24"
+        height="24"
+      >
+        <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.93V20H9v2h6v-2h-2v-2.07A7 7 0 0 0 19 11h-2z"/>
+      </svg>
+    </button>
+  }
+
+  <!-- ── Overlay état ── -->
+  @if (voiceState() !== 'idle') {
+    <div
+      class="voice-input__overlay"
+      role="dialog"
+      aria-modal="false"
+      aria-live="polite"
+      aria-label="Saisie vocale"
+      i18n-aria-label="@@voiceInput.overlay.ariaLabel"
+    >
+      @switch (voiceState()) {
+        @case ('recording') {
+          <p class="voice-input__status" i18n="@@voiceInput.status.recording">
+            <span class="voice-input__spinner" aria-hidden="true">⏺</span>
+            Écoute en cours…
+          </p>
+          <button
+            type="button"
+            class="voice-input__btn voice-input__btn--secondary"
+            (click)="onFabClick()"
+            i18n="@@voiceInput.btn.stop"
+          >
+            Arrêter
+          </button>
+        }
+
+        @case ('transcribing') {
+          <p class="voice-input__status" i18n="@@voiceInput.status.transcribing">
+            <span class="voice-input__spinner voice-input__spinner--spin" aria-hidden="true">⟳</span>
+            Transcription…
+          </p>
+        }
+
+        @case ('done') {
+          <label
+            class="voice-input__label"
+            for="voice-transcript"
+            i18n="@@voiceInput.transcript.label"
+          >
+            Vérifiez et modifiez si besoin :
+          </label>
+          <textarea
+            id="voice-transcript"
+            class="voice-input__textarea"
+            rows="3"
+            [value]="transcript()"
+            (input)="onTranscriptChange($event)"
+          ></textarea>
+          <div class="voice-input__actions">
+            <button
+              type="button"
+              class="voice-input__btn voice-input__btn--primary"
+              (click)="analyse()"
+              i18n="@@voiceInput.btn.analyse"
+            >
+              Analyser
+            </button>
+            <button
+              type="button"
+              class="voice-input__btn voice-input__btn--secondary"
+              (click)="cancel()"
+              i18n="@@voiceInput.btn.cancel"
+            >
+              Annuler
+            </button>
+          </div>
+        }
+
+        @case ('parsing') {
+          <p class="voice-input__status" i18n="@@voiceInput.status.parsing">
+            <span class="voice-input__spinner voice-input__spinner--spin" aria-hidden="true">⟳</span>
+            Analyse IA en cours…
+          </p>
+        }
+
+        @case ('error') {
+          <p class="voice-input__error" role="alert">
+            {{ errorMessage() }}
+          </p>
+          <button
+            type="button"
+            class="voice-input__btn voice-input__btn--secondary"
+            (click)="cancel()"
+            i18n="@@voiceInput.btn.close"
+          >
+            Fermer
+          </button>
+        }
+      }
+    </div>
+  }
+}
