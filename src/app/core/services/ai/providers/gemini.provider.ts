@@ -11,7 +11,7 @@ interface GeminiTextPart {
 }
 
 interface GeminiImagePart {
-  inline_data: { mime_type: 'image/jpeg'; data: string };
+  inline_data: { mime_type: string | 'image/jpeg'; data: string };
 }
 
 type GeminiPart = GeminiTextPart | GeminiImagePart;
@@ -34,10 +34,10 @@ export class GeminiProvider implements AiProvider {
 
   private readonly _settings = inject(AiSettingsService);
 
-  async analyzeImage(base64Image: string, prompt: string): Promise<string> {
+  async analyzeImage(base64Image: string, prompt: string, fileType: string): Promise<string> {
     const config = this._settings.getProviderConfig('gemini');
     const parts: GeminiPart[] = [
-      { inline_data: { mime_type: 'image/jpeg', data: base64Image } },
+      { inline_data: { mime_type: fileType ??'image/jpeg', data: base64Image } },
       { text: prompt },
     ];
     const requestBody: GeminiRequestBody = {

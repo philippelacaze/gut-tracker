@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, inject, output, signal } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, output, signal} from '@angular/core';
 
 import {
   ImageRecognitionResult,
 } from '../../../../core/models/ai-recognition.model';
-import { AiService } from '../../../../core/services/ai/ai.service';
-import { AiError } from '../../../../core/services/ai/ai.error';
+import {AiService} from '../../../../core/services/ai/ai.service';
+import {AiError} from '../../../../core/services/ai/ai.error';
 
 export interface FoodCameraOutput {
   photoUrl: string;
@@ -42,7 +42,7 @@ export class FoodCameraComponent {
     // Réinitialise l'input pour permettre la resélection du même fichier
     input.value = '';
 
-    await this._analyze(base64);
+    await this._analyze(base64, file.type);
   }
 
   reset(): void {
@@ -62,10 +62,10 @@ export class FoodCameraComponent {
     });
   }
 
-  private async _analyze(base64: string): Promise<void> {
+  private async _analyze(base64: string, fileType: string): Promise<void> {
     try {
-      const result = await this._aiService.recognizeFood(base64);
-      this.analysisComplete.emit({ photoUrl: this._previewUrl()!, recognitionResult: result });
+      const result = await this._aiService.recognizeFood(base64,fileType);
+      this.analysisComplete.emit({photoUrl: this._previewUrl()!, recognitionResult: result});
     } catch (err: unknown) {
       if (err instanceof AiError && err.isQuotaError) {
         this._error.set($localize`:@@foodCamera.error.quota:Quota dépassé. Vérifiez vos paramètres IA.`);

@@ -23,7 +23,7 @@ export class OllamaProvider implements AiProvider {
 
   private readonly _settings = inject(AiSettingsService);
 
-  async analyzeImage(base64Image: string, prompt: string): Promise<string> {
+  async analyzeImage(base64Image: string, prompt: string, fileType: string): Promise<string> {
     const config = this._settings.getProviderConfig('ollama');
     const message: OllamaMessage = { role: 'user', content: prompt, images: [base64Image] };
     return this._chat(config.baseUrl, config.model, [message]);

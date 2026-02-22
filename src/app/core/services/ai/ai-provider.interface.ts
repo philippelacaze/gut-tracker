@@ -4,6 +4,6 @@ export interface AiProvider {
   readonly supportsVision: boolean;
   readonly isFree: boolean;
 
-  analyzeImage(base64Image: string, prompt: string): Promise<string>;
+    analyzeImage(base64Image: string, prompt: string, fileType: string): Promise<string>;
   complete(prompt: string, systemPrompt?: string): Promise<string>;
 }

@@ -15,7 +15,7 @@ interface AnthropicTextBlock {
 
 interface AnthropicImageBlock {
   type: 'image';
-  source: { type: 'base64'; media_type: 'image/jpeg'; data: string };
+  source: { type: 'base64'; media_type: string | 'image/jpeg'; data: string };
 }
 
 type AnthropicContentBlock = AnthropicTextBlock | AnthropicImageBlock;
@@ -33,10 +33,10 @@ export class AnthropicProvider implements AiProvider {
 
   private readonly _settings = inject(AiSettingsService);
 
-  async analyzeImage(base64Image: string, prompt: string): Promise<string> {
+  async analyzeImage(base64Image: string, prompt: string, fileType: string): Promise<string> {
     const config = this._settings.getProviderConfig('anthropic');
     const content: AnthropicContentBlock[] = [
-      { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: base64Image } },
+      { type: 'image', source: { type: 'base64', media_type: fileType ?? 'image/jpeg', data: base64Image } },
       { type: 'text', text: prompt },
     ];
     const body = JSON.stringify({
@@ -72,6 +72,7 @@ export class AnthropicProvider implements AiProvider {
         'x-api-key': apiKey,
         'anthropic-version': ANTHROPIC_VERSION,
         'content-type': 'application/json',
+        'anthropic-dangerous-direct-browser-access': 'true'
       },
       body,
     };

@@ -1,16 +1,16 @@
-import { Injectable, inject, signal } from '@angular/core';
+import {Injectable, inject, signal} from '@angular/core';
 
 import {
   FodmapAnalysisResult,
   ImageRecognitionResult,
 } from '../../models/ai-recognition.model';
-import { AiProvider } from './ai-provider.interface';
-import { AiSettingsService } from './ai-settings.service';
-import { AiError } from './ai.error';
-import { AnthropicProvider } from './providers/anthropic.provider';
-import { GeminiProvider } from './providers/gemini.provider';
-import { OllamaProvider } from './providers/ollama.provider';
-import { OpenAiProvider } from './providers/openai.provider';
+import {AiProvider} from './ai-provider.interface';
+import {AiSettingsService} from './ai-settings.service';
+import {AiError} from './ai.error';
+import {AnthropicProvider} from './providers/anthropic.provider';
+import {GeminiProvider} from './providers/gemini.provider';
+import {OllamaProvider} from './providers/ollama.provider';
+import {OpenAiProvider} from './providers/openai.provider';
 
 const FOOD_RECOGNITION_PROMPT = `Tu es un assistant spécialisé en reconnaissance alimentaire.
 Analyse uniquement ce que tu vois clairement sur cette photo.
@@ -59,7 +59,7 @@ Réponds UNIQUEMENT en JSON valide :
   "advice": "Conseil court sur cette prise alimentaire"
 }`;
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class AiService {
   private readonly _settingsService = inject(AiSettingsService);
   private readonly _openAi = inject(OpenAiProvider);
@@ -85,10 +85,20 @@ export class AiService {
     return provider;
   }
 
-  async recognizeFood(base64Image: string): Promise<ImageRecognitionResult> {
+  async recognizeFood(base64Image: string, fileType: string): Promise<ImageRecognitionResult> {
     this._analyzing.set(true);
     try {
-      const raw = await this._activeProvider.analyzeImage(base64Image, FOOD_RECOGNITION_PROMPT);
+      const raw = await this._activeProvider.analyzeImage(base64Image, FOOD_RECOGNITION_PROMPT, fileType);
+
+      try {
+        const jsonMatch = raw.match(/\{[\s\S]*\}/);
+        if (jsonMatch) return JSON.parse(jsonMatch[0]);
+        return {foods: [], uncertain: []};
+      } catch {
+        return {foods: [], uncertain: []};
+      }
+
+
       return JSON.parse(raw) as ImageRecognitionResult;
     } finally {
       this._analyzing.set(false);
@@ -100,6 +110,16 @@ export class AiService {
     try {
       const prompt = `Aliments à analyser : ${foodNames.join(', ')}`;
       const raw = await this._activeProvider.complete(prompt, FODMAP_SYSTEM_PROMPT);
+
+      try {
+        const jsonMatch = raw.match(/\{[\s\S]*\}/);
+        if (jsonMatch) return JSON.parse(jsonMatch[0]);
+        return {foods: [], advice: raw, globalLevel: "low", globalScore: 0};
+      } catch {
+        return {foods: [], advice: raw, globalLevel: "low", globalScore: 0};
+      }
+
+
       return JSON.parse(raw) as FodmapAnalysisResult;
     } finally {
       this._analyzing.set(false);

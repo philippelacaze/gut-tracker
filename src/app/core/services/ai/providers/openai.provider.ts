@@ -29,7 +29,7 @@ export class OpenAiProvider implements AiProvider {
 
   private readonly _settings = inject(AiSettingsService);
 
-  async analyzeImage(base64Image: string, prompt: string): Promise<string> {
+  async analyzeImage(base64Image: string, prompt: string, fileType: string): Promise<string> {
     const config = this._settings.getProviderConfig('openai');
     const body = JSON.stringify({
       model: config.model,
@@ -39,7 +39,7 @@ export class OpenAiProvider implements AiProvider {
           content: [
             {
               type: 'image_url',
-              image_url: { url: `data:image/jpeg;base64,${base64Image}` },
+              image_url: { url: `data:${fileType ?? 'image/jpeg'};base64,${base64Image}` },
             } satisfies OpenAiImagePart,
             { type: 'text', text: prompt } satisfies OpenAiTextPart,
           ],
