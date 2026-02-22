@@ -16,14 +16,14 @@ Déployée sur GitHub Pages. Mobile-first, RWD.
 
 | Élément | Choix |
 |---|---|
-| Framework | Angular 18+ (standalone components, Signals) |
+| Framework | Angular 21 (standalone components, Signals) |
 | Langage | TypeScript strict |
 | Style | SCSS (fichiers séparés par composant) |
 | State | Signals + Services injectables |
 | Persistance | Abstraction via Repository pattern (LocalStorage d'abord) |
 | i18n | Angular i18n (`@angular/localize`) |
 | Déploiement | GitHub Pages (`angular-cli-ghpages`) |
-| Tests | Jest + Testing Library |
+| Tests | Vitest 4 (`@angular/build:unit-test`) |
 
 ---
 
