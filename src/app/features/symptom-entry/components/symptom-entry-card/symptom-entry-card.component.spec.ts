@@ -71,14 +71,14 @@ describe('SymptomEntryCardComponent', () => {
       expect(severity.textContent?.trim()).toBe('8/10');
     });
 
-    it('devrait afficher la localisation si présente', async () => {
+    it('devrait afficher la localisation si présente (label traduit)', async () => {
       const entry = makeSymptomEntry({
         symptoms: [{ type: 'pain', severity: 6, location: { x: 50, y: 50, region: 'abdomen-left' } }],
       });
       await setup(entry);
 
       const location = fixture.nativeElement.querySelector('.symptom-card__location') as HTMLElement;
-      expect(location.textContent).toContain('abdomen-left');
+      expect(location.textContent).toContain('Abdomen gauche');
     });
 
     it('devrait afficher la note si présente', async () => {

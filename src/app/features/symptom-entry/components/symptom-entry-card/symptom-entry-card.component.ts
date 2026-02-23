@@ -35,6 +35,20 @@ const BRISTOL_LABELS: Record<BristolScale, string> = {
   7: $localize`:@@bristolScale.7:Liquide`,
 };
 
+const REGION_LABELS: Record<string, string> = {
+  head: $localize`:@@bodyMap.region.head:Tête`,
+  thorax: $localize`:@@bodyMap.region.thorax:Thorax`,
+  'abdomen-upper': $localize`:@@bodyMap.region.abdomenUpper:Abdomen haut`,
+  'abdomen-left': $localize`:@@bodyMap.region.abdomenLeft:Abdomen gauche`,
+  'abdomen-right': $localize`:@@bodyMap.region.abdomenRight:Abdomen droit`,
+  'abdomen-lower': $localize`:@@bodyMap.region.abdomenLower:Abdomen bas`,
+  pelvis: $localize`:@@bodyMap.region.pelvis:Pelvis`,
+  'left-arm': $localize`:@@bodyMap.region.leftArm:Bras gauche`,
+  'right-arm': $localize`:@@bodyMap.region.rightArm:Bras droit`,
+  'left-leg': $localize`:@@bodyMap.region.leftLeg:Jambe gauche`,
+  'right-leg': $localize`:@@bodyMap.region.rightLeg:Jambe droite`,
+};
+
 @Component({
   selector: 'gt-symptom-entry-card',
   standalone: true,
@@ -71,6 +85,10 @@ export class SymptomEntryCardComponent {
 
   bristolLabel(scale: BristolScale): string {
     return `Bristol ${scale} – ${BRISTOL_LABELS[scale]}`;
+  }
+
+  regionLabel(region: string): string {
+    return REGION_LABELS[region] ?? region;
   }
 
   async onDelete(): Promise<void> {

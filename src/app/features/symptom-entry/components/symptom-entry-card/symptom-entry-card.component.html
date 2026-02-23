@@ -38,7 +38,7 @@
 
         @if (symptom.location) {
           <span class="symptom-card__location">
-            📍 {{ symptom.location.region }}
+            📍 {{ regionLabel(symptom.location.region) }}
           </span>
         }
 

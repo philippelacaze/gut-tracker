@@ -49,7 +49,11 @@ describe('SymptomEntryPageComponent', () => {
     fixture.detectChanges();
   }
 
-  afterEach(() => httpMock?.verify());
+  afterEach(() => {
+    // Vide les éventuelles requêtes SVG restantes (body map recréé lors de retour au type 'pain')
+    httpMock?.match('body-map/body-map.svg').forEach(r => r.flush(MOCK_SVG));
+    httpMock?.verify();
+  });
   beforeEach(() => resetSymptomEntryId());
 
   // ──────────────────────────────────────────────────────────────

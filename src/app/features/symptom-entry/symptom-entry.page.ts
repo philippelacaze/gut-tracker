@@ -22,6 +22,50 @@ import { SymptomEntryCardComponent } from './components/symptom-entry-card/sympt
 import { SymptomTypePickerComponent } from './components/symptom-type-picker/symptom-type-picker.component';
 import { SymptomEntryStore } from './services/symptom-entry.store';
 
+/** Symptôme enrichi d'un timestamp d'ajout pour la liste en attente */
+interface PendingSymptom extends Symptom {
+  addedAt: string;
+}
+
+const SYMPTOM_TYPE_LABELS: Record<SymptomType, string> = {
+  pain: $localize`:@@symptomType.pain:Douleur`,
+  bloating: $localize`:@@symptomType.bloating:Ballonnements`,
+  gas: $localize`:@@symptomType.gas:Gaz`,
+  belching: $localize`:@@symptomType.belching:Éructations`,
+  stool: $localize`:@@symptomType.stool:Selles`,
+  headache: $localize`:@@symptomType.headache:Maux de tête`,
+  other: $localize`:@@symptomType.other:Autre`,
+};
+
+const SYMPTOM_TYPE_ICONS: Record<SymptomType, string> = {
+  pain: '🤕', bloating: '🫃', gas: '💨', belching: '😮‍💨',
+  stool: '🚽', headache: '🤯', other: '❓',
+};
+
+const BRISTOL_LABELS: Record<BristolScale, string> = {
+  1: $localize`:@@bristolScale.1:Très dur`,
+  2: $localize`:@@bristolScale.2:Grumeleuse`,
+  3: $localize`:@@bristolScale.3:Craquelée`,
+  4: $localize`:@@bristolScale.4:Lisse`,
+  5: $localize`:@@bristolScale.5:Morceaux mous`,
+  6: $localize`:@@bristolScale.6:Pâteuse`,
+  7: $localize`:@@bristolScale.7:Liquide`,
+};
+
+const REGION_LABELS: Record<string, string> = {
+  head: $localize`:@@bodyMap.region.head:Tête`,
+  thorax: $localize`:@@bodyMap.region.thorax:Thorax`,
+  'abdomen-upper': $localize`:@@bodyMap.region.abdomenUpper:Abdomen haut`,
+  'abdomen-left': $localize`:@@bodyMap.region.abdomenLeft:Abdomen gauche`,
+  'abdomen-right': $localize`:@@bodyMap.region.abdomenRight:Abdomen droit`,
+  'abdomen-lower': $localize`:@@bodyMap.region.abdomenLower:Abdomen bas`,
+  pelvis: $localize`:@@bodyMap.region.pelvis:Pelvis`,
+  'left-arm': $localize`:@@bodyMap.region.leftArm:Bras gauche`,
+  'right-arm': $localize`:@@bodyMap.region.rightArm:Bras droit`,
+  'left-leg': $localize`:@@bodyMap.region.leftLeg:Jambe gauche`,
+  'right-leg': $localize`:@@bodyMap.region.rightLeg:Jambe droite`,
+};
+
 @Component({
   selector: 'gt-symptom-entry-page',
   standalone: true,
@@ -49,7 +93,7 @@ export class SymptomEntryPageComponent {
   private readonly _currentBristolScale = signal<BristolScale | null>(null);
 
   // Signals — liste des symptômes accumulés avant sauvegarde
-  private readonly _pendingSymptoms = signal<Symptom[]>([]);
+  private readonly _pendingSymptoms = signal<PendingSymptom[]>([]);
   private readonly _saving = signal(false);
 
   readonly currentType = this._currentType.asReadonly();
@@ -96,14 +140,36 @@ export class SymptomEntryPageComponent {
     this._currentNote.set((event.target as HTMLInputElement).value);
   }
 
+  typeLabel(type: SymptomType): string {
+    return SYMPTOM_TYPE_LABELS[type];
+  }
+
+  typeIcon(type: SymptomType): string {
+    return SYMPTOM_TYPE_ICONS[type];
+  }
+
+  bristolLabel(scale: BristolScale): string {
+    return `Bristol ${scale} – ${BRISTOL_LABELS[scale]}`;
+  }
+
+  regionLabel(region: string): string {
+    return REGION_LABELS[region] ?? region;
+  }
+
+  pendingTimeLabel(addedAt: string): string {
+    return new Date(addedAt).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  }
+
   addSymptom(): void {
     const type = this._currentType();
-    const symptom: Symptom = {
+    const symptom: PendingSymptom = {
       type,
       severity: this._currentSeverity(),
-      location: this._currentLocation() ?? undefined,
+      // La localisation n'est pertinente que pour les douleurs
+      location: type === 'pain' ? (this._currentLocation() ?? undefined) : undefined,
       note: this._currentNote().trim() || undefined,
       bristolScale: type === 'stool' ? (this._currentBristolScale() ?? undefined) : undefined,
+      addedAt: new Date().toISOString(),
     };
 
     this._pendingSymptoms.update(list => [...list, symptom]);
@@ -130,7 +196,7 @@ export class SymptomEntryPageComponent {
           .join(' — ') || undefined;
       this._pendingSymptoms.update(list => [
         ...list,
-        { type: s.type, severity: s.severity, note },
+        { type: s.type, severity: s.severity, note, addedAt: new Date().toISOString() },
       ]);
     });
   }
@@ -143,7 +209,8 @@ export class SymptomEntryPageComponent {
       const entry: SymptomEntry = {
         id: crypto.randomUUID(),
         timestamp: new Date().toISOString(),
-        symptoms: this._pendingSymptoms(),
+        // Supprime addedAt avant la persistance (pas partie du modèle Symptom)
+        symptoms: this._pendingSymptoms().map(({ addedAt: _addedAt, ...s }) => s),
       };
       await this._store.add(entry);
       this._pendingSymptoms.set([]);

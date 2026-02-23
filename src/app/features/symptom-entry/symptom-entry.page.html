@@ -40,16 +40,18 @@
       />
     </div>
 
-    <!-- Localisation (BodyMap) — toujours visible, optionnelle -->
-    <div class="symptom-entry-page__field">
-      <span class="symptom-entry-page__field-label" i18n="@@symptomEntry.locationLabel">
-        Localisation <span class="symptom-entry-page__optional">(optionnel)</span>
-      </span>
-      <gt-body-map
-        [selectedRegion]="currentLocation()?.region ?? null"
-        (locationSelected)="onLocationSelected($event)"
-      />
-    </div>
+    <!-- Localisation (BodyMap) — uniquement pour les douleurs -->
+    @if (currentType() === 'pain') {
+      <div class="symptom-entry-page__field">
+        <span class="symptom-entry-page__field-label" i18n="@@symptomEntry.locationLabel">
+          Localisation <span class="symptom-entry-page__optional">(optionnel)</span>
+        </span>
+        <gt-body-map
+          [selectedRegion]="currentLocation()?.region ?? null"
+          (locationSelected)="onLocationSelected($event)"
+        />
+      </div>
+    }
 
     <!-- Note libre -->
     <div class="symptom-entry-page__field">
@@ -96,12 +98,27 @@
       <ul class="symptom-entry-page__pending-list">
         @for (symptom of pendingSymptoms(); track $index) {
           <li class="symptom-entry-page__pending-item">
-            <span class="symptom-entry-page__pending-type">{{ symptom.type }}</span>
-            <span class="symptom-entry-page__pending-severity">{{ symptom.severity }}/10</span>
+            <time class="symptom-entry-page__pending-time">
+              {{ pendingTimeLabel(symptom.addedAt) }}
+            </time>
+
+            <span class="symptom-entry-page__pending-type">
+              {{ typeIcon(symptom.type) }} {{ typeLabel(symptom.type) }}
+            </span>
+
+            <span class="symptom-entry-page__pending-severity">
+              {{ symptom.severity }}/10
+            </span>
 
             @if (symptom.location) {
               <span class="symptom-entry-page__pending-location">
-                📍 {{ symptom.location.region }}
+                📍 {{ regionLabel(symptom.location.region) }}
+              </span>
+            }
+
+            @if (symptom.bristolScale) {
+              <span class="symptom-entry-page__pending-bristol">
+                {{ bristolLabel(symptom.bristolScale) }}
               </span>
             }
 
