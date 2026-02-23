@@ -56,6 +56,7 @@ Utilisateur → Choisit un mode de saisie
 - `BodyMapComponent` — SVG interactif corps humain
 - `SymptomTypePickerComponent` — types de symptômes
 - `SeveritySliderComponent` — slider 1–10 avec émojis/couleurs
+- `BristolScalePickerComponent` — sélecteur échelle de Bristol 1–7, affiché conditionnellement
 - `SymptomEntryCardComponent`
 
 ### BodyMap – spécifications
@@ -74,10 +75,25 @@ Utilisateur → Choisit un mode de saisie
 | `bloating` | Ballonnements |
 | `gas` | Gaz |
 | `belching` | Éructations |
-| `constipation` | Constipation (échelle Bristol optionnelle) |
-| `diarrhea` | Diarrhée (échelle Bristol optionnelle) |
+| `stool` | Selles — ouvre le sélecteur d'échelle de Bristol |
 | `headache` | Maux de tête |
 | `other` | Autre (texte libre) |
+
+### Échelle de Bristol
+
+Affiché uniquement quand le type `stool` est sélectionné. Grille de 7 boutons numérotés, chacun associé à une couleur et un libellé court. La valeur est optionnelle (aucune sélection possible).
+
+| Type | Libellé | Couleur |
+|---|---|---|
+| 1 | Très dur | Brun foncé |
+| 2 | Grumeleuse | Brun |
+| 3 | Craquelée | Vert foncé |
+| 4 | Lisse | Vert |
+| 5 | Morceaux mous | Jaune |
+| 6 | Pâteuse | Orange |
+| 7 | Liquide | Rouge |
+
+Le score Bristol est stocké dans `Symptom.bristolScale?: BristolScale` (union `1|2|3|4|5|6|7`).
 
 ---
 
@@ -342,14 +358,16 @@ Extrais le ou les symptômes, la sévérité sur 10 si mentionnée (défaut : 5)
 et la zone corporelle si précisée.
 Ne suppose rien qui ne soit pas dit explicitement.
 
-Types valides : pain, bloating, gas, belching, constipation, diarrhea, headache, other.
+Types valides : pain, bloating, gas, belching, stool, headache, other.
+Pour le type "stool", tu peux indiquer bristolScale (entier 1-7) si mentionné.
 
 Réponds UNIQUEMENT en JSON valide, sans texte avant ni après :
 {
   "symptoms": [
     {
-      "type": "pain|bloating|gas|belching|constipation|diarrhea|headache|other",
+      "type": "pain|bloating|gas|belching|stool|headache|other",
       "severity": 5,
+      "bristolScale": null,
       "locationHint": "description libre de la zone ou null",
       "note": "détail supplémentaire ou null"
     }
