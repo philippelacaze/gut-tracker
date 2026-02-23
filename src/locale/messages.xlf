@@ -1460,10 +1460,10 @@
     </unit>
     <unit id="bristolScale.legend">
       <notes>
-        <note category="location">src/app/features/symptom-entry/components/bristol-scale-picker/bristol-scale-picker.component.html:3,5</note>
+        <note category="location">src/app/features/symptom-entry/components/bristol-scale-picker/bristol-scale-picker.component.html:2,4</note>
       </notes>
       <segment>
-        <source>Échelle de Bristol</source>
+        <source>Échelle de Bristol <pc id="0" equivStart="START_TAG_SPAN" equivEnd="CLOSE_TAG_SPAN" type="other" dispStart="&lt;span class=&quot;bristol-picker__hint&quot;&gt;" dispEnd="&lt;/span&gt;">(optionnel — appuyez pour sélectionner)</pc></source>
       </segment>
     </unit>
     <unit id="bristolScale.1">

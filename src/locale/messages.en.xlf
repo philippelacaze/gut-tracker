@@ -951,8 +951,8 @@
     </unit>
     <unit id="bristolScale.legend">
       <segment state="translated">
-        <source>Échelle de Bristol</source>
-        <target>Bristol Scale</target>
+        <source>Échelle de Bristol <pc id="0" equivStart="START_TAG_SPAN" equivEnd="CLOSE_TAG_SPAN" type="other" dispStart="&lt;span class=&quot;bristol-picker__hint&quot;&gt;" dispEnd="&lt;/span&gt;">(optionnel — appuyez pour sélectionner)</pc></source>
+        <target>Bristol Scale <pc id="0" equivStart="START_TAG_SPAN" equivEnd="CLOSE_TAG_SPAN" type="other" dispStart="&lt;span class=&quot;bristol-picker__hint&quot;&gt;" dispEnd="&lt;/span&gt;">(optional — tap to select)</pc></target>
       </segment>
     </unit>
     <unit id="bristolScale.1">
