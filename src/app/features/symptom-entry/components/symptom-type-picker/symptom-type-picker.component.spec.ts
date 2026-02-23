@@ -22,10 +22,18 @@ describe('SymptomTypePickerComponent', () => {
       expect(fixture.componentInstance).toBeTruthy();
     });
 
-    it('devrait afficher exactement 8 chips (un par type de symptôme)', async () => {
+    it('devrait afficher exactement 7 chips (un par type de symptôme)', async () => {
       const fixture = await setup('pain');
       const chips = fixture.nativeElement.querySelectorAll('.symptom-type-picker__chip');
-      expect(chips.length).toBe(8);
+      expect(chips.length).toBe(7);
+    });
+
+    it("devrait inclure le type 'stool' et ne plus avoir 'constipation' ni 'diarrhea'", async () => {
+      const fixture = await setup('pain');
+      const values = fixture.componentInstance.symptomTypes.map(t => t.value);
+      expect(values).toContain('stool');
+      expect(values).not.toContain('constipation');
+      expect(values).not.toContain('diarrhea');
     });
 
     it('devrait afficher une icône et un label dans chaque chip', async () => {

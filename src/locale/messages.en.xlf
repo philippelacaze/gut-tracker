@@ -943,16 +943,58 @@
         <target>Belching</target>
       </segment>
     </unit>
-    <unit id="symptomType.constipation">
+    <unit id="symptomType.stool">
       <segment state="translated">
-        <source>Constipation</source>
-        <target>Constipation</target>
+        <source>Selles</source>
+        <target>Stools</target>
       </segment>
     </unit>
-    <unit id="symptomType.diarrhea">
+    <unit id="bristolScale.legend">
       <segment state="translated">
-        <source>Diarrhée</source>
-        <target>Diarrhea</target>
+        <source>Échelle de Bristol</source>
+        <target>Bristol Scale</target>
+      </segment>
+    </unit>
+    <unit id="bristolScale.1">
+      <segment state="translated">
+        <source>Très dur</source>
+        <target>Very hard</target>
+      </segment>
+    </unit>
+    <unit id="bristolScale.2">
+      <segment state="translated">
+        <source>Grumeleuse</source>
+        <target>Lumpy</target>
+      </segment>
+    </unit>
+    <unit id="bristolScale.3">
+      <segment state="translated">
+        <source>Craquelée</source>
+        <target>Cracked</target>
+      </segment>
+    </unit>
+    <unit id="bristolScale.4">
+      <segment state="translated">
+        <source>Lisse</source>
+        <target>Smooth</target>
+      </segment>
+    </unit>
+    <unit id="bristolScale.5">
+      <segment state="translated">
+        <source>Morceaux mous</source>
+        <target>Soft pieces</target>
+      </segment>
+    </unit>
+    <unit id="bristolScale.6">
+      <segment state="translated">
+        <source>Pâteuse</source>
+        <target>Mushy</target>
+      </segment>
+    </unit>
+    <unit id="bristolScale.7">
+      <segment state="translated">
+        <source>Liquide</source>
+        <target>Liquid</target>
       </segment>
     </unit>
     <unit id="symptomType.headache">

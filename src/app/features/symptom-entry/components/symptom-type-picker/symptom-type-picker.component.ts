@@ -24,8 +24,7 @@ export class SymptomTypePickerComponent {
     { value: 'bloating', label: $localize`:@@symptomType.bloating:Ballonnements`, icon: '🫃' },
     { value: 'gas', label: $localize`:@@symptomType.gas:Gaz`, icon: '💨' },
     { value: 'belching', label: $localize`:@@symptomType.belching:Éructations`, icon: '😮‍💨' },
-    { value: 'constipation', label: $localize`:@@symptomType.constipation:Constipation`, icon: '😤' },
-    { value: 'diarrhea', label: $localize`:@@symptomType.diarrhea:Diarrhée`, icon: '🚽' },
+    { value: 'stool', label: $localize`:@@symptomType.stool:Selles`, icon: '🚽' },
     { value: 'headache', label: $localize`:@@symptomType.headache:Maux de tête`, icon: '🤯' },
     { value: 'other', label: $localize`:@@symptomType.other:Autre`, icon: '❓' },
   ];

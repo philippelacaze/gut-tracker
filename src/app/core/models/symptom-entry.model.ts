@@ -3,12 +3,13 @@ export type SymptomType =
   | 'bloating'
   | 'gas'
   | 'belching'
-  | 'constipation'
-  | 'diarrhea'
+  | 'stool'
   | 'headache'
   | 'other';
 
 export type SeverityLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
+export type BristolScale = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 export interface BodyLocation {
   /** Position X en % relatif au SVG du corps humain */
@@ -23,6 +24,7 @@ export interface Symptom {
   severity: SeverityLevel;
   location?: BodyLocation;
   note?: string;
+  bristolScale?: BristolScale;
 }
 
 export interface SymptomEntry {

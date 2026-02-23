@@ -42,6 +42,10 @@
           </span>
         }
 
+        @if (symptom.bristolScale) {
+          <span class="symptom-card__bristol">{{ bristolLabel(symptom.bristolScale) }}</span>
+        }
+
         @if (symptom.note) {
           <span class="symptom-card__note">{{ symptom.note }}</span>
         }

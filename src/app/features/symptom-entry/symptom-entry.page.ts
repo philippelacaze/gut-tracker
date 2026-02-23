@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import {
   BodyLocation,
+  BristolScale,
   Symptom,
   SymptomEntry,
   SymptomType,
@@ -16,6 +17,7 @@ import { VoiceParseResult, VoiceSymptomResult } from '../../core/models/voice-en
 import { VoiceInputComponent } from '../../shared/components/voice-input/voice-input.component';
 import { BodyMapComponent } from './components/body-map/body-map.component';
 import { SeveritySliderComponent } from './components/severity-slider/severity-slider.component';
+import { BristolScalePickerComponent } from './components/bristol-scale-picker/bristol-scale-picker.component';
 import { SymptomEntryCardComponent } from './components/symptom-entry-card/symptom-entry-card.component';
 import { SymptomTypePickerComponent } from './components/symptom-type-picker/symptom-type-picker.component';
 import { SymptomEntryStore } from './services/symptom-entry.store';
@@ -25,6 +27,7 @@ import { SymptomEntryStore } from './services/symptom-entry.store';
   standalone: true,
   imports: [
     BodyMapComponent,
+    BristolScalePickerComponent,
     SeveritySliderComponent,
     SymptomTypePickerComponent,
     SymptomEntryCardComponent,
@@ -43,6 +46,7 @@ export class SymptomEntryPageComponent {
   private readonly _currentSeverity = signal<SeverityLevel>(5);
   private readonly _currentLocation = signal<BodyLocation | null>(null);
   private readonly _currentNote = signal('');
+  private readonly _currentBristolScale = signal<BristolScale | null>(null);
 
   // Signals — liste des symptômes accumulés avant sauvegarde
   private readonly _pendingSymptoms = signal<Symptom[]>([]);
@@ -52,6 +56,7 @@ export class SymptomEntryPageComponent {
   readonly currentSeverity = this._currentSeverity.asReadonly();
   readonly currentLocation = this._currentLocation.asReadonly();
   readonly currentNote = this._currentNote.asReadonly();
+  readonly currentBristolScale = this._currentBristolScale.asReadonly();
   readonly pendingSymptoms = this._pendingSymptoms.asReadonly();
   readonly saving = this._saving.asReadonly();
 
@@ -69,6 +74,14 @@ export class SymptomEntryPageComponent {
     if (type !== 'pain') {
       this._currentLocation.set(null);
     }
+    // Réinitialise l'échelle de Bristol si le type n'est pas "selles"
+    if (type !== 'stool') {
+      this._currentBristolScale.set(null);
+    }
+  }
+
+  onBristolScaleChange(scale: BristolScale | null): void {
+    this._currentBristolScale.set(scale);
   }
 
   onSeverityChange(level: SeverityLevel): void {
@@ -84,11 +97,13 @@ export class SymptomEntryPageComponent {
   }
 
   addSymptom(): void {
+    const type = this._currentType();
     const symptom: Symptom = {
-      type: this._currentType(),
+      type,
       severity: this._currentSeverity(),
       location: this._currentLocation() ?? undefined,
       note: this._currentNote().trim() || undefined,
+      bristolScale: type === 'stool' ? (this._currentBristolScale() ?? undefined) : undefined,
     };
 
     this._pendingSymptoms.update(list => [...list, symptom]);
@@ -98,6 +113,7 @@ export class SymptomEntryPageComponent {
     this._currentSeverity.set(5);
     this._currentLocation.set(null);
     this._currentNote.set('');
+    this._currentBristolScale.set(null);
   }
 
   removePendingSymptom(index: number): void {

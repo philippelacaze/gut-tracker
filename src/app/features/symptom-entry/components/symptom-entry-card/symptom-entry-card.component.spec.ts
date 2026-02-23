@@ -95,6 +95,16 @@ describe('SymptomEntryCardComponent', () => {
       await setup(makeSymptomEntry({ symptoms: [] }));
       expect(fixture.nativeElement.querySelector('.symptom-card__empty')).toBeTruthy();
     });
+
+    it('devrait afficher le score Bristol si bristolScale est renseigné', async () => {
+      const entry = makeSymptomEntry({
+        symptoms: [{ type: 'stool', severity: 5, bristolScale: 4 }],
+      });
+      await setup(entry);
+      const bristol = fixture.nativeElement.querySelector('.symptom-card__bristol') as HTMLElement;
+      expect(bristol).toBeTruthy();
+      expect(bristol.textContent).toContain('4');
+    });
   });
 
   // ──────────────────────────────────────────────────────────────

@@ -7,7 +7,7 @@ import {
   output,
 } from '@angular/core';
 
-import { SymptomEntry, SymptomType } from '../../../../core/models/symptom-entry.model';
+import { BristolScale, SymptomEntry, SymptomType } from '../../../../core/models/symptom-entry.model';
 import { SymptomEntryStore } from '../../services/symptom-entry.store';
 
 const SYMPTOM_TYPE_LABELS: Record<SymptomType, string> = {
@@ -15,15 +15,24 @@ const SYMPTOM_TYPE_LABELS: Record<SymptomType, string> = {
   bloating: $localize`:@@symptomType.bloating:Ballonnements`,
   gas: $localize`:@@symptomType.gas:Gaz`,
   belching: $localize`:@@symptomType.belching:Éructations`,
-  constipation: $localize`:@@symptomType.constipation:Constipation`,
-  diarrhea: $localize`:@@symptomType.diarrhea:Diarrhée`,
+  stool: $localize`:@@symptomType.stool:Selles`,
   headache: $localize`:@@symptomType.headache:Maux de tête`,
   other: $localize`:@@symptomType.other:Autre`,
 };
 
 const SYMPTOM_TYPE_ICONS: Record<SymptomType, string> = {
   pain: '🤕', bloating: '🫃', gas: '💨', belching: '😮‍💨',
-  constipation: '😤', diarrhea: '🚽', headache: '🤯', other: '❓',
+  stool: '🚽', headache: '🤯', other: '❓',
+};
+
+const BRISTOL_LABELS: Record<BristolScale, string> = {
+  1: $localize`:@@bristolScale.1:Très dur`,
+  2: $localize`:@@bristolScale.2:Grumeleuse`,
+  3: $localize`:@@bristolScale.3:Craquelée`,
+  4: $localize`:@@bristolScale.4:Lisse`,
+  5: $localize`:@@bristolScale.5:Morceaux mous`,
+  6: $localize`:@@bristolScale.6:Pâteuse`,
+  7: $localize`:@@bristolScale.7:Liquide`,
 };
 
 @Component({
@@ -58,6 +67,10 @@ export class SymptomEntryCardComponent {
 
   typeIcon(type: SymptomType): string {
     return SYMPTOM_TYPE_ICONS[type];
+  }
+
+  bristolLabel(scale: BristolScale): string {
+    return `Bristol ${scale} – ${BRISTOL_LABELS[scale]}`;
   }
 
   async onDelete(): Promise<void> {

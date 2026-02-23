@@ -115,6 +115,27 @@ describe('SymptomEntryPageComponent', () => {
       component.onTypeChange('pain');
       expect(component.currentLocation()).not.toBeNull();
     });
+
+    it('devrait afficher le bristol-scale-picker uniquement quand le type est "stool"', async () => {
+      await setup();
+      expect(fixture.nativeElement.querySelector('gt-bristol-scale-picker')).toBeNull();
+
+      component.onTypeChange('stool');
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('gt-bristol-scale-picker')).toBeTruthy();
+
+      component.onTypeChange('pain');
+      fixture.detectChanges();
+      expect(fixture.nativeElement.querySelector('gt-bristol-scale-picker')).toBeNull();
+    });
+
+    it('devrait réinitialiser bristolScale quand le type change vers non-stool', async () => {
+      await setup();
+      component.onTypeChange('stool');
+      component.onBristolScaleChange(3);
+      component.onTypeChange('pain');
+      expect(component.currentBristolScale()).toBeNull();
+    });
   });
 
   // ──────────────────────────────────────────────────────────────
@@ -142,6 +163,17 @@ describe('SymptomEntryPageComponent', () => {
       expect(component.currentType()).toBe('pain');
       expect(component.currentSeverity()).toBe(5);
       expect(component.currentLocation()).toBeNull();
+      expect(component.currentBristolScale()).toBeNull();
+    });
+
+    it('devrait inclure bristolScale dans le symptôme si type est stool', async () => {
+      await setup();
+      component.onTypeChange('stool');
+      component.onBristolScaleChange(4);
+      component.addSymptom();
+
+      expect(component.pendingSymptoms()[0].type).toBe('stool');
+      expect(component.pendingSymptoms()[0].bristolScale).toBe(4);
     });
 
     it('devrait afficher la section pending après ajout', async () => {

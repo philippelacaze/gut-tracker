@@ -22,6 +22,16 @@
       />
     </div>
 
+    <!-- Échelle de Bristol — uniquement pour le type "selles" -->
+    @if (currentType() === 'stool') {
+      <div class="symptom-entry-page__field">
+        <gt-bristol-scale-picker
+          [scale]="currentBristolScale()"
+          (scaleChange)="onBristolScaleChange($event)"
+        />
+      </div>
+    }
+
     <!-- Sévérité -->
     <div class="symptom-entry-page__field">
       <gt-severity-slider

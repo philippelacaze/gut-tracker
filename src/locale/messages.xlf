@@ -1449,22 +1449,77 @@
         <source>Éructations</source>
       </segment>
     </unit>
-    <unit id="symptomType.constipation">
+    <unit id="symptomType.stool">
       <notes>
         <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.ts:18</note>
         <note category="location">src/app/features/symptom-entry/components/symptom-type-picker/symptom-type-picker.component.ts:27</note>
       </notes>
       <segment>
-        <source>Constipation</source>
+        <source>Selles</source>
       </segment>
     </unit>
-    <unit id="symptomType.diarrhea">
+    <unit id="bristolScale.legend">
       <notes>
-        <note category="location">src/app/features/symptom-entry/components/symptom-entry-card/symptom-entry-card.component.ts:19</note>
-        <note category="location">src/app/features/symptom-entry/components/symptom-type-picker/symptom-type-picker.component.ts:28</note>
+        <note category="location">src/app/features/symptom-entry/components/bristol-scale-picker/bristol-scale-picker.component.html:3,5</note>
       </notes>
       <segment>
-        <source>Diarrhée</source>
+        <source>Échelle de Bristol</source>
+      </segment>
+    </unit>
+    <unit id="bristolScale.1">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/bristol-scale-picker/bristol-scale-picker.component.ts</note>
+      </notes>
+      <segment>
+        <source>Très dur</source>
+      </segment>
+    </unit>
+    <unit id="bristolScale.2">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/bristol-scale-picker/bristol-scale-picker.component.ts</note>
+      </notes>
+      <segment>
+        <source>Grumeleuse</source>
+      </segment>
+    </unit>
+    <unit id="bristolScale.3">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/bristol-scale-picker/bristol-scale-picker.component.ts</note>
+      </notes>
+      <segment>
+        <source>Craquelée</source>
+      </segment>
+    </unit>
+    <unit id="bristolScale.4">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/bristol-scale-picker/bristol-scale-picker.component.ts</note>
+      </notes>
+      <segment>
+        <source>Lisse</source>
+      </segment>
+    </unit>
+    <unit id="bristolScale.5">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/bristol-scale-picker/bristol-scale-picker.component.ts</note>
+      </notes>
+      <segment>
+        <source>Morceaux mous</source>
+      </segment>
+    </unit>
+    <unit id="bristolScale.6">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/bristol-scale-picker/bristol-scale-picker.component.ts</note>
+      </notes>
+      <segment>
+        <source>Pâteuse</source>
+      </segment>
+    </unit>
+    <unit id="bristolScale.7">
+      <notes>
+        <note category="location">src/app/features/symptom-entry/components/bristol-scale-picker/bristol-scale-picker.component.ts</note>
+      </notes>
+      <segment>
+        <source>Liquide</source>
       </segment>
     </unit>
     <unit id="symptomType.headache">

@@ -56,7 +56,8 @@ Réponds UNIQUEMENT en JSON valide, sans texte avant/après :
 
 const VOICE_SYMPTOM_PROMPT = `Tu es un assistant de saisie de symptômes digestifs.
 Analyse ce texte dicté et extrait les symptômes mentionnés.
-Types valides : pain, bloating, gas, belching, constipation, diarrhea, headache, other.
+Types valides : pain, bloating, gas, belching, stool, headache, other.
+Pour le type "stool", tu peux indiquer bristolScale (entier 1-7) si mentionné.
 Sévérité : entier de 1 (minimal) à 10 (extrême). Si non précisée, estime à 5.
 
 Réponds UNIQUEMENT en JSON valide, sans texte avant/après :

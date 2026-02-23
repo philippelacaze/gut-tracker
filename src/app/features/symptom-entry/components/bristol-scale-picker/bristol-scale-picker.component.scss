@@ -1,0 +1,72 @@
+.bristol-picker {
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  &__legend {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-secondary, #666);
+    margin-bottom: 0.5rem;
+    float: left;
+    width: 100%;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+    margin-top: 0.25rem;
+  }
+
+  &__btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.4rem 0.2rem;
+    border: 2px solid transparent;
+    border-radius: 0.5rem;
+    background: var(--color-surface, #f5f5f5);
+    cursor: pointer;
+    transition: border-color 150ms, background 150ms;
+    min-width: 0;
+
+    &:hover {
+      border-color: var(--bristol-color);
+    }
+
+    &--selected {
+      border-color: var(--bristol-color);
+      background: color-mix(in srgb, var(--bristol-color) 15%, transparent);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--bristol-color);
+      outline-offset: 2px;
+    }
+  }
+
+  &__number {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--bristol-color);
+  }
+
+  &__label {
+    font-size: 0.6rem;
+    line-height: 1.2;
+    text-align: center;
+    color: var(--color-text, #222);
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  &__swatch {
+    width: 1.25rem;
+    height: 0.3rem;
+    border-radius: 2px;
+    background: var(--bristol-color);
+  }
+}
