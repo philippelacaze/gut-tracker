@@ -80,14 +80,15 @@ export class MainNavComponent {
   };
 
   /**
-   * Bottom bar mobile : 5 onglets (sans Export, moins fréquent sur mobile)
-   * food | symptoms | medication | analysis | settings
+   * Bottom bar mobile : 6 onglets
+   * food | symptoms | medication | analysis | export | settings
    */
   protected readonly mobileNavItems: readonly NavItem[] = [
     this.primaryNavItems[0],
     this.primaryNavItems[1],
     this.primaryNavItems[2],
     this.primaryNavItems[3],
+    this.primaryNavItems[4],
     this.settingsItem,
   ];
 }

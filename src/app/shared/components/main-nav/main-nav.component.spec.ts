@@ -46,10 +46,10 @@ describe('MainNavComponent', () => {
   });
 
   describe('bottom navigation (mobile)', () => {
-    it('devrait afficher 5 onglets dans la barre mobile', async () => {
+    it('devrait afficher 6 onglets dans la barre mobile', async () => {
       const { fixture } = await setup();
       const tabs = fixture.nativeElement.querySelectorAll('.main-nav__tab');
-      expect(tabs).toHaveLength(5);
+      expect(tabs).toHaveLength(6);
     });
 
     it('devrait avoir des attributs aria-label sur chaque onglet', async () => {
@@ -93,10 +93,10 @@ describe('MainNavComponent', () => {
       expect(comp.primaryNavItems).toHaveLength(5);
     });
 
-    it('devrait avoir 5 éléments mobiles (sans export)', async () => {
+    it('devrait avoir 6 éléments mobiles (food + symptoms + medication + analysis + export + settings)', async () => {
       const { component } = await setup();
       const comp = component as unknown as { mobileNavItems: readonly unknown[] };
-      expect(comp.mobileNavItems).toHaveLength(5);
+      expect(comp.mobileNavItems).toHaveLength(6);
     });
   });
 });
