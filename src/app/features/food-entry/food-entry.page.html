@@ -76,6 +76,17 @@
               <span class="food-entry-page__pending-qty">{{ food.quantity }}</span>
             }
 
+            @if (analyzingFoodIds().has(food.id)) {
+              <span class="food-entry-page__pending-analyzing" i18n="@@foodEntry.pending.analyzing">
+                Analyse…
+              </span>
+            } @else if (food.fodmapScore) {
+              <gt-fodmap-badge
+                [level]="food.fodmapScore.level"
+                [score]="food.fodmapScore.score"
+              />
+            }
+
             <button
               type="button"
               class="food-entry-page__pending-remove"

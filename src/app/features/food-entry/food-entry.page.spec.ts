@@ -276,5 +276,21 @@ describe('FoodEntryPageComponent', () => {
 
       expect(mockAdd).not.toHaveBeenCalled();
     });
+
+    it('devrait vider analyzingFoodIds après la fin de l\'analyse', async () => {
+      await setup();
+      await component.onFoodAddedAndAnalyze({ id: 'f1', name: 'Tomate', fodmapScore: null });
+
+      expect(component.analyzingFoodIds().size).toBe(0);
+    });
+
+    it('devrait vider analyzingFoodIds même si l\'IA lève une erreur', async () => {
+      await setup();
+      mockAnalyzeFodmap.mockRejectedValue(new Error('Clé API manquante'));
+
+      await component.onFoodAddedAndAnalyze({ id: 'f1', name: 'Tomate', fodmapScore: null });
+
+      expect(component.analyzingFoodIds().size).toBe(0);
+    });
   });
 });

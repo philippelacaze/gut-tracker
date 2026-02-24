@@ -6,6 +6,8 @@ import {
   signal,
 } from '@angular/core';
 
+import { FodmapBadgeComponent } from '../../shared/components/fodmap-badge/fodmap-badge.component';
+
 import { Food, FoodEntry, FodmapScore, MealType } from '../../core/models/food-entry.model';
 import { VoiceFoodResult, VoiceParseResult } from '../../core/models/voice-entry.model';
 import { AiService } from '../../core/services/ai/ai.service';
@@ -44,6 +46,7 @@ function detectCurrentMealType(): MealType {
     FoodEntryCardComponent,
     RecentFoodsComponent,
     VoiceInputComponent,
+    FodmapBadgeComponent,
   ],
   templateUrl: './food-entry.page.html',
   styleUrl: './food-entry.page.scss',
@@ -60,12 +63,15 @@ export class FoodEntryPageComponent {
   private readonly _saving = signal(false);
   private readonly _entryMode = signal<EntryMode>('manual');
   private readonly _recognitionResult = signal<FoodCameraOutput | null>(null);
+  /** Ids des aliments dont l'analyse FODMAP est en cours */
+  private readonly _analyzingFoodIds = signal<ReadonlySet<string>>(new Set());
 
   readonly selectedMealType = this._selectedMealType.asReadonly();
   readonly pendingFoods = this._pendingFoods.asReadonly();
   readonly saving = this._saving.asReadonly();
   readonly entryMode = this._entryMode.asReadonly();
   readonly recognitionResult = this._recognitionResult.asReadonly();
+  readonly analyzingFoodIds = this._analyzingFoodIds.asReadonly();
 
   // Signals depuis le store (exposés au template)
   readonly loading = this._store.loading;
@@ -95,6 +101,7 @@ export class FoodEntryPageComponent {
   /** Ajoute l'aliment en attente puis lance immédiatement son analyse FODMAP */
   async onFoodAddedAndAnalyze(food: Food): Promise<void> {
     this._pendingFoods.update(list => [...list, food]);
+    this._analyzingFoodIds.update(ids => new Set([...ids, food.id]));
 
     try {
       const analysis = await this._aiService.analyzeFodmap([food.name]);
@@ -116,6 +123,12 @@ export class FoodEntryPageComponent {
       }
     } catch {
       // Aliment conservé dans la liste sans score FODMAP si l'IA est indisponible
+    } finally {
+      this._analyzingFoodIds.update(ids => {
+        const next = new Set(ids);
+        next.delete(food.id);
+        return next;
+      });
     }
   }
 

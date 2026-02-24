@@ -54,6 +54,18 @@
     font-size: 0.75rem;
   }
 
+  &__pending-analyzing {
+    font-size: 0.75rem;
+    color: #1976d2;
+    font-style: italic;
+    animation: pending-analyzing-pulse 1.2s ease-in-out infinite;
+  }
+
+  @keyframes pending-analyzing-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
   &__pending-remove {
     background: transparent;
     border: none;
