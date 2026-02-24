@@ -234,4 +234,47 @@ describe('FoodEntryPageComponent', () => {
       expect(component.selectedMealType()).toBe<MealType>('snack');
     });
   });
+
+  // ──────────────────────────────────────────────────────────────
+  describe('onFoodAddedAndAnalyze()', () => {
+    it('devrait ajouter immédiatement l\'aliment aux en-attente', async () => {
+      await setup();
+      await component.onFoodAddedAndAnalyze({ id: 'f1', name: 'Tomate', fodmapScore: null });
+
+      expect(component.pendingFoods()).toHaveLength(1);
+      expect(component.pendingFoods()[0].name).toBe('Tomate');
+    });
+
+    it('devrait appeler analyzeFodmap uniquement avec le nom de l\'aliment ajouté', async () => {
+      await setup();
+      await component.onFoodAddedAndAnalyze({ id: 'f1', name: 'Tomate', fodmapScore: null });
+
+      expect(mockAnalyzeFodmap).toHaveBeenCalledWith(['Tomate']);
+    });
+
+    it('devrait enrichir l\'aliment avec le score FODMAP retourné par l\'IA', async () => {
+      await setup();
+      await component.onFoodAddedAndAnalyze({ id: 'f1', name: 'Tomate', fodmapScore: null });
+
+      expect(component.pendingFoods()[0].fodmapScore?.level).toBe('low');
+      expect(component.pendingFoods()[0].fodmapScore?.score).toBe(2);
+    });
+
+    it('devrait conserver l\'aliment sans score si l\'IA lève une erreur', async () => {
+      await setup();
+      mockAnalyzeFodmap.mockRejectedValue(new Error('Clé API manquante'));
+
+      await component.onFoodAddedAndAnalyze({ id: 'f1', name: 'Tomate', fodmapScore: null });
+
+      expect(component.pendingFoods()).toHaveLength(1);
+      expect(component.pendingFoods()[0].fodmapScore).toBeNull();
+    });
+
+    it('ne devrait pas déclencher store.add (l\'enregistrement reste manuel)', async () => {
+      await setup();
+      await component.onFoodAddedAndAnalyze({ id: 'f1', name: 'Tomate', fodmapScore: null });
+
+      expect(mockAdd).not.toHaveBeenCalled();
+    });
+  });
 });

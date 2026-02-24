@@ -92,6 +92,33 @@ export class FoodEntryPageComponent {
     this._pendingFoods.update(list => [...list, food]);
   }
 
+  /** Ajoute l'aliment en attente puis lance immédiatement son analyse FODMAP */
+  async onFoodAddedAndAnalyze(food: Food): Promise<void> {
+    this._pendingFoods.update(list => [...list, food]);
+
+    try {
+      const analysis = await this._aiService.analyzeFodmap([food.name]);
+      const now = new Date().toISOString();
+      const match = analysis.foods.find(
+        af => af.name.toLowerCase() === food.name.toLowerCase(),
+      );
+      if (match) {
+        const enriched: Food = {
+          ...food,
+          fodmapScore: {
+            level: match.fodmapLevel,
+            score: match.score,
+            details: [match.mainFodmaps.join(', '), match.notes].filter(Boolean).join(' — '),
+            analyzedAt: now,
+          },
+        };
+        this._pendingFoods.update(list => list.map(f => (f.id === food.id ? enriched : f)));
+      }
+    } catch {
+      // Aliment conservé dans la liste sans score FODMAP si l'IA est indisponible
+    }
+  }
+
   /** Reçoit le résultat de la caméra — passe en mode édition */
   onRecognitionComplete(output: FoodCameraOutput): void {
     this._recognitionResult.set(output);

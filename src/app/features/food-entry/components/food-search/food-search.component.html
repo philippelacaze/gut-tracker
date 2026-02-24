@@ -57,15 +57,29 @@
     </div>
   </div>
 
-  <button
-    type="button"
-    class="food-search__add-btn"
-    (click)="addFood()"
-    [disabled]="!query().trim()"
-    aria-label="Ajouter l'aliment à la liste"
-    i18n-aria-label="@@foodSearch.addButton.ariaLabel"
-    i18n="@@foodSearch.addButton"
-  >
-    Ajouter
-  </button>
+  <div class="food-search__actions">
+    <button
+      type="button"
+      class="food-search__add-btn"
+      (click)="addFood()"
+      [disabled]="!query().trim()"
+      aria-label="Ajouter l'aliment à la liste"
+      i18n-aria-label="@@foodSearch.addButton.ariaLabel"
+      i18n="@@foodSearch.addButton"
+    >
+      Ajouter
+    </button>
+
+    <button
+      type="button"
+      class="food-search__add-analyze-btn"
+      (click)="addFoodAndAnalyze()"
+      [disabled]="!query().trim() || analyzing()"
+      aria-label="Ajouter l'aliment et analyser son score FODMAP"
+      i18n-aria-label="@@foodSearch.addAndAnalyzeButton.ariaLabel"
+      i18n="@@foodSearch.addAndAnalyzeButton"
+    >
+      Ajouter et analyser
+    </button>
+  </div>
 </div>

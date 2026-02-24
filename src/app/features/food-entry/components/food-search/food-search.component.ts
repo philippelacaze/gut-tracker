@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
 
 import { Food } from '../../../../core/models/food-entry.model';
 import { FoodEntryStore } from '../../services/food-entry.store';
@@ -12,6 +12,10 @@ import { FoodEntryStore } from '../../services/food-entry.store';
 })
 export class FoodSearchComponent {
   readonly foodAdded = output<Food>();
+  readonly foodAddedAndAnalyze = output<Food>();
+
+  /** Indique qu'une analyse IA est en cours (désactive le bouton "Ajouter et analyser") */
+  readonly analyzing = input<boolean>(false);
 
   private readonly _store = inject(FoodEntryStore);
 
@@ -67,17 +71,31 @@ export class FoodSearchComponent {
   }
 
   addFood(): void {
-    const name = this._query().trim();
-    if (!name) return;
+    const food = this._buildFood();
+    if (!food) return;
+    this.foodAdded.emit(food);
+    this._resetInputs();
+  }
 
-    const food: Food = {
+  addFoodAndAnalyze(): void {
+    const food = this._buildFood();
+    if (!food) return;
+    this.foodAddedAndAnalyze.emit(food);
+    this._resetInputs();
+  }
+
+  private _buildFood(): Food | null {
+    const name = this._query().trim();
+    if (!name) return null;
+    return {
       id: crypto.randomUUID(),
       name,
       fodmapScore: null,
       quantity: this._quantity().trim() || undefined,
     };
+  }
 
-    this.foodAdded.emit(food);
+  private _resetInputs(): void {
     this._query.set('');
     this._quantity.set('');
     this._showSuggestions.set(false);

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { signal } from '@angular/core';
+import { ComponentRef, signal } from '@angular/core';
 
 import { Food, FoodEntry } from '../../../../core/models/food-entry.model';
 import { makeFoodEntry } from '../../../../../testing/food-entry.factory';
@@ -18,6 +18,7 @@ function createMockStore(initialEntries: FoodEntry[] = []) {
 describe('FoodSearchComponent', () => {
   let fixture: ComponentFixture<FoodSearchComponent>;
   let component: FoodSearchComponent;
+  let componentRef: ComponentRef<FoodSearchComponent>;
   let mockStoreRef: ReturnType<typeof createMockStore>;
 
   async function setup(entries: FoodEntry[] = []): Promise<void> {
@@ -32,6 +33,7 @@ describe('FoodSearchComponent', () => {
 
     fixture = TestBed.createComponent(FoodSearchComponent);
     component = fixture.componentInstance;
+    componentRef = fixture.componentRef;
     fixture.detectChanges();
   }
 
@@ -42,16 +44,35 @@ describe('FoodSearchComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('devrait afficher un champ Aliment, un champ Quantité et un bouton Ajouter', async () => {
+    it('devrait afficher un champ Aliment, un champ Quantité et les deux boutons d\'ajout', async () => {
       await setup();
       expect(fixture.nativeElement.querySelector('#food-name')).toBeTruthy();
       expect(fixture.nativeElement.querySelector('#food-quantity')).toBeTruthy();
       expect(fixture.nativeElement.querySelector('.food-search__add-btn')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('.food-search__add-analyze-btn')).toBeTruthy();
     });
 
     it('devrait avoir le bouton Ajouter désactivé quand la saisie est vide', async () => {
       await setup();
       const btn = fixture.nativeElement.querySelector('.food-search__add-btn') as HTMLButtonElement;
+      expect(btn.disabled).toBe(true);
+    });
+
+    it('devrait avoir le bouton Ajouter et analyser désactivé quand la saisie est vide', async () => {
+      await setup();
+      const btn = fixture.nativeElement.querySelector('.food-search__add-analyze-btn') as HTMLButtonElement;
+      expect(btn.disabled).toBe(true);
+    });
+
+    it('devrait désactiver le bouton Ajouter et analyser quand analyzing est true', async () => {
+      await setup();
+      const input = fixture.nativeElement.querySelector('#food-name') as HTMLInputElement;
+      input.value = 'Tomate';
+      input.dispatchEvent(new Event('input'));
+      componentRef.setInput('analyzing', true);
+      fixture.detectChanges();
+
+      const btn = fixture.nativeElement.querySelector('.food-search__add-analyze-btn') as HTMLButtonElement;
       expect(btn.disabled).toBe(true);
     });
   });
@@ -179,6 +200,58 @@ describe('FoodSearchComponent', () => {
       const sub = fixture.componentRef.instance.foodAdded.subscribe((f: Food) => emitted.push(f));
 
       component.addFood();
+
+      expect(emitted).toHaveLength(0);
+      sub.unsubscribe();
+    });
+  });
+
+  // ──────────────────────────────────────────────────────────────
+  describe('addFoodAndAnalyze()', () => {
+    it('devrait émettre foodAddedAndAnalyze avec le nom et la quantité saisis', async () => {
+      await setup();
+      const emitted: Food[] = [];
+      const sub = componentRef.instance.foodAddedAndAnalyze.subscribe((f: Food) => emitted.push(f));
+
+      const nameInput = fixture.nativeElement.querySelector('#food-name') as HTMLInputElement;
+      const qtyInput = fixture.nativeElement.querySelector('#food-quantity') as HTMLInputElement;
+      nameInput.value = 'Poulet';
+      nameInput.dispatchEvent(new Event('input'));
+      qtyInput.value = '150 g';
+      qtyInput.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
+      fixture.nativeElement.querySelector('.food-search__add-analyze-btn').click();
+      fixture.detectChanges();
+
+      expect(emitted).toHaveLength(1);
+      expect(emitted[0].name).toBe('Poulet');
+      expect(emitted[0].quantity).toBe('150 g');
+      expect(emitted[0].fodmapScore).toBeNull();
+
+      sub.unsubscribe();
+    });
+
+    it('devrait vider les champs après l\'ajout avec analyse', async () => {
+      await setup();
+      const nameInput = fixture.nativeElement.querySelector('#food-name') as HTMLInputElement;
+      nameInput.value = 'Riz';
+      nameInput.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
+      fixture.nativeElement.querySelector('.food-search__add-analyze-btn').click();
+      fixture.detectChanges();
+
+      expect(component.query()).toBe('');
+      expect(component.quantity()).toBe('');
+    });
+
+    it('ne devrait pas émettre si le champ Aliment est vide', async () => {
+      await setup();
+      const emitted: Food[] = [];
+      const sub = componentRef.instance.foodAddedAndAnalyze.subscribe((f: Food) => emitted.push(f));
+
+      component.addFoodAndAnalyze();
 
       expect(emitted).toHaveLength(0);
       sub.unsubscribe();

@@ -75,7 +75,14 @@
     }
   }
 
+  &__actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
   &__add-btn {
+    flex: 1 1 0;
     padding: 12px;
     background: #4caf50;
     color: #fff;
@@ -97,6 +104,33 @@
 
     &:not(:disabled):focus-visible {
       outline: 2px solid #388e3c;
+      outline-offset: 2px;
+    }
+  }
+
+  &__add-analyze-btn {
+    flex: 1 1 0;
+    padding: 12px;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    &:disabled {
+      background: #bdbdbd;
+      cursor: not-allowed;
+    }
+
+    &:not(:disabled):hover {
+      background: #1565c0;
+    }
+
+    &:not(:disabled):focus-visible {
+      outline: 2px solid #1565c0;
       outline-offset: 2px;
     }
   }

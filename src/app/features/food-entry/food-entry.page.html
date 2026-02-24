@@ -55,7 +55,11 @@
         <gt-food-camera (analysisComplete)="onRecognitionComplete($event)" />
       }
     } @else {
-      <gt-food-search (foodAdded)="onFoodAdded($event)" />
+      <gt-food-search
+        [analyzing]="aiAnalyzing()"
+        (foodAdded)="onFoodAdded($event)"
+        (foodAddedAndAnalyze)="onFoodAddedAndAnalyze($event)"
+      />
     }
 
     @if (pendingFoods().length > 0) {
