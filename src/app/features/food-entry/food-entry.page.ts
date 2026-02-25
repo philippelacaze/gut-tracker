@@ -172,45 +172,45 @@ export class FoodEntryPageComponent {
 
     this._saving.set(true);
     try {
-      let enrichedFoods = this._pendingFoods();
-      let globalFodmapScore: FodmapScore | undefined;
+      let allFoods = this._pendingFoods();
+      let globalAdvice = '';
 
-      // Analyse FODMAP — dégradation gracieuse si l'IA est indisponible
-      try {
-        const analysis = await this._aiService.analyzeFodmap(
-          enrichedFoods.map(f => f.name),
-        );
-        const now = new Date().toISOString();
-        enrichedFoods = enrichedFoods.map(f => {
-          const match = analysis.foods.find(
-            af => af.name.toLowerCase() === f.name.toLowerCase(),
-          );
-          if (!match) return f;
-          return {
-            ...f,
-            fodmapScore: {
-              level: match.fodmapLevel,
-              score: match.score,
-              details: [match.mainFodmaps.join(', '), match.notes].filter(Boolean).join(' — '),
-              analyzedAt: now,
-            },
-          };
-        });
-        globalFodmapScore = {
-          level: analysis.globalLevel,
-          score: analysis.globalScore,
-          details: analysis.advice,
-          analyzedAt: now,
-        };
-      } catch {
-        // Entrée sauvegardée sans score FODMAP si l'IA est indisponible
+      // N'envoie à l'IA que les aliments sans score (pas encore analysés)
+      const toAnalyze = allFoods.filter(f => f.fodmapScore === null);
+      if (toAnalyze.length > 0) {
+        try {
+          const analysis = await this._aiService.analyzeFodmap(toAnalyze.map(f => f.name));
+          const now = new Date().toISOString();
+          allFoods = allFoods.map(f => {
+            if (f.fodmapScore !== null) return f; // score déjà obtenu via "Ajouter et analyser"
+            const match = analysis.foods.find(
+              af => af.name.toLowerCase() === f.name.toLowerCase(),
+            );
+            if (!match) return f;
+            return {
+              ...f,
+              fodmapScore: {
+                level: match.fodmapLevel,
+                score: match.score,
+                details: [match.mainFodmaps.join(', '), match.notes].filter(Boolean).join(' — '),
+                analyzedAt: now,
+              },
+            };
+          });
+          globalAdvice = analysis.advice;
+        } catch {
+          // Aliments sans score conservés tels quels si l'IA est indisponible
+        }
       }
+
+      // Score global calculé depuis les scores individuels (tous confondus)
+      const globalFodmapScore = this._buildGlobalScore(allFoods, globalAdvice);
 
       const entry: FoodEntry = {
         id: crypto.randomUUID(),
         timestamp: new Date().toISOString(),
         mealType: this._selectedMealType(),
-        foods: enrichedFoods,
+        foods: allFoods,
         globalFodmapScore,
       };
       await this._store.add(entry);
@@ -220,5 +220,14 @@ export class FoodEntryPageComponent {
     } finally {
       this._saving.set(false);
     }
+  }
+
+  /** Calcule le score global du repas depuis les scores individuels disponibles */
+  private _buildGlobalScore(foods: Food[], advice: string): FodmapScore | undefined {
+    const scored = foods.filter(f => f.fodmapScore !== null);
+    if (scored.length === 0) return undefined;
+    const avg = Math.round(scored.reduce((sum, f) => sum + f.fodmapScore!.score, 0) / scored.length);
+    const level: 'low' | 'medium' | 'high' = avg <= 3 ? 'low' : avg <= 6 ? 'medium' : 'high';
+    return { level, score: avg, details: advice, analyzedAt: new Date().toISOString() };
   }
 }

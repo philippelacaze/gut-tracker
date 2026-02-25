@@ -224,6 +224,54 @@ describe('FoodEntryPageComponent', () => {
 
       expect(mockAnalyzeFodmap).toHaveBeenCalledWith(['Poulet', 'Riz']);
     });
+
+    it('ne devrait pas appeler analyzeFodmap pour un aliment déjà analysé', async () => {
+      await setup();
+      const preScore = { level: 'low' as const, score: 2, details: '', analyzedAt: '2026-01-01T00:00:00.000Z' };
+      component.onFoodAdded({ id: 'f1', name: 'Poulet', fodmapScore: preScore });
+      component.onFoodAdded({ id: 'f2', name: 'Riz', fodmapScore: null });
+
+      await component.saveEntry();
+
+      expect(mockAnalyzeFodmap).toHaveBeenCalledWith(['Riz']);
+    });
+
+    it('ne devrait pas appeler analyzeFodmap si tous les aliments sont déjà analysés', async () => {
+      await setup();
+      const preScore = { level: 'low' as const, score: 2, details: '', analyzedAt: '2026-01-01T00:00:00.000Z' };
+      component.onFoodAdded({ id: 'f1', name: 'Poulet', fodmapScore: preScore });
+      component.onFoodAdded({ id: 'f2', name: 'Riz', fodmapScore: { ...preScore, score: 4, level: 'medium' } });
+
+      await component.saveEntry();
+
+      expect(mockAnalyzeFodmap).not.toHaveBeenCalled();
+    });
+
+    it('devrait conserver le score pré-existant d\'un aliment déjà analysé', async () => {
+      await setup();
+      const preScore = { level: 'high' as const, score: 8, details: 'fructose', analyzedAt: '2026-01-01T00:00:00.000Z' };
+      component.onFoodAdded({ id: 'f1', name: 'Pomme', fodmapScore: preScore });
+
+      await component.saveEntry();
+
+      const savedEntry: FoodEntry = mockAdd.mock.calls[0][0] as FoodEntry;
+      expect(savedEntry.foods[0].fodmapScore?.level).toBe('high');
+      expect(savedEntry.foods[0].fodmapScore?.score).toBe(8);
+    });
+
+    it('devrait calculer le score global comme moyenne des scores individuels', async () => {
+      await setup();
+      const s1 = { level: 'low' as const, score: 2, details: '', analyzedAt: '2026-01-01T00:00:00.000Z' };
+      const s2 = { level: 'medium' as const, score: 6, details: '', analyzedAt: '2026-01-01T00:00:00.000Z' };
+      component.onFoodAdded({ id: 'f1', name: 'Poulet', fodmapScore: s1 });
+      component.onFoodAdded({ id: 'f2', name: 'Oignon', fodmapScore: s2 });
+
+      await component.saveEntry();
+
+      const savedEntry: FoodEntry = mockAdd.mock.calls[0][0] as FoodEntry;
+      expect(savedEntry.globalFodmapScore?.score).toBe(4); // moyenne de 2 et 6
+      expect(savedEntry.globalFodmapScore?.level).toBe('medium');
+    });
   });
 
   // ──────────────────────────────────────────────────────────────
